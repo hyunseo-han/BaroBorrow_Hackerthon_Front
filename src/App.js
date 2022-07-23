@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Community from "./Community";
+import CommunityPost from "./CommunityPost";
+import Memo from "./Memo";
+import Schedule from "./Schedule";
+import { GlobalStyle } from "./style";
+import styled from "styled-components";
+import Nav from "./Nav";
+import { useState } from "react";
+const CommunityTitle = styled.div`
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 16px;
+`;
+const CommunityBox = styled.div`
+  background: #ffffff;
+  border-radius: 50px;
+  width: 1185px;
+  height: 822px;
+  margin: 0 auto;
+  padding: 50px;
+`;
 
 function App() {
+  const [page, setPage] = useState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <GlobalStyle />
+      <Nav page={page} setPage={setPage} />
+      <CommunityBox>
+        <CommunityTitle>{page}</CommunityTitle>
+        <Routes>
+          <Route element={<Community />} path="/community"></Route>
+          <Route element={<Schedule />} path="/schedule"></Route>
+          <Route element={<CommunityPost />} path={`/`} />
+          <Route element={<Memo />} path="memo"></Route>
+        </Routes>
+      </CommunityBox>
+    </BrowserRouter>
   );
 }
 
