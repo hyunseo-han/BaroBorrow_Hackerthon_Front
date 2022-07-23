@@ -7,12 +7,13 @@ import { GlobalStyle } from "./style";
 import styled from "styled-components";
 import Nav from "./Nav";
 import { useState } from "react";
+import ToDo from "./ToDo";
 const CommunityTitle = styled.div`
   font-weight: bold;
   font-size: 32px;
   margin-bottom: 16px;
 `;
-const CommunityBox = styled.div`
+const CommunityBox = styled.section`
   background: #ffffff;
   border-radius: 50px;
   width: 1185px;
@@ -32,7 +33,7 @@ function App() {
         <Routes>
           <Route element={<Community />} path="/community"></Route>
           <Route element={<Schedule />} path="/schedule"></Route>
-          <Route element={<CommunityPost />} path={`/`} />
+          <Route element={<ToDo />} path="/todo" />
           <Route element={<Memo />} path="memo"></Route>
         </Routes>
       </CommunityBox>

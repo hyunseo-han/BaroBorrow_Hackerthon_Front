@@ -43,23 +43,5 @@
     "created_data": "2022-06-24",
     "modified_data": "2022-07-19",
     "user_id": 8508
-  },
-  {
-    "id": 6,
-    "title": "Actuary",
-    "content": "Superficial frostbite of unspecified ankle, sequela",
-    "writer": "Naéva",
-    "created_data": "2022-07-06",
-    "modified_data": "2022-07-20",
-    "user_id": 7493
-  },
-  {
-    "id": 7,
-    "title": "Librarian",
-    "content": "Fracture of bony thorax, part unsp, subs for fx w routn heal",
-    "writer": "Bérangère",
-    "created_data": "2022-07-13",
-    "modified_data": "2022-07-19",
-    "user_id": 4251
   }
 ]
