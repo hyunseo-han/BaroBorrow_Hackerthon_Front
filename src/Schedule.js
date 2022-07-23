@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import data from "./data.json";
 import userdata from "./userdata.json";
+const CommunityTitle = styled.div`
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 16px;
+`;
 const ScheduleBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,49 +121,52 @@ function Schedule() {
     .slice(0, 10);
   const [selectDay, setSelectDay] = useState(today);
   return (
-    <ScheduleBox>
-      <div>
-        <ScheduleCase>
-          <DesText>기한</DesText>
-          <DesText>내용</DesText>
-          <DesText>담당</DesText>
-        </ScheduleCase>
-        <ScheduleList>
-          {data.map((list) => (
-            <ShContent key={list.id}>
-              <ShContentDiv>
-                <ShContentDate>{list.created_data}</ShContentDate>
-                <ShContentText>{list.content}</ShContentText>
-                <ShContentWriter>{list.writer}</ShContentWriter>
-              </ShContentDiv>
-            </ShContent>
-          ))}
-        </ScheduleList>
-      </div>
-      <ScheduleAdd>
-        <ScheduleInput placeholder="내용을 입력해주세요" />
-        <ScheduleInfo>
-          <InfoBox>
-            <DeadLineInput
-              id="deadline"
-              type="date"
-              value={selectDay}
-              onChange={(event) => {
-                setSelectDay(event.target.value);
-              }}
-            />
-          </InfoBox>
-          <Charge>
-            {userdata.map((list) => (
-              <option value={list.username} key={list.username}>
-                {list.username}
-              </option>
+    <>
+      <CommunityTitle>일정</CommunityTitle>
+      <ScheduleBox>
+        <div>
+          <ScheduleCase>
+            <DesText>기한</DesText>
+            <DesText>내용</DesText>
+            <DesText>담당</DesText>
+          </ScheduleCase>
+          <ScheduleList>
+            {data.map((list) => (
+              <ShContent key={list.id}>
+                <ShContentDiv>
+                  <ShContentDate>{list.created_data}</ShContentDate>
+                  <ShContentText>{list.content}</ShContentText>
+                  <ShContentWriter>{list.writer}</ShContentWriter>
+                </ShContentDiv>
+              </ShContent>
             ))}
-          </Charge>
-          <Upload>업로드</Upload>
-        </ScheduleInfo>
-      </ScheduleAdd>
-    </ScheduleBox>
+          </ScheduleList>
+        </div>
+        <ScheduleAdd>
+          <ScheduleInput placeholder="내용을 입력해주세요" />
+          <ScheduleInfo>
+            <InfoBox>
+              <DeadLineInput
+                id="deadline"
+                type="date"
+                value={selectDay}
+                onChange={(event) => {
+                  setSelectDay(event.target.value);
+                }}
+              />
+            </InfoBox>
+            <Charge>
+              {userdata.map((list) => (
+                <option value={list.username} key={list.username}>
+                  {list.username}
+                </option>
+              ))}
+            </Charge>
+            <Upload>업로드</Upload>
+          </ScheduleInfo>
+        </ScheduleAdd>
+      </ScheduleBox>
+    </>
   );
 }
 

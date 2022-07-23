@@ -8,11 +8,7 @@ import styled from "styled-components";
 import Nav from "./Nav";
 import { useState } from "react";
 import ToDo from "./ToDo";
-const CommunityTitle = styled.div`
-  font-weight: bold;
-  font-size: 32px;
-  margin-bottom: 16px;
-`;
+
 const CommunityBox = styled.section`
   background: #ffffff;
   border-radius: 50px;
@@ -27,9 +23,8 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Nav page={page} setPage={setPage} />
+      <Nav />
       <CommunityBox>
-        <CommunityTitle>{page}</CommunityTitle>
         <Routes>
           <Route element={<Community />} path="/community"></Route>
           <Route element={<Schedule />} path="/schedule"></Route>

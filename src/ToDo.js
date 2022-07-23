@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import data from "./data.json";
 import userdata from "./userdata.json";
 import styled from "styled-components";
+const CommunityTitle = styled.div`
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 16px;
+`;
 const TDAndCmt = styled.div`
   display: flex;
 `;
@@ -170,42 +175,46 @@ const CommentPost = ({ list }) => {
 
 function ToDo() {
   return (
-    <TDAndCmt>
-      <ToDoBox>
-        <ToDoList>
-          {data.map((list) => (
-            <ToDoPost list={list} key={list.id} />
-          ))}
-        </ToDoList>
-        <ToDoAdd>
-          <Input placeholder="내용을 입력해주세요" />
-          <ToDoInfo>
-            <Charge>
-              {userdata.map((list) => (
-                <option value={list.username} key={list.username}>
-                  {list.username}
-                </option>
-              ))}
-            </Charge>
-            <Upload>업로드</Upload>
-          </ToDoInfo>
-        </ToDoAdd>
-      </ToDoBox>
-      <CommentBox>
-        <CommentList>
-          {userdata.map((list) => (
-            <CommentPost list={list} key={list.id} />
-          ))}
-        </CommentList>
-        <CommentAdd>
-          <CommentUser>나</CommentUser>
-          <CommentUpload>
+    <>
+      <TDAndCmt>
+        <ToDoBox>
+          <CommunityTitle>할일</CommunityTitle>
+          <ToDoList>
+            {data.map((list) => (
+              <ToDoPost list={list} key={list.id} />
+            ))}
+          </ToDoList>
+          <ToDoAdd>
             <Input placeholder="내용을 입력해주세요" />
-            <Upload>추가</Upload>
-          </CommentUpload>
-        </CommentAdd>
-      </CommentBox>
-    </TDAndCmt>
+            <ToDoInfo>
+              <Charge>
+                {userdata.map((list) => (
+                  <option value={list.username} key={list.username}>
+                    {list.username}
+                  </option>
+                ))}
+              </Charge>
+              <Upload>업로드</Upload>
+            </ToDoInfo>
+          </ToDoAdd>
+        </ToDoBox>
+        <CommentBox>
+          <CommunityTitle>댓글</CommunityTitle>
+          <CommentList>
+            {userdata.map((list) => (
+              <CommentPost list={list} key={list.id} />
+            ))}
+          </CommentList>
+          <CommentAdd>
+            <CommentUser>나</CommentUser>
+            <CommentUpload>
+              <Input placeholder="내용을 입력해주세요" />
+              <Upload>추가</Upload>
+            </CommentUpload>
+          </CommentAdd>
+        </CommentBox>
+      </TDAndCmt>
+    </>
   );
 }
 
