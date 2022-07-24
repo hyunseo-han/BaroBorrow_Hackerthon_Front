@@ -30,13 +30,11 @@ const ShContent = styled.li`
   &::marker {
     color: #0090ff;
   }
-  padding-bottom: 20px;
-  &:last-child {
-    padding: 0;
-  }
+  padding: 10px;
 `;
 const ShContentDiv = styled.div`
   display: flex;
+  align-items: center;
 `;
 const ShContentDate = styled.div`
   width: 33.3333%;
@@ -117,36 +115,52 @@ const DeleteCheck = styled.input`
     background: red;
   }
 `;
+const ContentBtn = styled.div`
+  background: #0090ff;
+  border-radius: 5px;
+  padding: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+`;
 const SchedulePost = ({
   list,
   listRef,
   index,
   del,
   delId,
-  setCorTitle,
   setCorContent,
   modify,
   setModifyId,
   setModify,
+  setShowEdit,
 }) => {
+  const [comBtn, setComBtn] = useState(false);
   return (
     <ShContent
       ref={(list) => (listRef.current[index] = list)}
       onClick={() => {
         if (modify) {
-          for (let idx = 0; idx < listRef.current.length; idx++) {
-            listRef.current[idx].style.backgroundColor = "";
+          for (
+            let idx = 0;
+            idx < listRef.current[index].parentElement.children.length;
+            idx++
+          ) {
+            listRef.current[index].parentElement.children[
+              idx
+            ].lastChild.lastChild.click();
           }
           setModify(true);
           listRef.current[index].style.backgroundColor = "#f2f2f2";
-          setCorTitle(list.title);
           setCorContent(list.content);
           setModifyId(list.id);
+          setComBtn(true);
         }
       }}
     >
       <ShContentDiv>
-        <ShContentDate>{list.created_data}</ShContentDate>
+        <ShContentDate>{list.modified_data}</ShContentDate>
         <ShContentText>{list.content}</ShContentText>
         <ShContentWriter>{list.writer}</ShContentWriter>
         {del ? (
@@ -159,6 +173,19 @@ const SchedulePost = ({
         ) : (
           ""
         )}
+        <ContentBtn
+          onClick={(event) => {
+            event.stopPropagation();
+            setComBtn(false);
+            listRef.current[index].style.backgroundColor = "";
+            setShowEdit(false);
+            setModify(false);
+            setCorContent("");
+          }}
+          style={{ display: comBtn ? "block" : "none" }}
+        >
+          완
+        </ContentBtn>
       </ShContentDiv>
     </ShContent>
   );
@@ -171,19 +198,19 @@ function Schedule() {
     .slice(0, 10);
   const [selectDay, setSelectDay] = useState(today);
   // head
-  const [saveData, setSaveData] = useState(data);
   const listRef = useRef([]);
   // 수정
   const [showEdit, setShowEdit] = useState(false);
   const [modify, setModify] = useState(false);
-  const [corTitle, setCorTitle] = useState("");
   const [corContent, setCorContent] = useState("");
   const [modifyid, setModifyId] = useState("");
   // 삭제
   const [del, setDel] = useState(false);
   const [delId, setDelId] = useState({});
-  console.log(delId);
-  console.log(corTitle, corContent);
+  // 날짜와 책임자
+  const [corCharge, setCorCharge] = useState("");
+  // api 연동때 수정할 부분
+  const [saveData, setSaveData] = useState(data);
   return (
     <>
       <CommunityHeader
@@ -191,8 +218,6 @@ function Schedule() {
         showEdit={showEdit}
         setShowEdit={setShowEdit}
         setModify={setModify}
-        setCorTitle={setCorTitle}
-        setCorContent={setCorContent}
         saveData={saveData}
         setDel={setDel}
         del={del}
@@ -217,7 +242,7 @@ function Schedule() {
                 del={del}
                 delId={delId}
                 modify={modify}
-                setCorTitle={setCorTitle}
+                setCorCharge={setCorCharge}
                 setCorContent={setCorContent}
                 setModifyId={setModifyId}
                 setModify={setModify}
@@ -244,14 +269,54 @@ function Schedule() {
                 }}
               />
             </InfoBox>
-            <Charge>
+            <Charge
+              onChange={(event) => {
+                setCorCharge(event.target.value);
+              }}
+            >
+              <option value={"담당"} defaultValue>
+                담당
+              </option>
               {userdata.map((list) => (
                 <option value={list.username} key={list.username}>
                   {list.username}
                 </option>
               ))}
             </Charge>
-            <Upload>업로드</Upload>
+            <Upload
+              onClick={() => {
+                saveData.map((list) => {
+                  if (list.id === parseInt(modifyid) && modify) {
+                    // api 연동때 수정할 부분
+                    list.content = corContent;
+                    list.writer = corCharge;
+                    list.modified_data = selectDay;
+                  }
+                  setCorContent("");
+                });
+                if (modify === false) {
+                  const td = new Date();
+                  const today = new Date(
+                    td.getTime() - td.getTimezoneOffset() * 60000
+                  )
+                    .toISOString()
+                    .slice(0, 10);
+                  const addData = {
+                    // api 적용할 때 wirter랑 title, 고치기
+                    id: Date.now(),
+                    title: selectDay,
+                    content: corContent,
+                    writer: corCharge,
+                    created_data: today,
+                    modified_data: selectDay,
+                    user_id: 2466,
+                  };
+                  setSaveData([...saveData, addData]);
+                }
+              }}
+            >
+              {modify ? "수정" : "업로드"}
+            </Upload>
           </ScheduleInfo>
         </ScheduleAdd>
       </ScheduleBox>

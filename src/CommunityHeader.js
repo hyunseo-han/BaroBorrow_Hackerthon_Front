@@ -26,6 +26,8 @@ const EditSelect = styled.div`
 const EditIcon = styled.div`
   display: flex;
   cursor: pointer;
+  padding: 2px;
+  border-radius: 5px;
 `;
 function CommunityHeader({
   titleName,

@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 ${reset}
 
 @font-face {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: NotoSans, sans-serif;
     src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap')
       format("woff");
     font-weight: normal;
@@ -12,6 +12,6 @@ ${reset}
   }
     body{
         background-color: #f2f2f2;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: NotoSans, sans-serif;
     }
 `;

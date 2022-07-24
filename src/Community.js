@@ -139,9 +139,9 @@ const CommunityPost = ({
         }
       }}
     >
-      <ContentTitle>{list.title}(제목)</ContentTitle>
+      <ContentTitle>{list.title}</ContentTitle>
       <ContentBox>
-        <ContentText>{list.content}(내용)</ContentText>
+        <ContentText>{list.content}</ContentText>
         {del ? (
           <DeleteCheck
             type="checkbox"
@@ -158,9 +158,9 @@ const CommunityPost = ({
             setComBtn(false);
             listRef.current[index].style.backgroundColor = "";
             setShowEdit(false);
-            setCorTitle(list.title);
-            setCorContent(list.content);
             setModify(false);
+            setCorContent("");
+            setCorTitle("");
           }}
           style={{ display: comBtn ? "block" : "none" }}
         >
@@ -172,7 +172,9 @@ const CommunityPost = ({
 };
 
 function Community() {
+  // api 연동때 수정할 부분
   const [saveData, setSaveData] = useState(data);
+
   const listRef = useRef([]);
   // 수정
   const [showEdit, setShowEdit] = useState(false);
@@ -190,8 +192,6 @@ function Community() {
         showEdit={showEdit}
         setShowEdit={setShowEdit}
         setModify={setModify}
-        setCorTitle={setCorTitle}
-        setCorContent={setCorContent}
         saveData={saveData}
         setDel={setDel}
         del={del}
@@ -238,16 +238,36 @@ function Community() {
             <EditBtn
               onClick={() => {
                 saveData.map((list) => {
-                  if (list.id === parseInt(modifyid)) {
+                  if (list.id === parseInt(modifyid) && modify) {
                     list.content = corContent;
                     list.title = corTitle;
                   }
+                  console.log(saveData);
                   setCorTitle("");
                   setCorContent("");
                 });
+                if (modify === false) {
+                  const td = new Date();
+                  const today = new Date(
+                    td.getTime() - td.getTimezoneOffset() * 60000
+                  )
+                    .toISOString()
+                    .slice(0, 10);
+                  const addData = {
+                    // api 연동때 수정할 부분
+                    id: Date.now(),
+                    title: corTitle,
+                    content: corContent,
+                    writer: "Gösta",
+                    created_data: today,
+                    modified_data: today,
+                    user_id: 2466,
+                  };
+                  setSaveData([...saveData, addData]);
+                }
               }}
             >
-              업로드
+              {modify ? "수정" : "업로드"}
             </EditBtn>
           </CommunityEdit>
         </CommunityEditSection>
