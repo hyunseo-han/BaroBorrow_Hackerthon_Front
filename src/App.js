@@ -1,12 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Community from "./Community";
-import CommunityPost from "./CommunityPost";
-import Memo from "./Memo";
 import Schedule from "./Schedule";
 import { GlobalStyle } from "./style";
 import styled from "styled-components";
 import Nav from "./Nav";
-import { useState } from "react";
 import ToDo from "./ToDo";
 
 const CommunityBox = styled.section`
@@ -19,7 +16,6 @@ const CommunityBox = styled.section`
 `;
 
 function App() {
-  const [page, setPage] = useState();
   return (
     <BrowserRouter>
       <GlobalStyle />
@@ -29,7 +25,6 @@ function App() {
           <Route element={<Community />} path="/community"></Route>
           <Route element={<Schedule />} path="/schedule"></Route>
           <Route element={<ToDo />} path="/todo" />
-          <Route element={<Memo />} path="memo"></Route>
         </Routes>
       </CommunityBox>
     </BrowserRouter>

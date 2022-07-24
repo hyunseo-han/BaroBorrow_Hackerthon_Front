@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const CommunityTitle = styled.div`
   font-weight: bold;
@@ -26,10 +27,20 @@ const EditIcon = styled.div`
   display: flex;
   cursor: pointer;
 `;
-function CommunityHeader() {
+function CommunityHeader({
+  titleName,
+  setShowEdit,
+  showEdit,
+  setModify,
+  setDel,
+  del,
+  delId,
+  setSaveData,
+  saveData,
+}) {
   return (
     <CommunityTitle>
-      공지사항
+      {titleName}
       <svg
         width="30"
         height="30"
@@ -47,7 +58,12 @@ function CommunityHeader() {
       </svg>
       {showEdit ? (
         <EditSelect>
-          <EditIcon onClick={() => setModify(true)}>
+          <EditIcon
+            onClick={() => {
+              setModify(true);
+              setDel(false);
+            }}
+          >
             <svg
               width="15"
               height="15"
@@ -72,15 +88,19 @@ function CommunityHeader() {
           </EditIcon>
           <EditIcon
             onClick={() => {
+              setModify(false);
               setDel(!del);
               const earse = Object.keys(delId).filter(
                 (li) => delId[li] === true
               );
+              let newD = saveData;
               for (let index = 0; index < earse.length; index++) {
-                data = data.filter(
+                newD = newD.filter(
                   (list) => list.id !== parseInt(earse[index])
                 );
               }
+
+              setSaveData(newD);
             }}
           >
             <svg

@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import CommunityHeader from "./CommunityHeader";
 import data from "./data.json";
 import userdata from "./userdata.json";
-const CommunityTitle = styled.div`
-  font-weight: bold;
-  font-size: 32px;
-  margin-bottom: 16px;
-`;
+
 const ScheduleBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,7 +87,6 @@ const InfoBox = styled.div`
   margin-right: 15px;
   font-size: 8px;
 `;
-const DeadLine = styled.label``;
 const DeadLineInput = styled.input`
   all: unset;
 `;
@@ -114,15 +110,95 @@ const Upload = styled.div`
   padding: 10px 12px;
   border-radius: 5px;
 `;
+const DeleteCheck = styled.input`
+  width: 20px;
+  height: 20px;
+  &:checked {
+    background: red;
+  }
+`;
+const SchedulePost = ({
+  list,
+  listRef,
+  index,
+  del,
+  delId,
+  setCorTitle,
+  setCorContent,
+  modify,
+  setModifyId,
+  setModify,
+}) => {
+  return (
+    <ShContent
+      ref={(list) => (listRef.current[index] = list)}
+      onClick={() => {
+        if (modify) {
+          for (let idx = 0; idx < listRef.current.length; idx++) {
+            listRef.current[idx].style.backgroundColor = "";
+          }
+          setModify(true);
+          listRef.current[index].style.backgroundColor = "#f2f2f2";
+          setCorTitle(list.title);
+          setCorContent(list.content);
+          setModifyId(list.id);
+        }
+      }}
+    >
+      <ShContentDiv>
+        <ShContentDate>{list.created_data}</ShContentDate>
+        <ShContentText>{list.content}</ShContentText>
+        <ShContentWriter>{list.writer}</ShContentWriter>
+        {del ? (
+          <DeleteCheck
+            type="checkbox"
+            onClick={(event) => {
+              delId[list.id] = event.target.checked;
+            }}
+          />
+        ) : (
+          ""
+        )}
+      </ShContentDiv>
+    </ShContent>
+  );
+};
+
 function Schedule() {
   const td = new Date();
   const today = new Date(td.getTime() - td.getTimezoneOffset() * 60000)
     .toISOString()
     .slice(0, 10);
   const [selectDay, setSelectDay] = useState(today);
+  // head
+  const [saveData, setSaveData] = useState(data);
+  const listRef = useRef([]);
+  // 수정
+  const [showEdit, setShowEdit] = useState(false);
+  const [modify, setModify] = useState(false);
+  const [corTitle, setCorTitle] = useState("");
+  const [corContent, setCorContent] = useState("");
+  const [modifyid, setModifyId] = useState("");
+  // 삭제
+  const [del, setDel] = useState(false);
+  const [delId, setDelId] = useState({});
+  console.log(delId);
+  console.log(corTitle, corContent);
   return (
     <>
-      <CommunityTitle>일정</CommunityTitle>
+      <CommunityHeader
+        titleName="일정"
+        showEdit={showEdit}
+        setShowEdit={setShowEdit}
+        setModify={setModify}
+        setCorTitle={setCorTitle}
+        setCorContent={setCorContent}
+        saveData={saveData}
+        setDel={setDel}
+        del={del}
+        delId={delId}
+        setSaveData={setSaveData}
+      />
       <ScheduleBox>
         <div>
           <ScheduleCase>
@@ -131,19 +207,32 @@ function Schedule() {
             <DesText>담당</DesText>
           </ScheduleCase>
           <ScheduleList>
-            {data.map((list) => (
-              <ShContent key={list.id}>
-                <ShContentDiv>
-                  <ShContentDate>{list.created_data}</ShContentDate>
-                  <ShContentText>{list.content}</ShContentText>
-                  <ShContentWriter>{list.writer}</ShContentWriter>
-                </ShContentDiv>
-              </ShContent>
+            {saveData.map((list, index) => (
+              <SchedulePost
+                list={list}
+                key={list.id}
+                listRef={listRef}
+                index={index}
+                setShowEdit={setShowEdit}
+                del={del}
+                delId={delId}
+                modify={modify}
+                setCorTitle={setCorTitle}
+                setCorContent={setCorContent}
+                setModifyId={setModifyId}
+                setModify={setModify}
+              />
             ))}
           </ScheduleList>
         </div>
         <ScheduleAdd>
-          <ScheduleInput placeholder="내용을 입력해주세요" />
+          <ScheduleInput
+            placeholder="내용을 입력해주세요"
+            value={corContent}
+            onChange={(event) => {
+              setCorContent(event.target.value);
+            }}
+          />
           <ScheduleInfo>
             <InfoBox>
               <DeadLineInput

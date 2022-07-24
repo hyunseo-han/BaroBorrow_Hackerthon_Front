@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import data from "./data.json";
 import userdata from "./userdata.json";
 import styled from "styled-components";
+import CommunityHeader from "./CommunityHeader";
 const CommunityTitle = styled.div`
   font-weight: bold;
   font-size: 32px;
@@ -161,6 +162,7 @@ const CommentPost = ({ list }) => {
   const modifiedDate = new Date(list.modified_data);
   const diff = Math.abs(today - modifiedDate);
   const diffDay = Math.floor(diff / (1000 * 60 * 60 * 24));
+
   return (
     <CommentContent>
       <CommentHeader>
@@ -174,11 +176,35 @@ const CommentPost = ({ list }) => {
 };
 
 function ToDo() {
+  // head
+  const [saveData, setSaveData] = useState(data);
+  const listRef = useRef([]);
+  // 수정
+  const [showEdit, setShowEdit] = useState(false);
+  const [modify, setModify] = useState(false);
+  const [corTitle, setCorTitle] = useState("");
+  const [corContent, setCorContent] = useState("");
+  const [modifyid, setModifyId] = useState("");
+  // 삭제
+  const [del, setDel] = useState(false);
+  const [delId, setDelId] = useState({});
   return (
     <>
       <TDAndCmt>
         <ToDoBox>
-          <CommunityTitle>할일</CommunityTitle>
+          <CommunityHeader
+            titleName="할일"
+            showEdit={showEdit}
+            setShowEdit={setShowEdit}
+            setModify={setModify}
+            setCorTitle={setCorTitle}
+            setCorContent={setCorContent}
+            saveData={saveData}
+            setDel={setDel}
+            del={del}
+            delId={delId}
+            setSaveData={setSaveData}
+          />
           <ToDoList>
             {data.map((list) => (
               <ToDoPost list={list} key={list.id} />
