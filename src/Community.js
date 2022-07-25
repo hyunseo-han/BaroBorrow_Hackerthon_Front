@@ -40,6 +40,7 @@ const Content = styled.li`
 const ContentTitle = styled.div`
   font-weight: 600;
   font-size: 18px;
+  width: 420px;
 `;
 const ContentBox = styled.div`
   display: flex;
@@ -48,7 +49,9 @@ const ContentBox = styled.div`
   height: 30px;
   // margin-top: 10px;
 `;
-const ContentText = styled.div``;
+const ContentText = styled.div`
+  width: 420px;
+`;
 const ContentBtn = styled.div`
   background: #0090ff;
   border-radius: 5px;

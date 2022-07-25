@@ -29,6 +29,7 @@ const TDContent = styled.li`
   display: flex;
   align-items: center;
   margin: 0 10px 20px 12px;
+  width: 500px;
 `;
 const TDCheckBox = styled.input`
   position: relative;
@@ -37,7 +38,7 @@ const TDCheckBox = styled.input`
   height: 25px;
 `;
 const TDText = styled.div`
-  width: 450px;
+  width: 400px;
 `;
 const ToDoAdd = styled.div`
   background: #f2f2f2;
