@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import userdata from "./userdata.json";
+import userdata from "./comment.json";
 import styled from "styled-components";
 const CommunityTitle = styled.div`
   font-weight: bold;
@@ -18,7 +18,10 @@ const CommentCount = styled.span`
   color: #7e7e7e;
 `;
 const CommentList = styled.ul`
-  height: 625px;
+  height: 580px;
+  overflow: auto;
+  margin: 0 0 15px 0;
+  padding: 0;
 `;
 const CommentContent = styled.li`
   height: 105px;
@@ -32,6 +35,7 @@ const CommentContent = styled.li`
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+  margin-right: 12px;
 `;
 
 const CommentHeader = styled.div`
@@ -91,13 +95,13 @@ const CommentDel = styled.div`
 `;
 const CommentPost = ({ list, saveUserData, setSaveUserData }) => {
   const today = new Date();
-  const modifiedDate = new Date(list.modified_data);
+  const modifiedDate = new Date(list.created_date);
   const diff = Math.abs(today - modifiedDate);
   const diffDay = Math.floor(diff / (1000 * 60 * 60 * 24));
   return (
     <CommentContent>
       <CommentHeader>
-        <CommentWriter>{list.username}(이름)</CommentWriter>
+        <CommentWriter>{list.author}</CommentWriter>
         <CommentDot>·</CommentDot>
         <CommentDiff>{diffDay ? `${diffDay}일전` : "오늘"}</CommentDiff>
         <CommentDel
@@ -121,7 +125,7 @@ const CommentPost = ({ list, saveUserData, setSaveUserData }) => {
           </svg>
         </CommentDel>
       </CommentHeader>
-      <CommentText>{list.comment}(내용)</CommentText>
+      <CommentText>{list.content}</CommentText>
     </CommentContent>
   );
 };
@@ -134,7 +138,7 @@ function Comment() {
         댓글
         <CommentCount>({saveUserData.length})</CommentCount>
       </CommunityTitle>
-      <CommentList>
+      <CommentList className="scrollBar">
         {saveUserData.map((list, index) => (
           <CommentPost
             list={list}
@@ -164,12 +168,11 @@ function Comment() {
                 .toISOString()
                 .slice(0, 10);
               const addData = {
-                // api 적용할 때 wirter랑 title, 고치기
                 id: Date.now(),
-                username: "나",
-                comment: commentInput,
-                created_data: today,
-                modified_data: today,
+                author: "나",
+                content: commentInput,
+                created_date: today,
+                post: "comment",
               };
               setSaveUserData([...saveUserData, addData]);
               setCommentInput("");

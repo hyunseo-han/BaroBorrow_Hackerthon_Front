@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
-import data from "./data.json";
+import data from "./post.json";
 import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
 
 const CommunityDiv = styled.div`
   display: flex;
   justify-content: center;
-  height: 780px;
+  height: 660px;
 `;
 const CommunitySection = styled.div`
   width: 70%;
@@ -23,13 +23,16 @@ const CommunityEditSection = styled.div`
 
 const ConetentList = styled.ul`
   padding-left: 35px;
+  overflow-y: auto;
+  height: 660px;
+  margin: 0 10px 0 0;
 `;
 const Content = styled.li`
-  margin-bottom: 16px;
-  width: 485px;
-  padding: 20px;
+  // width: 485px;
+  padding: 20px 10px;
   border-radius: 20px;
   list-style: disc;
+  margin-right: 20px;
   &::marker {
     color: #0090ff;
   }
@@ -43,10 +46,9 @@ const ContentBox = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 30px;
+  // margin-top: 10px;
 `;
-const ContentText = styled.div`
-  width: 405px;
-`;
+const ContentText = styled.div``;
 const ContentBtn = styled.div`
   background: #0090ff;
   border-radius: 5px;
@@ -174,7 +176,6 @@ const CommunityPost = ({
 function Community() {
   // api 연동때 수정할 부분
   const [saveData, setSaveData] = useState(data);
-
   const listRef = useRef([]);
   // 수정
   const [showEdit, setShowEdit] = useState(false);
@@ -200,7 +201,7 @@ function Community() {
       />
       <CommunityDiv>
         <CommunitySection>
-          <ConetentList>
+          <ConetentList className="scrollBar">
             {saveData.map((list, index) => (
               <CommunityPost
                 list={list}
@@ -242,7 +243,6 @@ function Community() {
                     list.content = corContent;
                     list.title = corTitle;
                   }
-                  console.log(saveData);
                   setCorTitle("");
                   setCorContent("");
                 });
@@ -254,14 +254,10 @@ function Community() {
                     .toISOString()
                     .slice(0, 10);
                   const addData = {
-                    // api 연동때 수정할 부분
                     id: Date.now(),
                     title: corTitle,
                     content: corContent,
-                    writer: "Gösta",
-                    created_data: today,
-                    modified_data: today,
-                    user_id: 2466,
+                    created: today,
                   };
                   setSaveData([...saveData, addData]);
                 }

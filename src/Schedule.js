@@ -1,13 +1,13 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
-import data from "./data.json";
-import userdata from "./userdata.json";
+import data from "./calendar.json";
+import userdata from "./user.json";
 
 const ScheduleBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 780px;
+  height: 660px;
   justify-content: space-between;
 `;
 const ScheduleCase = styled.div`
@@ -23,14 +23,22 @@ const DesText = styled.div`
   color: #7e7e7e;
 `;
 const ScheduleList = styled.ul`
-  padding: 30px 0 30px 45px;
+  padding: 0 0 30px 45px;
+  overflow: auto;
+  height: 400px;
+  margin: 30px 0;
 `;
 const ShContent = styled.li`
   list-style: disc;
+  margin-right: 10px;
+  border-radius: 10px;
   &::marker {
     color: #0090ff;
   }
   padding: 10px;
+  &:first-child {
+    padding-top: 0;
+  }
 `;
 const ShContentDiv = styled.div`
   display: flex;
@@ -153,16 +161,18 @@ const SchedulePost = ({
           }
           setModify(true);
           listRef.current[index].style.backgroundColor = "#f2f2f2";
-          setCorContent(list.content);
+          setCorContent(list.calendar_title);
           setModifyId(list.id);
           setComBtn(true);
         }
       }}
     >
       <ShContentDiv>
-        <ShContentDate>{list.modified_data}</ShContentDate>
-        <ShContentText>{list.content}</ShContentText>
-        <ShContentWriter>{list.writer}</ShContentWriter>
+        <ShContentDate>{list.calendar_final}</ShContentDate>
+        <ShContentText>{list.calendar_title}</ShContentText>
+        <ShContentWriter>
+          {list.calendar_damdang !== "담당없음" ? list.calendar_damdang : ""}
+        </ShContentWriter>
         {del ? (
           <DeleteCheck
             type="checkbox"
@@ -231,7 +241,7 @@ function Schedule() {
             <DesText>내용</DesText>
             <DesText>담당</DesText>
           </ScheduleCase>
-          <ScheduleList>
+          <ScheduleList className="scrollBar">
             {saveData.map((list, index) => (
               <SchedulePost
                 list={list}
@@ -274,9 +284,7 @@ function Schedule() {
                 setCorCharge(event.target.value);
               }}
             >
-              <option value={"담당"} defaultValue>
-                담당
-              </option>
+              <option value={"담당없음"}>담당없음</option>
               {userdata.map((list) => (
                 <option value={list.username} key={list.username}>
                   {list.username}
@@ -288,9 +296,9 @@ function Schedule() {
                 saveData.map((list) => {
                   if (list.id === parseInt(modifyid) && modify) {
                     // api 연동때 수정할 부분
-                    list.content = corContent;
-                    list.writer = corCharge;
-                    list.modified_data = selectDay;
+                    list.calendar_title = corContent;
+                    list.calendar_damdang = corCharge;
+                    list.calendar_final = selectDay;
                   }
                   setCorContent("");
                 });
@@ -304,12 +312,10 @@ function Schedule() {
                   const addData = {
                     // api 적용할 때 wirter랑 title, 고치기
                     id: Date.now(),
-                    title: selectDay,
-                    content: corContent,
-                    writer: corCharge,
-                    created_data: today,
-                    modified_data: selectDay,
-                    user_id: 2466,
+                    calendar_title: corContent,
+                    calendar_damdang: corCharge,
+                    calendar_final: selectDay,
+                    calendar_created: today,
                   };
                   setSaveData([...saveData, addData]);
                 }

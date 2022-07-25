@@ -9,10 +9,11 @@ import ToDo from "./ToDo";
 const CommunityBox = styled.section`
   background: #ffffff;
   border-radius: 50px;
-  width: 1185px;
   height: 822px;
-  margin: 0 auto;
   padding: 50px;
+  width: 1185px;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 function App() {

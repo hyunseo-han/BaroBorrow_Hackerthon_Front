@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import data from "./data.json";
-import userdata from "./userdata.json";
+import data from "./todo.json";
+import userdata from "./user.json";
 import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
 import Comment from "./Comment";
@@ -17,7 +17,10 @@ const ToDoBox = styled.div`
   height: 780px;
 `;
 const ToDoList = styled.ul`
-  height: 625px;
+  height: 580px;
+  overflow: auto;
+  margin: 0 0 15px 0;
+  padding: 0;
 `;
 const TDContent = styled.li`
   background: #f2f2f2;
@@ -25,7 +28,7 @@ const TDContent = styled.li`
   height: 105px;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 0 10px 20px 12px;
 `;
 const TDCheckBox = styled.input`
   position: relative;
@@ -57,18 +60,7 @@ const Upload = styled.div`
   padding: 10px 12px;
   border-radius: 5px;
 `;
-const Charge = styled.select`
-  width: 101.25px;
-  height: 30px;
-  background: #ffffff;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 8px;
-  border: none;
-  padding-left: 10px;
-`;
+
 const Input = styled.input`
   all: unset;
   width: 70%;
@@ -92,8 +84,9 @@ const ToDoPost = ({
   setModifyId,
   setModify,
   setShowEdit,
+  saveData,
 }) => {
-  const [check, setCheck] = useState(false);
+  const [todoCheck, setTodoCheck] = useState(list.Todo_comlete);
   const [comBtn, setComBtn] = useState(false);
   return (
     <TDContent
@@ -111,7 +104,7 @@ const ToDoPost = ({
           }
           setModify(true);
           setModifyId(list.id);
-          setCorContent(list.content);
+          setCorContent(list.Todo_content);
           setComBtn(true);
         }
         if (del) {
@@ -128,18 +121,19 @@ const ToDoPost = ({
     >
       <TDCheckBox
         type="checkbox"
-        onClick={(event) => {
-          setCheck(event.target.checked);
+        checked={todoCheck}
+        onChange={(event) => {
+          setTodoCheck(event.target.checked);
+          list.Todo_comlete = todoCheck;
         }}
       />
       <TDText
         style={{
-          color: check ? "#7E7E7E" : "#000000",
-          textDecoration: check ? "line-through" : "inherit",
+          color: todoCheck ? "#7E7E7E" : "#000000",
+          textDecoration: todoCheck ? "line-through" : "inherit",
         }}
       >
-        {list.writer ? `${list.writer}-` : ""}
-        {list.content}
+        {list.Todo_content}
       </TDText>
       <ContentBtn
         onClick={(event) => {
@@ -164,16 +158,14 @@ function ToDo() {
   // 수정
   const [showEdit, setShowEdit] = useState(false);
   const [modify, setModify] = useState(false);
-  const [corTitle, setCorTitle] = useState("");
   const [corContent, setCorContent] = useState("");
   const [modifyid, setModifyId] = useState("");
   // 삭제
   const [del, setDel] = useState(false);
   const [delId, setDelId] = useState({});
-  // 책임자
-  const [corCharge, setCorCharge] = useState("");
   // api 연동때 수정할 부분
   const [saveData, setSaveData] = useState(data);
+  // 체크여부
   return (
     <>
       <TDAndCmt>
@@ -189,7 +181,7 @@ function ToDo() {
             delId={delId}
             setSaveData={setSaveData}
           />
-          <ToDoList>
+          <ToDoList className="scrollBar">
             {saveData.map((list, index) => (
               <ToDoPost
                 list={list}
@@ -200,10 +192,10 @@ function ToDo() {
                 del={del}
                 delId={delId}
                 modify={modify}
-                setCorCharge={setCorCharge}
                 setCorContent={setCorContent}
                 setModifyId={setModifyId}
                 setModify={setModify}
+                saveData={saveData}
               />
             ))}
           </ToDoList>
@@ -216,27 +208,12 @@ function ToDo() {
               }}
             />
             <ToDoInfo>
-              <Charge
-                onChange={(event) => {
-                  setCorCharge(event.target.value);
-                }}
-              >
-                <option value={"담당"} defaultValue>
-                  담당
-                </option>
-                {userdata.map((list) => (
-                  <option value={list.username} key={list.username}>
-                    {list.username}
-                  </option>
-                ))}
-              </Charge>
               <Upload
                 onClick={() => {
                   saveData.map((list) => {
                     if (list.id === parseInt(modifyid) && modify) {
                       // api 연동때 수정할 부분
-                      list.content = corContent;
-                      list.writer = corCharge;
+                      list.Todo_content = corContent;
                     }
                     setCorContent("");
                   });
@@ -248,14 +225,10 @@ function ToDo() {
                       .toISOString()
                       .slice(0, 10);
                     const addData = {
-                      // api 적용할 때 wirter랑 title, 고치기
                       id: Date.now(),
-                      title: "",
-                      content: corContent,
-                      writer: corCharge,
-                      created_data: today,
-                      modified_data: today,
-                      user_id: 2466,
+                      Todo_content: corContent,
+                      Todo_complete: false,
+                      Todo_created_at: today,
                     };
                     setSaveData([...saveData, addData]);
                   }
