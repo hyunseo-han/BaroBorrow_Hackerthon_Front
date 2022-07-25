@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# 게시판 만들기
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 공지사항
+ 1. 추가기능: input에서 공지할 제목과 내용을 업로드 버튼을 누르면 추가할 수 있다
+ 2. 삭제기능: 이미 공지한 내용이 마음에 들지 않을 시 점3개 버튼을 누르면 수정하기 글씨가 나오는데 글씨를 누른 후 수정하고자 하는 글을 클릭하면 수정할 수 있다. 
+    클릭하면 회색 박스와 완료 버튼이 나타나고 input 박스에서 수정 후 input 박스의 수정버튼을 누르면 수정이 가능하다
+    수정이 완료된 후에는 완료버튼을 누르면 input 박스의 수정 버튼이 업로드 버튼으로 바뀌면서 수정이 불가능해지진다. 만약 다른 글을 추가로 수정하고자 할 시에는 완료버튼을 누리지 않고 다른 글을 클릭하면 된다.
+ 3. 삭제기능: 공지된 내용을 삭제하고 싶을 때는 점 3개를 눌러 삭제하기 글씨를 클릭한다. 그 후 삭제하고자 하는 글을 선택하면 checkbox가 나오는데 삭제할 글을 모두 체크한 후 다시 checkbox을 누르면 삭제가 가능하다.
+ 
+## 일정
+1. 추가기능: input에서 공지할 날짜, 담당자, 내용을 업로드 버튼을 누르면 추가할 수 있다
+ 2. 삭제기능: 이미 공지한 내용이 마음에 들지 않을 시 점3개 버튼을 누르면 수정하기 글씨가 나오는데 글씨를 누른 후 수정하고자 하는 글을 클릭하면 수정할 수 있다. 
+    클릭하면 회색 박스와 완료 버튼이 나타나고 input 박스에서 수정 후 input 박스의 수정버튼을 누르면 수정이 가능하다
+    수정이 완료된 후에는 완료버튼을 누르면 input 박스의 수정 버튼이 업로드 버튼으로 바뀌면서 수정이 불가능해지진다. 만약 다른 글을 추가로 수정하고자 할 시에는 완료버튼을 누리지 않고 다른 글을 클릭하면 된다.
+ 3. 삭제기능: 공지된 내용을 삭제하고 싶을 때는 점 3개를 눌러 삭제하기 글씨를 클릭한다. 그 후 삭제하고자 하는 글을 선택하면 checkbox가 나오는데 삭제할 글을 모두 체크한 후 다시 checkbox을 누르면 삭제가 가능하다.
+ 
+## 할일
+ 1. 추가기능: input에서 공지할 제목과 내용을 업로드 버튼을 누르면 추가할 수 있다
+ 2. 체크기능: 앞에 있는 체크 표시를 통해 할일을 마쳤으면 체크 할 수 있다.
+ 3. 삭제기능: 이미 쓴 내용이 마음에 들지 않을 시 점3개 버튼을 누르면 수정하기 글씨가 나오는데 글씨를 누른 후 수정하고자 하는 글을 클릭하면 수정할 수 있다. 클릭하면 완료 버튼이 나타나고 input 박스에서 수정 후 수정버튼을 누르면 수정이 가능하다
+    수정이 완료된 후에는 완료버튼을 누르면 input 박스의 수정 버튼이 업로드 버튼으로 바뀌면서 수정이 불가능해지진다. 만약 다른 글을 추가로 수정하고자 할 시에는 완료버튼을 누리지 않고 다른 글을 클릭하면 된다.
+ 4. 삭제기능: 작성된 내용을 삭제하고 싶을 때는 점 3개를 눌러 삭제하기 글씨를 클릭한다. 그 후 삭제하고자 하는 글을 선택하면 테두리가 생기고 여러개를 선택할 수 있다. 선택 후 다시 삭제하기를 누르면 삭제가 가능하다.
+ 
+## 댓글
+ 1. 개수 확인: 댓글 개수를 확인할 수 있다 
+ 2. 삭제기능: 쓰레기통을 누르면 바로 삭제가 가능하다
+ 3. 추가기능: input에서 댓글 내용을 업로드 버튼을 누르면 추가할 수 있다
