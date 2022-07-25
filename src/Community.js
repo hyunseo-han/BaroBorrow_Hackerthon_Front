@@ -2,6 +2,16 @@ import React, { useRef, useState } from "react";
 import data from "./post.json";
 import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
+const CommunityBox = styled.section`
+  background: #ffffff;
+  border-radius: 50px;
+  height: 822px;
+  padding: 50px;
+  width: 70vw;
+  box-sizing: border-box;
+  position: relative;
+  left: 20%;
+`;
 
 const CommunityDiv = styled.div`
   display: flex;
@@ -40,7 +50,7 @@ const Content = styled.li`
 const ContentTitle = styled.div`
   font-weight: 600;
   font-size: 18px;
-  width: 420px;
+  margin-bottom: 10px;
 `;
 const ContentBox = styled.div`
   display: flex;
@@ -50,7 +60,7 @@ const ContentBox = styled.div`
   // margin-top: 10px;
 `;
 const ContentText = styled.div`
-  width: 420px;
+  width: 70%;
 `;
 const ContentBtn = styled.div`
   background: #0090ff;
@@ -58,6 +68,7 @@ const ContentBtn = styled.div`
   padding: 7px 9px;
   color: #ffffff;
   cursor: pointer;
+  width: 35px;
 `;
 
 const CommunityEdit = styled.div`
@@ -190,7 +201,7 @@ function Community() {
   const [del, setDel] = useState(false);
   const [delId, setDelId] = useState({});
   return (
-    <>
+    <CommunityBox>
       <CommunityHeader
         titleName="공지사항"
         showEdit={showEdit}
@@ -271,7 +282,7 @@ function Community() {
           </CommunityEdit>
         </CommunityEditSection>
       </CommunityDiv>
-    </>
+    </CommunityBox>
   );
 }
 

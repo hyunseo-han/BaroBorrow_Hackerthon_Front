@@ -3,6 +3,16 @@ import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
 import data from "./calendar.json";
 import userdata from "./user.json";
+const CommunityBox = styled.section`
+  background: #ffffff;
+  border-radius: 50px;
+  height: 822px;
+  padding: 50px;
+  width: 70vw;
+  box-sizing: border-box;
+  position: relative;
+  left: 20%;
+`;
 
 const ScheduleBox = styled.div`
   display: flex;
@@ -201,7 +211,7 @@ const SchedulePost = ({
   );
 };
 
-function Schedule() {
+function Scheduled() {
   const td = new Date();
   const today = new Date(td.getTime() - td.getTimezoneOffset() * 60000)
     .toISOString()
@@ -222,7 +232,7 @@ function Schedule() {
   // api 연동때 수정할 부분
   const [saveData, setSaveData] = useState(data);
   return (
-    <>
+    <CommunityBox>
       <CommunityHeader
         titleName="일정"
         showEdit={showEdit}
@@ -326,8 +336,8 @@ function Schedule() {
           </ScheduleInfo>
         </ScheduleAdd>
       </ScheduleBox>
-    </>
+    </CommunityBox>
   );
 }
 
-export default Schedule;
+export default Scheduled;

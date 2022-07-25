@@ -10,7 +10,7 @@ const CommentBox = styled.div`
   padding-left: 50px;
   width: 50%;
   display: flex;
-  height: 780px;
+  height: 730px;
   flex-direction: column;
 `;
 const CommentCount = styled.span`

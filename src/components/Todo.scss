@@ -1,0 +1,75 @@
+.Todo {
+  width: 20%;
+  height: 80%;
+  position: absolute;
+  top: 15%;
+  left: 78%;
+  background-color: white;
+  border-radius: 21px;
+}
+
+.text{
+  position: absolute;
+  left: 40px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.upload-Todo{
+  position: absolute;
+  top: 12%;
+  right: 15%;
+}
+
+.upload-Todo1{
+  position: absolute;
+  top: 29%;
+  right: 15%;
+}
+
+.content{
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 7%;
+  margin-top: 30%;
+}
+
+.content-1{
+  font-weight: bold;
+  font-size: 17px;
+  margin-left: 7%;
+  margin-top: 18%;
+}
+
+.p-todo{
+  position: absolute;
+  
+}
+
+.p-todo1{
+  position: absolute;
+  top: 30%;
+}
+
+li::marker {
+  color: #0092FF;
+}
+
+.emoji1{
+  position: absolute;
+  top: 15%;
+  right: 23%;
+}
+
+.emoji2{
+  position: absolute;
+  top: 32.5%;
+  right: 23%;
+}
+
+
+.emoji3{
+  position: absolute;
+  top: 32%;
+  right: 26%;
+}

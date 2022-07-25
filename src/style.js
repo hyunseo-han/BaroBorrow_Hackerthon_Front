@@ -1,8 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
 export const GlobalStyle = createGlobalStyle`
-${reset}
-
 @font-face {
     font-family: NotoSans, sans-serif;
     src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap')
@@ -29,5 +26,9 @@ ${reset}
     .scrollBar::-webkit-scrollbar-track {
         background: #F5F5F5;  /*스크롤바 뒷 배경 색상*/
         border-radius: 10px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
     }
 `;

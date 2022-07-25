@@ -1,9 +1,18 @@
 import React, { useState, useRef } from "react";
 import data from "./todo.json";
-import userdata from "./user.json";
 import styled from "styled-components";
 import CommunityHeader from "./CommunityHeader";
 import Comment from "./Comment";
+const CommunityBox = styled.section`
+  background: #ffffff;
+  border-radius: 50px;
+  height: 822px;
+  padding: 50px;
+  width: 70vw;
+  position: relative;
+  left: 20%;
+  box-sizing: border-box;
+`;
 
 const TDAndCmt = styled.div`
   display: flex;
@@ -14,7 +23,7 @@ const ToDoBox = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  height: 780px;
+  height: 730px;
 `;
 const ToDoList = styled.ul`
   height: 580px;
@@ -29,7 +38,6 @@ const TDContent = styled.li`
   display: flex;
   align-items: center;
   margin: 0 10px 20px 12px;
-  width: 500px;
 `;
 const TDCheckBox = styled.input`
   position: relative;
@@ -38,7 +46,7 @@ const TDCheckBox = styled.input`
   height: 25px;
 `;
 const TDText = styled.div`
-  width: 400px;
+  width: 80%;
 `;
 const ToDoAdd = styled.div`
   background: #f2f2f2;
@@ -60,6 +68,7 @@ const Upload = styled.div`
   color: #ffffff;
   padding: 10px 12px;
   border-radius: 5px;
+  width: 35px;
 `;
 
 const Input = styled.input`
@@ -168,7 +177,7 @@ function ToDo() {
   const [saveData, setSaveData] = useState(data);
   // 체크여부
   return (
-    <>
+    <CommunityBox>
       <TDAndCmt>
         <ToDoBox>
           <CommunityHeader
@@ -242,7 +251,7 @@ function ToDo() {
         </ToDoBox>
         <Comment />
       </TDAndCmt>
-    </>
+    </CommunityBox>
   );
 }
 
