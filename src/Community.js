@@ -29,6 +29,7 @@ const CommunityEditSection = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   padding-left: 50px;
+  width: 40%;
 `;
 
 const ConetentList = styled.ul`
@@ -38,7 +39,6 @@ const ConetentList = styled.ul`
   margin: 0 10px 0 0;
 `;
 const Content = styled.li`
-  // width: 485px;
   padding: 20px 10px;
   border-radius: 20px;
   list-style: disc;
@@ -57,10 +57,9 @@ const ContentBox = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 30px;
-  // margin-top: 10px;
 `;
 const ContentText = styled.div`
-  width: 70%;
+  width: 88%;
 `;
 const ContentBtn = styled.div`
   background: #0090ff;
@@ -74,18 +73,19 @@ const ContentBtn = styled.div`
 const CommunityEdit = styled.div`
   background: #f2f2f2;
   border-radius: 20px;
-  width: 465px;
+  width: 90%;
   height: 303px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  padding: 0 20px;
 `;
 const EditTitle = styled.input`
   all: unset;
   border-bottom: 1px solid #b7b7b7;
   font-size: 14px;
-  width: 331.05px;
+  width: 70%;
   padding-bottom: 4px;
 `;
 const EditContent = styled.textarea`
@@ -93,7 +93,7 @@ const EditContent = styled.textarea`
   border-radius: 10px;
   outline: none;
   border: none;
-  width: 402px;
+  width: 100%;
   height: 164px;
   resize: none;
   padding: 12px;
