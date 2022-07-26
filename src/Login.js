@@ -78,7 +78,9 @@ const MemberShipBtn = styled.span`
   font-size: 20px;
 `;
 function Login({ setLogin }) {
+  const [email, setEmail] = useState("");
   const [membership, setMemberShip] = useState(false);
+  const [memPassword, setMemPassword] = useState("");
   return (
     <LoginWindow>
       <LoginBox>
@@ -172,23 +174,32 @@ function Login({ setLogin }) {
               <LoginLabel htmlFor="newEmail">이메일</LoginLabel>
               <LoginInput
                 id="newEmail"
+                type="email"
+                required
                 placeholder="이메일을 형식에 맞게 입력해주세요"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
               />
               <LoginLabel htmlFor="newId">아이디</LoginLabel>
-              <LoginInput id="newId" placeholder="아이디를 입력해주세요" />
+              <LoginInput
+                id="newId"
+                placeholder="아이디를 입력해주세요"
+                required
+              />
               <LoginLabel htmlFor="newPassword">비밀번호</LoginLabel>
               <LoginInput
                 id="newPassword"
                 type="password"
+                value={memPassword}
+                onChange={(event) => {
+                  setMemPassword(event.target.value);
+                }}
+                required
                 placeholder="6장 이상(영문, 숫자, 특수문자 조합)"
               />
-              <LoginBtn
-                onClick={() => {
-                  setMemberShip(false);
-                }}
-              >
-                회원가입
-              </LoginBtn>
+              <LoginBtn>회원가입</LoginBtn>
             </LoginInputForm>
             <LoginToMembership>
               <LoginText>
