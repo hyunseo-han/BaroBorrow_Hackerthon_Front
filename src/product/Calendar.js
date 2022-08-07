@@ -21,12 +21,14 @@ const CalendarSection = style.section`
     align-items: center;
     padding: 0 24px;
     box-sizing: border-box;
+    font-weight: 700;
 `;
 const CalendarBtn = style.div`
 background: #DADADA;
 border-radius: 5px;
 padding: 13px 45px;
 align-self: flex-end;
+color: white;
 `;
 
 function Calendar({ item }) {

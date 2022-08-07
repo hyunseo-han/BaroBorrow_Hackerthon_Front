@@ -11,9 +11,9 @@ height: 100vh;
 margin: 0 auto;
 font-weight: 700;
 color: #666666;
-padding: 20px 24px 0 24px;
+padding-top: 20px;
 box-sizing: border-box;
-@media only screen and (max-width: 376px) {
+@media only screen and (max-width: 375px) {
     width: 100%;
   }
 `;
@@ -101,6 +101,7 @@ background: #56AEDF;
 padding: 23px 0;
 text-align: center;
 color: white;
+cursor: pointer;
 `;
 function DetailProduct(props) {
   const [dt, setDt] = useState(data);
