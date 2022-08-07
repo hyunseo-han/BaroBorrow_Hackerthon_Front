@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data.json";
+import bordata from "../borrdata.json";
 import style from "styled-components";
 import { useParams } from "react-router-dom";
 import Map from "./Map";
@@ -105,10 +106,20 @@ cursor: pointer;
 `;
 function DetailProduct(props) {
   const [dt, setDt] = useState(data);
+  const [borDt, setBorBt] = useState(bordata);
   const [showSelect, setShowSelect] = useState(false);
   const params = useParams();
   const post = dt.filter((li) => li.id === parseInt(params.id));
-  console.log(post[0].id);
+  const preventDate = borDt.filter((li) => li.product === params.id);
+  const ban = [];
+  if (preventDate.length !== 0) {
+    let st = new Date(preventDate[0].start_date);
+    const lt = new Date(preventDate[0].last_date);
+    while (st <= lt) {
+      ban.push(new Date(st));
+      st.setDate(st.getDate() + 1);
+    }
+  }
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
@@ -175,7 +186,7 @@ function DetailProduct(props) {
           대여날짜 선택하기
         </PdBtn>
       </PdContainer>
-      {showSelect ? <Calendar item={post[0]} /> : ""}
+      {showSelect ? <Calendar item={post[0]} ban={ban} /> : ""}
     </>
   );
 }

@@ -5,7 +5,6 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import ko from "date-fns/locale/ko";
 import { Link } from "react-router-dom";
-import "./calendar.css";
 import moment from "moment";
 
 const CalendarSection = style.section`
@@ -24,44 +23,59 @@ const CalendarSection = style.section`
     padding: 0 24px;
     box-sizing: border-box;
     font-weight: 700;
+    // overflow: hidden;
 `;
 const CalendarBtn = style.div`
-background: #DADADA;
+background: #56AEDF;
 border-radius: 5px;
 padding: 13px 45px;
 align-self: flex-end;
 color: white;
+margin-top: 20px;
 `;
 
-function Calendar({ item }) {
+function Calendar({ item, ban }) {
+  let compare = new Date();
+  if (compare <= new Date(item.start_date)) {
+    compare = new Date(item.start_date);
+  }
   const [state, setState] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
       key: "selection",
+      color: "#56AEDF",
     },
   ]);
   const start = moment(state[0].startDate).format("YYYY-MM-DD");
   const end = moment(state[0].endDate).format("YYYY-MM-DD");
-  console.log(start, end);
+  const diffMonth = moment(item.last_date).diff(item.start_date, "months");
   return (
     <CalendarSection>
-      <div>대여 시작일:{start}</div>
-      <div>대여 마지막일:{end}</div>
+      <div>
+        <div>
+          {item.start_date}
+          {item.last_date}
+        </div>
+        <div>
+          대여 시작일:{start !== null ? start : "대여 시작일을 선택해주세요"}
+        </div>
+        <div>
+          대여 마지막일:{end !== null ? end : "대여 마지막일을 선택해주세요"}
+        </div>
+      </div>
       <DateRange
         editableDateInputs={false}
         onChange={(item) => setState([item.selection])}
-        moveRangeOnFirstSelection={false}
-        ranges={state}
-        minDate={new Date()} // 과거 날짜 disable
+        minDate={compare} // 과거 날짜 disable
         maxDate={new Date(item.last_date)}
         locale={ko}
-        rangeColors={["#56AEDF", "#3ecf8e", "#fed14c"]}
         showDateDisplay={false}
-        disabledDates={[new Date("2022-08-09")]} // 빌리는 거 금지 날짜
-        showMonthArrow={true}
+        disabledDates={ban} // 빌리는 거 금지 날짜
         color={"#aeb9bf"}
         showMonthAndYearPickers={false}
+        ranges={state}
+        scroll={{ enabled: true }}
       />
       <Link
         to={`/detail${item.id}/result`}
@@ -69,8 +83,8 @@ function Calendar({ item }) {
           borrow: item,
           borrower: {
             user: "수정하기",
-            borrowDate: "2022-03",
-            borrowEndDate: "2022-04",
+            borrowDate: start,
+            borrowEndDate: end,
           },
         }}
       >

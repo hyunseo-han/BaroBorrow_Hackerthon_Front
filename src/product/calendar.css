@@ -1,4 +1,4 @@
-/* .rdrDayDisabled > .rdrDayNumber {
+.rdrDayDisabled > .rdrDayNumber {
   text-decoration: line-through;
 }
 
@@ -9,11 +9,9 @@
 
 .rdrMonth {
   width: auto;
+  padding: 0 0.833em 0 0.833em;
 }
 
-.rdrDay {
-  height: 6vw;
+.rdrInfiniteMonths {
+  height: auto;
 }
-.rdrStartEdge .rdrEndEdge {
-  color: red;
-} */
