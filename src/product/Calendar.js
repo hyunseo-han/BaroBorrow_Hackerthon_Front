@@ -5,6 +5,8 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import ko from "date-fns/locale/ko";
 import { Link } from "react-router-dom";
+import "./calendar.css";
+import moment from "moment";
 
 const CalendarSection = style.section`
     width: 100%;
@@ -32,7 +34,6 @@ color: white;
 `;
 
 function Calendar({ item }) {
-  console.log(item);
   const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -40,10 +41,13 @@ function Calendar({ item }) {
       key: "selection",
     },
   ]);
+  const start = moment(state[0].startDate).format("YYYY-MM-DD");
+  const end = moment(state[0].endDate).format("YYYY-MM-DD");
+  console.log(start, end);
   return (
     <CalendarSection>
-      <div>대여 시작일을 선택해주세요</div>
-      <span>대여가능한 날짜 쓰는게 좋은 거 같애</span>
+      <div>대여 시작일:{start}</div>
+      <div>대여 마지막일:{end}</div>
       <DateRange
         editableDateInputs={false}
         onChange={(item) => setState([item.selection])}
@@ -52,6 +56,12 @@ function Calendar({ item }) {
         minDate={new Date()} // 과거 날짜 disable
         maxDate={new Date(item.last_date)}
         locale={ko}
+        rangeColors={["#56AEDF", "#3ecf8e", "#fed14c"]}
+        showDateDisplay={false}
+        disabledDates={[new Date("2022-08-09")]} // 빌리는 거 금지 날짜
+        showMonthArrow={true}
+        color={"#aeb9bf"}
+        showMonthAndYearPickers={false}
       />
       <Link
         to={`/detail${item.id}/result`}
