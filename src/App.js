@@ -4,6 +4,7 @@ import { GlobalStyle } from "./style";
 import ProductList from "./ProductList";
 import Nav from "./Nav";
 import ProductResult from "./product/ProductResult";
+import Search from "./Search";
 function App() {
   return (
     <BrowserRouter>

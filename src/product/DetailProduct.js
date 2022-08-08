@@ -14,7 +14,7 @@ font-weight: 700;
 color: #666666;
 padding-top: 20px;
 box-sizing: border-box;
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 376px) {
     width: 100%;
   }
 `;
@@ -111,6 +111,7 @@ function DetailProduct(props) {
   const params = useParams();
   const post = dt.filter((li) => li.id === parseInt(params.id));
   const preventDate = borDt.filter((li) => li.product === params.id);
+  console.log(preventDate);
   const ban = [];
   if (preventDate.length !== 0) {
     let st = new Date(preventDate[0].start_date);
