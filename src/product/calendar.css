@@ -4,14 +4,19 @@
 
 .rdrCalendarWrapper {
   font-size: 16px;
-  width: 70vw;
+  width: 100%;
+  max-width: 900px;
 }
 
 .rdrMonth {
   width: auto;
-  padding: 0 0.833em 0 0.833em;
+}
+.rdrDay {
+  height: 6rem;
 }
 
-.rdrInfiniteMonths {
-  height: auto;
+@media only screen and (max-width: 500px) {
+  .rdrDay {
+    height: 3.5rem;
+  }
 }

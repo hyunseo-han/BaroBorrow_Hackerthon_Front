@@ -5,6 +5,7 @@ const SearchBox = style.div`
   padding: 10px 0;
   background-color: yellow;
   max-width: 600px;
+  margin-top: 52px;
 `;
 const SearchList = style.div`
   width: 40%;

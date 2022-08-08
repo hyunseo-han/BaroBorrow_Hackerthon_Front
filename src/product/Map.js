@@ -3,7 +3,7 @@ import style from "styled-components";
 const MapContainer = style.div`
   width: 100%;
   height: 314px;
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 500px) {
       height: 157px;
     }
 `;

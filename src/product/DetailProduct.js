@@ -13,7 +13,9 @@ margin: 0 auto;
 font-weight: 700;
 color: #666666;
 padding-top: 20px;
+margin-top: 52px;
 box-sizing: border-box;
+max-width: 900px;
 @media only screen and (max-width: 376px) {
     width: 100%;
   }

@@ -4,7 +4,6 @@ import style from "styled-components";
 
 const ResultBox = style.section`
   position: absolute;
-  background: #E9F6FD;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -15,22 +14,28 @@ const ResultBox = style.section`
   box-sizing: border-box;
   font-weight: 700;
   overflow-x: hidden;
+  margin-top: 52px;
+  background: #E9F6FD;
 `;
 
-const ResultSectionInside = style.div`
-
+const ResultInside = style.div`
+  width: 70%;
+  height: calc(100vh - 52px);
+  max-width: 900px;
 `;
 
 const ResultInfoBox = style.div`
-  height: 100%;
+  height: 600px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 47px;
+  margin: 100px 0;
   @media only screen and (max-width: 376px) {
-    height: 400px;
+    height: 540px;
+    margin: 47px 0;
   }
 `;
 
@@ -41,10 +46,8 @@ const ResultText = style.div`
 
 const ResultInfo = style.ul`
   list-style: none;
-  height: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
 `;
 
 const ResultInfoList = style.li`
@@ -70,10 +73,13 @@ function ProductResult() {
   const borrowUser = location.state.borrower;
   return (
     <ResultBox>
-      <div>
+      <ResultInside>
         <ResultInfoBox>
           <ResultText>대여신청완료</ResultText>
-          <img src={require("../img/borrow_com.png")} />
+          <img
+            src={require("../img/borrow_com.png")}
+            style={{ margin: "36px 0" }}
+          />
           <ResultInfo>
             <ResultInfoList>{borrowItem.product_name}</ResultInfoList>
             <ResultInfoList>{borrowUser.borrowDate}</ResultInfoList>
@@ -89,7 +95,7 @@ function ProductResult() {
         <Link to={"/"} style={{ width: "100%" }}>
           <HomeBtn>더 둘러보기</HomeBtn>
         </Link>
-      </div>
+      </ResultInside>
     </ResultBox>
   );
 }
