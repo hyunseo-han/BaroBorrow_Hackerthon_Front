@@ -1,5 +1,3 @@
-import { BrowserRouter } from "react-router-dom";
-import { GlobalStyle } from "./style";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetailProduct from "./product/DetailProduct";
 import { GlobalStyle } from "./style";
