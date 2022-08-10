@@ -56,7 +56,7 @@ const SignUpDiv = styled.div`
   width: 327px;
   height: 48px;
   left: 24px;
-  top: 278px;
+  top: 145px;
 
   background: #f7f7f7;
   border-radius: 5px;
@@ -69,7 +69,7 @@ const SignUpButton = styled.button`
   width: 327px;
   height: 48px;
   left: 24px;
-  top: 284px;
+  margin-top: 160px;
   background: #56aedf;
   border-radius: 5px;
   border: none;
