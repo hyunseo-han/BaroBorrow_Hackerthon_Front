@@ -66,6 +66,7 @@ export const InputText = styled.textarea`
   font-size: 16px;
   line-height: 22px;
 
+  overflow: hidden;
   color: rgba(136, 136, 136, 1);
 `;
 
