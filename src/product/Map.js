@@ -27,7 +27,7 @@ function Map({ address }) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
         // 결과값으로 받은 위치를 마커로 표시합니다
-        const marker = new kakao.maps.Marker({
+        new kakao.maps.Marker({
           map: map,
           position: coords,
         });

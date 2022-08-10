@@ -34,20 +34,20 @@ const CalendarInside = style.div`
 `;
 
 const CalendarInfo = style.div`
-align-self: baseline;
-color: #666666;
-height: 80px;
+  align-self: baseline;
+  color: #666666;
+  height: 80px;
 `;
 
 const InfoTitle = style.div`
-font-size: 20px;
-margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
 `;
 
 const InfoCnt = style.div`
-font-size: 14px;
-line-height: 1.2;
-letter-spacing: 1.2px;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 1.2px;
 `;
 
 const CalendarBtn = style.div`

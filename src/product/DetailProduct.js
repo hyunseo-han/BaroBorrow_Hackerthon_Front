@@ -7,60 +7,63 @@ import Map from "./Map";
 import Calendar from "./Calendar";
 
 const PdContainer = style.div`
-width: 70vw;
-height: 100vh;
-margin: 0 auto;
-font-weight: 700;
-color: #666666;
-padding-top: 32px;
-margin-top: 52px;
-box-sizing: border-box;
-max-width: 900px;
-@media only screen and (max-width: 376px) {
-    width: 100%;
-  }
+  width: 70vw;
+  height: 100vh;
+  margin: 0 auto;
+  font-weight: 700;
+  color: #666666;
+  padding-top: 32px;
+  margin-top: 52px;
+  box-sizing: border-box;
+  max-width: 900px;
+  @media only screen and (max-width: 376px) {
+      width: 100%;
+    }
 `;
 
 const PdTitle = style.div`
-color: #888888;
-font-size: 24px;
+  color: #888888;
+  font-size: 24px;
 `;
 
 const PdImgDiv = style.div`
-margin-bottom: 15px;
-width: 100%;
-height: 327px;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 327px;
 `;
 
 const PdImg = style.img`
-object-fit: cover;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  @media only screen and (max-width: 376px) {
+    object-fit: cover;
+  }
 `;
 const PdInfo = style.ul`
-padding-bottom: 18px;
+  padding-bottom: 18px;
 `;
 const InfoBox = style.li`
-border-bottom: 1px solid #D9D9D9;
-padding: 24px 0;
+  border-bottom: 1px solid #D9D9D9;
+  padding: 24px 0;
 `;
 const InfoTitle = style.div`
-padding: 0 12px 20px;
-font-size: 20px;
+  padding: 0 12px 20px;
+  font-size: 20px;
 `;
 
 const InfoPer = style.div`
-background: #99D0EF;
-border-radius: 5px;
-color: #FFFFFF;
-font-size: 14px;
-padding: 2px 8px;
-float: right;
+  background: #99D0EF;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 2px 8px;
+  float: right;
 `;
 
 const InfoWon = style.span`
-padding-left: 4px;
+  padding-left: 4px;
 `;
 
 const InfoDes = style.div`
@@ -68,32 +71,32 @@ const InfoDes = style.div`
 `;
 
 const InfoCon = style.div`
-display: flex;
-padding: 0 12px;
+  display: flex;
+  padding: 0 12px;
 `;
 const SSizeImg = style.img`
-width: 20px;
-height: 20px;
+  width: 20px;
+  height: 20px;
 `;
 const InfoLoc = style.div`
-padding: 20px 12px 0;
+  padding: 20px 12px 0;
 `;
 const ConBarBox = style.div`
-background: #E6E6E6;
-border-radius: 30px;
-width: 100%;
+  background: #E6E6E6;
+  border-radius: 30px;
+  width: 100%;
 `;
 const ConBarFill = style.div`
-background: #56AEDF;
-border-radius: 30px;
-height: 100%;
+  background: #56AEDF;
+  border-radius: 30px;
+  height: 100%;
 `;
 const PdBtn = style.div`
-background: #56AEDF;
-padding: 23px 0;
-text-align: center;
-color: white;
-cursor: pointer;
+  background: #56AEDF;
+  padding: 23px 0;
+  text-align: center;
+  color: white;
+  cursor: pointer;
 `;
 function DetailProduct() {
   const [dt, setDt] = useState(data);
