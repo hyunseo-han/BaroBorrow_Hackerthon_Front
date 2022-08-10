@@ -110,6 +110,9 @@ function Calendar({ item, ban }) {
           showMonthAndYearPickers={false}
           ranges={state}
           monthDisplayFormat={"yyyy-mmm"}
+          // navigatorRenderer={(ev) => {
+          //   console.log(ev);
+          // }}
         />
         {start !== "Invalid date" && end !== "Invalid date" ? (
           <CalendarBtnLink

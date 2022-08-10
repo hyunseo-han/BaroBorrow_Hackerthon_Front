@@ -12,7 +12,7 @@ height: 100vh;
 margin: 0 auto;
 font-weight: 700;
 color: #666666;
-padding-top: 20px;
+padding-top: 32px;
 margin-top: 52px;
 box-sizing: border-box;
 max-width: 900px;
@@ -21,73 +21,62 @@ max-width: 900px;
   }
 `;
 
-const PdHeader = style.div`
-display: flex;
-justify-content: space-between;
-`;
-const PdHeaderName = style.div`
+const PdTitle = style.div`
 color: #888888;
-`;
-const PdHeaderCart = style.div``;
-const MSizeIcon = style.img`
-    width: 24px;
-    height: 24px;
+font-size: 24px;
 `;
 
 const PdImgDiv = style.div`
-margin: 28px 0;
-position: relative;
+margin-bottom: 15px;
 width: 100%;
-height: 0;
-overflow: hidden;
-padding-bottom: 50%;
+height: 327px;
 `;
 
 const PdImg = style.img`
-object-fit: contain;
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
 `;
-const PdInfo = style.div`
-padding-bottom: 27px;
+const PdInfo = style.ul`
+padding-bottom: 18px;
 `;
-const InfoBox = style.div`
-display: flex;
-padding: 7px 0;
+const InfoBox = style.li`
+border-bottom: 1px solid #D9D9D9;
+padding: 24px 0;
 `;
-const InfoText = style.span`
-width: 45px;
+const InfoTitle = style.div`
+padding: 0 12px 20px;
+font-size: 20px;
 `;
-const InfoMoney = style.div`
-padding-left: 12px;
+
+const InfoPer = style.div`
+background: #99D0EF;
+border-radius: 5px;
+color: #FFFFFF;
+font-size: 14px;
+padding: 2px 8px;
+float: right;
 `;
+
 const InfoWon = style.span`
 padding-left: 4px;
 `;
-const InfoDesBox = style.div`
-  padding: 8px 0 10px 0;
-`;
+
 const InfoDes = style.div`
-  padding-top: 8px;
+  padding: 0 12px;
 `;
-const InfoConBox = style.div`
-padding-top: 7px;
-`;
+
 const InfoCon = style.div`
 display: flex;
-margin: 17px 0;
+padding: 0 12px;
 `;
 const SSizeImg = style.img`
 width: 20px;
 height: 20px;
 `;
-const InfoLocBox = style.div``;
 const InfoLoc = style.div`
-display: flex;
-margin-bottom: 9px;
+padding: 20px 12px 0;
 `;
 const ConBarBox = style.div`
 background: #E6E6E6;
@@ -106,14 +95,13 @@ text-align: center;
 color: white;
 cursor: pointer;
 `;
-function DetailProduct(props) {
+function DetailProduct() {
   const [dt, setDt] = useState(data);
   const [borDt, setBorBt] = useState(bordata);
   const [showSelect, setShowSelect] = useState(false);
   const params = useParams();
   const post = dt.filter((li) => li.id === parseInt(params.id));
   const preventDate = borDt.filter((li) => li.product === params.id);
-  console.log(preventDate);
   const ban = [];
   if (preventDate.length !== 0) {
     let st = new Date(preventDate[0].start_date);
@@ -126,37 +114,13 @@ function DetailProduct(props) {
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
-        <PdHeader>
-          <PdHeaderName>{post[0].product_name}</PdHeaderName>
-          <PdHeaderCart>
-            <MSizeIcon src={require("../img/shopping-cart.png")} />
-          </PdHeaderCart>
-        </PdHeader>
         <PdImgDiv>
           <PdImg src={post[0].product_photo} />
         </PdImgDiv>
+        <PdTitle>{post[0].product_name}</PdTitle>
         <PdInfo>
           <InfoBox>
-            <InfoText>정가</InfoText>
-            <InfoMoney>{post[0].list_price}</InfoMoney>
-            <InfoWon>원</InfoWon>
-          </InfoBox>
-          <InfoBox>
-            <InfoText>보증금</InfoText>
-            <InfoMoney>{post[0].deposit}</InfoMoney>
-            <InfoWon>원</InfoWon>
-          </InfoBox>
-          <InfoBox>
-            <InfoText>대여비</InfoText>
-            <InfoMoney>{post[0].rental_fee}</InfoMoney>
-            <InfoWon>원</InfoWon>
-          </InfoBox>
-          <InfoDesBox>
-            <InfoText>설명</InfoText>
-            <InfoDes>{post[0].explanation}</InfoDes>
-          </InfoDesBox>
-          <InfoConBox>
-            <InfoText>상태</InfoText>
+            <InfoTitle>상품 상태</InfoTitle>
             <InfoCon>
               <SSizeImg
                 src={require("../img/fi_thumbs-down.png")}
@@ -172,14 +136,48 @@ function DetailProduct(props) {
                 style={{ marginLeft: "7px" }}
               />
             </InfoCon>
-          </InfoConBox>
-          <InfoLocBox>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>물품 설명</InfoTitle>
+            <InfoDes>{post[0].explanation}</InfoDes>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>상품 정가</InfoTitle>
+            <InfoDes>
+              {post[0].list_price
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")}
+              <InfoWon>원</InfoWon>
+            </InfoDes>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>
+              대여비
+              <InfoPer>20%</InfoPer>
+            </InfoTitle>
+            <InfoDes>
+              {post[0].rental_fee
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")}
+              <InfoWon>원</InfoWon>
+            </InfoDes>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>
+              보증금<InfoPer>50%</InfoPer>
+            </InfoTitle>
+            <InfoDes>
+              {post[0].deposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              <InfoWon>원</InfoWon>
+            </InfoDes>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>대여장소</InfoTitle>
+            <Map address={post[0].address} />
             <InfoLoc>
-              <InfoText>위치</InfoText>
               {post[0].address} {post[0].detail_address}
             </InfoLoc>
-            <Map address={post[0].address} />
-          </InfoLocBox>
+          </InfoBox>
         </PdInfo>
         <PdBtn
           onClick={() => {
