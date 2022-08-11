@@ -14,7 +14,6 @@ const SignInDiv = styled.div`
   position: relative;
   width: 327px;
   height: 48px;
-  left: 24px;
   top: 278px;
 
   background: #f7f7f7;
@@ -36,7 +35,6 @@ const LoginButton = styled.button`
   position: relative;
   width: 327px;
   height: 48px;
-  left: 24px;
   top: 280px;
   background: #56aedf;
   border-radius: 5px;
@@ -82,6 +80,10 @@ const Login = () => {
     setInputPw(e.target.value);
   };
 
+  const onClickLogin = () => {
+    console.log("click login");
+  };
+
   return (
     <>
       <LoginLogo src="img/로그인로고 1.png" />
@@ -110,7 +112,7 @@ const Login = () => {
       </SignInDiv>
 
       <div>
-        <LoginButton>로그인</LoginButton>
+        <LoginButton onClick={onClickLogin}>로그인</LoginButton>
       </div>
     </>
   );

@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { useNavigate, NavLink, Link } from "react-router-dom";
 
 const WelcomeDiv = styled.div`
   position: relative;
   width: 287px;
   height: 53px;
-  left: 24px;
   top: 120px;
 
   font-style: normal;
@@ -55,7 +55,6 @@ const SignUpDiv = styled.div`
   position: relative;
   width: 327px;
   height: 48px;
-  left: 24px;
   top: 145px;
 
   background: #f7f7f7;
@@ -68,7 +67,7 @@ const SignUpButton = styled.button`
   position: relative;
   width: 327px;
   height: 48px;
-  left: 24px;
+
   margin-top: 160px;
   background: #56aedf;
   border-radius: 5px;
@@ -85,8 +84,21 @@ const SignUpButton = styled.button`
   color: #ffffff;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
+`;
+
 const SignUp = () => {
   const [name, setName] = useState("");
+  const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -96,6 +108,10 @@ const SignUp = () => {
 
   const onPasswordHandler = (event) => {
     setPassword(event.currentTarget.value);
+  };
+
+  const onIDHandler = (event) => {
+    setID(event.currentTarget.value);
   };
 
   const onConfirmPasswordHandler = (event) => {
@@ -118,13 +134,25 @@ const SignUp = () => {
       <SignUpDiv>
         <SignUpIcon src="img/Name.png" />
         <label htmlFor="input_name"></label>
-        <InputText type="text" name="input_name" placeholder="이름" />
+        <InputText
+          type="text"
+          name="input_name"
+          placeholder="이름"
+          value={name}
+          onChange={onNameHandler}
+        />
       </SignUpDiv>
 
       <SignUpDiv>
         <SignUpIcon src="img/LoginIcon.png" />
-        <label htmlFor="input_pw"></label>
-        <InputText type="password" name="input_pw" placeholder="아이디" />
+        <label htmlFor="input_id"></label>
+        <InputText
+          type="text"
+          name="input_id"
+          placeholder="아이디"
+          value={ID}
+          onChange={onIDHandler}
+        />
       </SignUpDiv>
 
       <SignUpDiv>
@@ -153,7 +181,9 @@ const SignUp = () => {
 
       <div>
         <SignUpButton type="submit" onSubmit={onSubmit}>
-          회원가입
+          <StyledLink to="/NickName" style={{ color: "white" }}>
+            회원가입
+          </StyledLink>
         </SignUpButton>
       </div>
     </>
