@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import data from "../data.json";
 import bordata from "../borrdata.json";
 import style from "styled-components";
@@ -7,7 +7,6 @@ import Map from "./Map";
 import Calendar from "./Calendar";
 
 const PdContainer = style.div`
-  width: 70vw;
   height: 100vh;
   margin: 0 auto;
   font-weight: 700;
@@ -16,20 +15,22 @@ const PdContainer = style.div`
   margin-top: 52px;
   box-sizing: border-box;
   max-width: 900px;
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 500px) {
       width: 100%;
     }
 `;
 
 const PdTitle = style.div`
   color: #888888;
-  font-size: 24px;
+  font-size: 20px;
+  padding: 0 12px 29px;
+  border-bottom: 1px solid #D9D9D9;
 `;
 
 const PdImgDiv = style.div`
   margin-bottom: 15px;
   width: 100%;
-  height: 327px;
+  height: 320px;
 `;
 
 const PdImg = style.img`
@@ -68,26 +69,57 @@ const InfoWon = style.span`
 
 const InfoDes = style.div`
   padding: 0 12px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 21px;
+`;
+
+const InfoOpen = style.div`
+  padding: 17px 12px 0;
+  cursor: pointer;
+`;
+
+const InfoMoney = style.div`
+  padding: 0 12px;
 `;
 
 const InfoCon = style.div`
   display: flex;
   padding: 0 12px;
+  align-items: center;
 `;
 const SSizeImg = style.img`
   width: 20px;
   height: 20px;
 `;
 const InfoLoc = style.div`
-  padding: 20px 12px 0;
+  padding-top: 20px;
 `;
 const ConBarBox = style.div`
   background: #E6E6E6;
   border-radius: 30px;
   width: 100%;
+  height: 20px;
+  position: relative;
+  @media only screen and (max-width: 500px) {
+    height: 10px;
+  }
+`;
+const ConBarCircle = style.div`
+  border-radius: 50%;
+  background: #56AEDF;
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: -4px;
+  @media only screen and (max-width: 500px) {
+    width: 16px;
+    height: 16px;
+    top: -3px;
+  }
 `;
 const ConBarFill = style.div`
-  background: #56AEDF;
+  background: #99D0EF;
   border-radius: 30px;
   height: 100%;
 `;
@@ -98,7 +130,9 @@ const PdBtn = style.div`
   color: white;
   cursor: pointer;
 `;
+
 function DetailProduct() {
+  const desRef = useRef();
   const [dt, setDt] = useState(data);
   const [borDt, setBorBt] = useState(bordata);
   const [showSelect, setShowSelect] = useState(false);
@@ -114,6 +148,19 @@ function DetailProduct() {
       st.setDate(st.getDate() + 1);
     }
   }
+  const [showDes, setShowDes] = useState(false);
+  const [showDesBtn, setShowDesBtn] = useState(false);
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      if (window.innerWidth < 800) {
+        if (desRef.current.children[0].clientHeight > 171) {
+          setShowDesBtn(true);
+        }
+      } else {
+        setShowDesBtn(false);
+      }
+    });
+  }, []);
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
@@ -130,6 +177,9 @@ function DetailProduct() {
                 style={{ marginRight: "7px" }}
               />
               <ConBarBox>
+                <ConBarCircle
+                  style={{ left: `Calc(${post[0].condition}% - 16px)` }}
+                ></ConBarCircle>
                 <ConBarFill
                   style={{ width: `${post[0].condition}%` }}
                 ></ConBarFill>
@@ -142,37 +192,55 @@ function DetailProduct() {
           </InfoBox>
           <InfoBox>
             <InfoTitle>물품 설명</InfoTitle>
-            <InfoDes>{post[0].explanation}</InfoDes>
+            <InfoDes
+              ref={desRef}
+              style={{ maxHeight: showDes ? "initial" : "171px" }}
+            >
+              <p>{post[0].explanation}</p>
+            </InfoDes>
+            {showDesBtn ? (
+              <InfoOpen
+                onClick={() => {
+                  setShowDes(!showDes);
+                }}
+              >
+                {showDes ? "접기" : "더보기"}
+              </InfoOpen>
+            ) : (
+              ""
+            )}
           </InfoBox>
           <InfoBox>
             <InfoTitle>상품 정가</InfoTitle>
-            <InfoDes>
+            <InfoMoney>
               {post[0].list_price
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")}
               <InfoWon>원</InfoWon>
-            </InfoDes>
+            </InfoMoney>
           </InfoBox>
           <InfoBox>
             <InfoTitle>
               대여비
-              <InfoPer>20%</InfoPer>
+              <InfoPer>{post[0].rental_fee} %</InfoPer>
             </InfoTitle>
-            <InfoDes>
-              {post[0].rental_fee
+            <InfoMoney>
+              {Math.round((post[0].list_price * post[0].rental_fee) / 100)
                 .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ", ")}
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               <InfoWon>원</InfoWon>
-            </InfoDes>
+            </InfoMoney>
           </InfoBox>
           <InfoBox>
             <InfoTitle>
-              보증금<InfoPer>50%</InfoPer>
+              보증금<InfoPer>{post[0].deposit} %</InfoPer>
             </InfoTitle>
-            <InfoDes>
-              {post[0].deposit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            <InfoMoney>
+              {Math.round((post[0].list_price * post[0].deposit) / 100)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               <InfoWon>원</InfoWon>
-            </InfoDes>
+            </InfoMoney>
           </InfoBox>
           <InfoBox>
             <InfoTitle>대여장소</InfoTitle>
@@ -180,6 +248,10 @@ function DetailProduct() {
             <InfoLoc>
               {post[0].address} {post[0].detail_address}
             </InfoLoc>
+          </InfoBox>
+          <InfoBox>
+            <InfoTitle>대여자 정보</InfoTitle>
+            <div>이름</div>
           </InfoBox>
         </PdInfo>
         <PdBtn
