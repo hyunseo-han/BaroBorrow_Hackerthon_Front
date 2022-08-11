@@ -2,17 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import data from "../data.json";
 import bordata from "../borrdata.json";
 import style from "styled-components";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Map from "./Map";
 import Calendar from "./Calendar";
+import InfoBar from "./InfoBar";
 
 const PdContainer = style.div`
   height: 100vh;
-  margin: 0 auto;
+  margin: 52px auto 0;
   font-weight: 700;
   color: #666666;
   padding-top: 32px;
-  margin-top: 52px;
   box-sizing: border-box;
   max-width: 900px;
   @media only screen and (max-width: 500px) {
@@ -47,11 +47,10 @@ const PdInfo = style.ul`
 `;
 const InfoBox = style.li`
   border-bottom: 1px solid #D9D9D9;
-  padding: 24px 0;
+  padding: 20px 0;
 `;
 const InfoTitle = style.div`
   padding: 0 12px 20px;
-  font-size: 20px;
 `;
 
 const InfoPer = style.div`
@@ -82,53 +81,24 @@ const InfoOpen = style.div`
 const InfoMoney = style.div`
   padding: 0 12px;
 `;
-
-const InfoCon = style.div`
-  display: flex;
-  padding: 0 12px;
-  align-items: center;
-`;
-const SSizeImg = style.img`
-  width: 20px;
-  height: 20px;
-`;
 const InfoLoc = style.div`
   padding-top: 20px;
 `;
-const ConBarBox = style.div`
-  background: #E6E6E6;
-  border-radius: 30px;
-  width: 100%;
-  height: 20px;
-  position: relative;
-  @media only screen and (max-width: 500px) {
-    height: 10px;
-  }
-`;
-const ConBarCircle = style.div`
-  border-radius: 50%;
-  background: #56AEDF;
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  top: -4px;
-  @media only screen and (max-width: 500px) {
-    width: 16px;
-    height: 16px;
-    top: -3px;
-  }
-`;
-const ConBarFill = style.div`
-  background: #99D0EF;
-  border-radius: 30px;
-  height: 100%;
-`;
+
 const PdBtn = style.div`
   background: #56AEDF;
   padding: 23px 0;
   text-align: center;
   color: white;
   cursor: pointer;
+`;
+
+const InfoOwner = style.div`
+  padding: 0 12px;
+  cursor: pointer;
+`;
+const InfoNim = style.span`
+  margin: 0 12px;
 `;
 
 function DetailProduct() {
@@ -152,15 +122,18 @@ function DetailProduct() {
   const [showDesBtn, setShowDesBtn] = useState(false);
   useEffect(() => {
     window.addEventListener("resize", function () {
-      if (window.innerWidth < 800) {
-        if (desRef.current.children[0].clientHeight > 171) {
-          setShowDesBtn(true);
-        }
+      if (
+        window.innerWidth < 800 &&
+        desRef.current.children[0].clientHeight > 171
+      ) {
+        setShowDesBtn(true);
+        console.log(desRef.current);
       } else {
         setShowDesBtn(false);
       }
     });
   }, []);
+  const navigate = useNavigate();
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
@@ -170,25 +143,7 @@ function DetailProduct() {
         <PdTitle>{post[0].product_name}</PdTitle>
         <PdInfo>
           <InfoBox>
-            <InfoTitle>상품 상태</InfoTitle>
-            <InfoCon>
-              <SSizeImg
-                src={require("../img/fi_thumbs-down.png")}
-                style={{ marginRight: "7px" }}
-              />
-              <ConBarBox>
-                <ConBarCircle
-                  style={{ left: `Calc(${post[0].condition}% - 16px)` }}
-                ></ConBarCircle>
-                <ConBarFill
-                  style={{ width: `${post[0].condition}%` }}
-                ></ConBarFill>
-              </ConBarBox>
-              <SSizeImg
-                src={require("../img/fi_thumbs-up.png")}
-                style={{ marginLeft: "7px" }}
-              />
-            </InfoCon>
+            <InfoBar title={"상품 상태"} percentage={post[0].condition} />
           </InfoBox>
           <InfoBox>
             <InfoTitle>물품 설명</InfoTitle>
@@ -251,7 +206,15 @@ function DetailProduct() {
           </InfoBox>
           <InfoBox>
             <InfoTitle>대여자 정보</InfoTitle>
-            <div>이름</div>
+            <InfoOwner
+              onClick={() => {
+                navigate("/owner");
+              }}
+            >
+              이름/닉네임
+              <InfoNim>님</InfoNim>
+              <img src={require("../img/Vector.png")} />
+            </InfoOwner>
           </InfoBox>
         </PdInfo>
         <PdBtn
