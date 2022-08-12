@@ -51,7 +51,7 @@ const LoginButton = styled.button`
   color: #ffffff;
 `;
 
-export const InputText = styled.textarea`
+export const InputText = styled.input`
   all: unset;
   position: relative;
   width: 259px;

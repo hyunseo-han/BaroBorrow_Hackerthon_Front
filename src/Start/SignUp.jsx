@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 
@@ -25,7 +25,7 @@ const SmallWelcome = styled.div`
   color: rgba(102, 102, 102, 1);
 `;
 
-export const InputText = styled.textarea`
+export const InputText = styled.input`
   all: unset;
   position: relative;
   width: 259px;
@@ -96,11 +96,22 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const CheckIconimg = styled.img`
+  position: absolute;
+  left: 292px;
+  right: 4.17%;
+  top: 13px;
+  bottom: 4.17%;
+`;
+
 const SignUp = () => {
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
+
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [errorPassword, setErrorPassword] = useState(false);
 
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
@@ -118,12 +129,29 @@ const SignUp = () => {
     setConfirmPassword(event.currentTarget.value);
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (password !== confirmPassword) {
-      return alert("비밀번호와 비밀번호확인은 같아야 합니다.");
+  const checkError = () => {
+    if (password === confirmPassword) {
+      setErrorPassword = true;
     }
   };
+
+  const onSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      // if (password !== confirmPassword) {
+      //   return setErrorPassword(true);
+      // }
+
+      console.log({
+        password,
+        confirmPassword,
+        errorPassword,
+      });
+    },
+    [password, confirmPassword]
+  );
+
   return (
     <>
       <WelcomeDiv>
@@ -169,14 +197,15 @@ const SignUp = () => {
 
       <SignUpDiv>
         <SignUpIcon src="img/PassWordIcon.png" />
-        <label htmlFor="input_pw"></label>
+        <label htmlFor="input_confirmpw"></label>
         <InputText
           type="password"
-          name="input_pw"
+          name="input_confirmpw"
           placeholder="비밀번호 확인"
           value={confirmPassword}
           onChange={onConfirmPasswordHandler}
         />
+        <CheckIconimg src={errorPassword === false ? null : "img/check.png"} />
       </SignUpDiv>
 
       <div>

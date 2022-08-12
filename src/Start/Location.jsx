@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import DaumPostcode from "react-daum-postcode";
 
 const LocationDiv = styled.div`
   position: absolute;
@@ -38,7 +39,7 @@ const SubmitButton = styled.button`
   position: relative;
   width: 327px;
   height: 48px;
-  margin-top: 190px;
+  top: 540px;
 
   background: #56aedf;
   border-radius: 5px;
@@ -67,27 +68,34 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Location = () => {
-  const [nickname, setnickname] = useState("");
-  const onNameHandler = (event) => {
-    setnickname(event.currentTarget.value);
+const Location = (props) => {
+  const address = props.address;
+  const setAddress = props.setAddress;
+
+  const onCompletePost = (data) => {
+    console.log(data.address);
+    setAddress(data.address);
   };
 
+  const postCodeStyle = {
+    display: "block",
+    position: "absolute",
+    top: "173px",
+    width: "327px",
+    height: "300px",
+  };
   return (
     <>
       <LocationDiv>활동 지역을 입력해주세요.</LocationDiv>
-      <InputText
-        type="text"
-        name="input_nickname"
-        placeholder="구 이름으로 검색 (ex.성북구)"
-        onChange={onNameHandler}
-      />
 
+      <DaumPostcode
+        style={postCodeStyle}
+        autoClose
+        onComplete={onCompletePost}
+      />
       <div>
         <SubmitButton>
-          <StyledLink to="/Location" style={{ color: "white" }}>
-            다음
-          </StyledLink>
+          <StyledLink style={{ color: "white" }}>다음</StyledLink>
         </SubmitButton>
       </div>
     </>
