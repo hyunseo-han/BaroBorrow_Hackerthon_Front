@@ -15,6 +15,96 @@ const SSizeImg = style.img`
   height: 20px;
 `;
 
+const ConBarinput = style.input`
+height: 34px;
+-webkit-appearance: none;
+width: 100%;
+&:focus {
+  outline: none;
+}
+&::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000;
+  background: #99D0EF;
+  border-radius: 10px;
+  @media only screen and (max-width: 500px) {
+    height: 10px;
+  }
+}
+&::-webkit-slider-thumb {
+  height: 28px;
+  width: 28px;
+  border-radius: 15px;
+  background: #56AEDF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px;
+  @media only screen and (max-width: 500px) {
+    width: 16px;
+    height: 16px;
+    margin-top: -3px;
+  }
+}
+
+
+&::-moz-range-track,
+&::-moz-range-progress {
+  width: 100%;
+  height: 20px;
+  background: red;
+}
+
+&::-moz-range-progress {
+  background: blue;
+}
+
+&::-moz-range-thumb {
+  appearance: none;
+  margin: 0;
+  height: 28px;
+  width: 28px;
+  background: yellow;
+  border-radius: 100%;
+  border: 0;
+  transition: background-color 150ms;
+}
+
+&::-ms-track {
+  width: 100%;
+  height: 20px;
+  border: 0;
+  /* color needed to hide track marks */
+  color: transparent;
+  background: transparent;
+}
+
+&::-ms-fill-lower {
+  background: blue;
+}
+
+&::-ms-fill-upper {
+  background: red;
+}
+
+&::-ms-thumb {
+  appearance: none;
+  height: 28px;
+  width: 28px;
+  background: yellow;
+  border-radius: 100%;
+  border: 0;
+  transition: background-color 150ms;
+  /* IE Edge thinks it can support -webkit prefixes */
+  top: 0;
+  margin: 0;
+  box-shadow: none;
+
+}
+`;
+
 const ConBarBox = style.div`
   background: #E6E6E6;
   border-radius: 30px;
@@ -25,6 +115,7 @@ const ConBarBox = style.div`
     height: 10px;
   }
 `;
+
 const ConBarCircle = style.div`
   border-radius: 50%;
   background: #56AEDF;
@@ -44,7 +135,7 @@ const ConBarFill = style.div`
   height: 100%;
 `;
 
-function InfoBar({ title, percentage }) {
+function InfoBar({ title, percentage, inputMode, condition, setCondition }) {
   const [wid, setWid] = useState(window.innerWidth);
   window.addEventListener("resize", function () {
     setWid(window.innerWidth);
@@ -55,6 +146,9 @@ function InfoBar({ title, percentage }) {
   } else if (wid >= 500) {
     percentCircle = `Calc(${percentage}% - 28px`;
   }
+  const onChange = (event) => {
+    setCondition(event.target.value);
+  };
 
   return (
     <>
@@ -64,10 +158,23 @@ function InfoBar({ title, percentage }) {
           src={require("../img/fi_thumbs-down.png")}
           style={{ marginRight: "7px" }}
         />
-        <ConBarBox>
-          <ConBarCircle style={{ left: percentCircle }}></ConBarCircle>
-          <ConBarFill style={{ width: `${percentage}%` }}></ConBarFill>
-        </ConBarBox>
+        {inputMode ? (
+          <ConBarinput
+            type="range"
+            id="per"
+            min="0"
+            max="250"
+            step="25"
+            value={condition}
+            onChange={onChange}
+          />
+        ) : (
+          <ConBarBox>
+            <ConBarCircle style={{ left: percentCircle }}></ConBarCircle>
+            <ConBarFill style={{ width: `${percentage}%` }}></ConBarFill>
+          </ConBarBox>
+        )}
+
         <SSizeImg
           src={require("../img/fi_thumbs-up.png")}
           style={{ marginLeft: "7px" }}

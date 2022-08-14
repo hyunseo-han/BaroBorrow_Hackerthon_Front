@@ -6,34 +6,32 @@ import { useNavigate, useParams } from "react-router-dom";
 import Map from "./Map";
 import Calendar from "./Calendar";
 import InfoBar from "./InfoBar";
+import {
+  PdContainer,
+  PdInfo,
+  InfoDes,
+  InfoBox,
+  InfoTitle,
+  InfoMoney,
+  InfoWon,
+  InfoLoc,
+  PdBtn,
+} from "./procuct-style";
 
-const PdContainer = style.div`
-  height: 100vh;
-  margin: 52px auto 0;
-  font-weight: 700;
-  color: #666666;
-  padding-top: 32px;
-  box-sizing: border-box;
-  max-width: 900px;
-  @media only screen and (max-width: 500px) {
-      width: 100%;
-    }
-`;
-
-const PdTitle = style.div`
+export const PdTitle = style.div`
   color: #888888;
   font-size: 20px;
   padding: 0 12px 29px;
   border-bottom: 1px solid #D9D9D9;
 `;
 
-const PdImgDiv = style.div`
+export const PdImgDiv = style.div`
   margin-bottom: 15px;
   width: 100%;
   height: 320px;
 `;
 
-const PdImg = style.img`
+export const PdImg = style.img`
   object-fit: contain;
   width: 100%;
   height: 100%;
@@ -42,63 +40,28 @@ const PdImg = style.img`
     object-fit: cover;
   }
 `;
-const PdInfo = style.ul`
-  padding-bottom: 18px;
-`;
-const InfoBox = style.li`
-  border-bottom: 1px solid #D9D9D9;
-  padding: 20px 0;
-`;
-const InfoTitle = style.div`
-  padding: 0 12px 20px;
+
+export const InfoOwner = style.div`
+  padding: 0 12px;
+  cursor: pointer;
 `;
 
-const InfoPer = style.div`
+export const InfoNim = style.span`
+  margin: 0 12px;
+`;
+
+export const InfoOpen = style.div`
+  padding: 17px 12px 0;
+  cursor: pointer;
+`;
+
+export const InfoPer = style.div`
   background: #99D0EF;
   border-radius: 5px;
   color: #FFFFFF;
   font-size: 14px;
   padding: 2px 8px;
   float: right;
-`;
-
-const InfoWon = style.span`
-  padding-left: 4px;
-`;
-
-const InfoDes = style.div`
-  padding: 0 12px;
-  overflow: hidden;
-  font-size: 14px;
-  line-height: 21px;
-`;
-
-const InfoOpen = style.div`
-  padding: 17px 12px 0;
-  cursor: pointer;
-`;
-
-const InfoMoney = style.div`
-  padding: 0 12px;
-`;
-const InfoLoc = style.div`
-  padding-top: 20px;
-`;
-
-const PdBtn = style.div`
-  background: #56AEDF;
-  padding: 23px 0;
-  text-align: center;
-  color: white;
-  cursor: pointer;
-`;
-
-const InfoOwner = style.div`
-  padding: 0 12px;
-  cursor: pointer;
-`;
-const InfoNim = style.span`
-  margin: 0 12px;
 `;
 
 function DetailProduct() {
@@ -122,12 +85,9 @@ function DetailProduct() {
   const [showDesBtn, setShowDesBtn] = useState(false);
   useEffect(() => {
     window.addEventListener("resize", function () {
-      if (
-        window.innerWidth < 800 &&
-        desRef.current.children[0].clientHeight > 171
-      ) {
+      if (window.innerWidth < 800 && desRef.current.clientHeight > 171) {
         setShowDesBtn(true);
-        console.log(desRef.current);
+        console.log(desRef.current.clientHeight);
       } else {
         setShowDesBtn(false);
       }
@@ -143,15 +103,16 @@ function DetailProduct() {
         <PdTitle>{post[0].product_name}</PdTitle>
         <PdInfo>
           <InfoBox>
-            <InfoBar title={"상품 상태"} percentage={post[0].condition} />
+            <InfoBar
+              title={"상품 상태"}
+              percentage={post[0].condition}
+              inputMode={false}
+            />
           </InfoBox>
           <InfoBox>
             <InfoTitle>물품 설명</InfoTitle>
-            <InfoDes
-              ref={desRef}
-              style={{ maxHeight: showDes ? "initial" : "171px" }}
-            >
-              <p>{post[0].explanation}</p>
+            <InfoDes style={{ maxHeight: showDes ? "initial" : "171px" }}>
+              <p ref={desRef}>{post[0].explanation}</p>
             </InfoDes>
             {showDesBtn ? (
               <InfoOpen

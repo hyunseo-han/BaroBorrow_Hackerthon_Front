@@ -68,15 +68,12 @@ const CalendarBtnLink = style(Link)`
   margin-top: 20px;
 `;
 
-function Calendar({ item, ban }) {
-  let compare = new Date();
-  if (compare <= new Date(item.start_date)) {
-    compare = new Date(item.start_date);
-  }
+function CalendarEnroll() {
+  const today = new Date();
   const [state, setState] = useState([
     {
-      startDate: null,
-      endDate: null,
+      startDate: today,
+      endDate: today,
       key: "selection",
       color: "#56AEDF",
     },
@@ -89,23 +86,21 @@ function Calendar({ item, ban }) {
         <CalendarInfo>
           {start !== "Invalid date" && end !== "Invalid date" ? (
             <>
-              <InfoTitle>대여날짜</InfoTitle>
+              <InfoTitle>대여 가능일 날짜</InfoTitle>
               <InfoCnt>{start}</InfoCnt>
               <InfoCnt>-</InfoCnt>
               <InfoCnt>{end}</InfoCnt>
             </>
           ) : (
-            "대여 시작일과 반납일을 선택해주세요"
+            "대여 가능 시작일과 반납일을 선택해주세요"
           )}
         </CalendarInfo>
         <DateRange
           editableDateInputs={false}
           onChange={(item) => setState([item.selection])}
-          minDate={compare} // 과거 날짜 disable
-          maxDate={new Date(item.last_date)}
+          minDate={today} // 과거 날짜 disable
           locale={ko}
           showDateDisplay={false}
-          disabledDates={ban} // 빌리는 거 금지 날짜
           color={"#aeb9bf"}
           showMonthAndYearPickers={false}
           ranges={state}
@@ -113,9 +108,9 @@ function Calendar({ item, ban }) {
         />
         {start !== "Invalid date" && end !== "Invalid date" ? (
           <CalendarBtnLink
-            to={`/detail${item.id}/result`}
+            to={"/"}
             state={{
-              borrow: item,
+              borrow: "",
               borrower: {
                 user: "수정하기",
                 borrowDate: start,
@@ -126,11 +121,11 @@ function Calendar({ item, ban }) {
             바로
           </CalendarBtnLink>
         ) : (
-          <CalendarBtn>바로</CalendarBtn>
+          <CalendarBtn>빌려주기</CalendarBtn>
         )}
       </CalendarInside>
     </CalendarSection>
   );
 }
 
-export default Calendar;
+export default CalendarEnroll;

@@ -13,6 +13,9 @@ function ProductList(props) {
           <Link to={`/detail${li.id}`}>{li.product_name}</Link>
         </div>
       ))}
+      <Link to={"/enroll"}>
+        <div>물품 빌려주기</div>
+      </Link>
     </div>
   );
 }

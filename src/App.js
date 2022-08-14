@@ -5,6 +5,7 @@ import ProductList from "./ProductList";
 import Nav from "./Nav";
 import ProductResult from "./product/ProductResult";
 import ProductOwner from "./product/ProductOwner";
+import ProductEnroll from "./product/ProductEnroll";
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route element={<ProductList />} path={"/"}></Route>
         <Route element={<ProductOwner />} path={"/owner"}></Route>
         <Route element={<DetailProduct />} path={"/detail:id"}></Route>
+        <Route element={<ProductEnroll />} path={"/enroll"}></Route>
         <Route element={<ProductResult />} path={"/detail:id/result"}></Route>
       </Routes>
     </BrowserRouter>
