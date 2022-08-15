@@ -28,7 +28,7 @@ width: 100%;
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000;
-  background: #99D0EF;
+  background: #E6E6E6;
   border-radius: 10px;
   @media only screen and (max-width: 500px) {
     height: 10px;
@@ -47,61 +47,6 @@ width: 100%;
     height: 16px;
     margin-top: -3px;
   }
-}
-
-
-&::-moz-range-track,
-&::-moz-range-progress {
-  width: 100%;
-  height: 20px;
-  background: red;
-}
-
-&::-moz-range-progress {
-  background: blue;
-}
-
-&::-moz-range-thumb {
-  appearance: none;
-  margin: 0;
-  height: 28px;
-  width: 28px;
-  background: yellow;
-  border-radius: 100%;
-  border: 0;
-  transition: background-color 150ms;
-}
-
-&::-ms-track {
-  width: 100%;
-  height: 20px;
-  border: 0;
-  /* color needed to hide track marks */
-  color: transparent;
-  background: transparent;
-}
-
-&::-ms-fill-lower {
-  background: blue;
-}
-
-&::-ms-fill-upper {
-  background: red;
-}
-
-&::-ms-thumb {
-  appearance: none;
-  height: 28px;
-  width: 28px;
-  background: yellow;
-  border-radius: 100%;
-  border: 0;
-  transition: background-color 150ms;
-  /* IE Edge thinks it can support -webkit prefixes */
-  top: 0;
-  margin: 0;
-  box-shadow: none;
-
 }
 `;
 

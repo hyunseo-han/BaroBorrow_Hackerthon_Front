@@ -12,6 +12,7 @@ import {
 import InfoBar from "./InfoBar";
 import CalendarEnroll from "./CalendarEnroll";
 import style from "styled-components";
+import PopAddress from "./PopAddress";
 
 const DesInput = style.textarea`
   width: 100%;
@@ -98,14 +99,18 @@ function ProductEnroll() {
   const [condition, setCondition] = useState(0);
   const [fileImg, setFileImg] = useState();
   const [price, setPrice] = useState("");
-  const [rental, setRental] = useState("");
-  const [deposit, setDeposit] = useState("");
+  const [rental, setRental] = useState({
+    pr: "",
+    per: "",
+  });
+  const [deposit, setDeposit] = useState({
+    pr: "",
+    per: "",
+  });
   const [way, setWay] = useState("");
   const rentalRef = useRef([]);
   const depositRef = useRef([]);
   const wayRef = useRef([]);
-  console.log(condition);
-
   const onClick = (list, idx, setState, state) => {
     for (let index = 0; index < list.current.length; index++) {
       list.current[index].style.backgroundColor = "";
@@ -114,7 +119,9 @@ function ProductEnroll() {
     setState(state);
   };
   console.log(price, way, rental, deposit);
-
+  // 지도 주소
+  const [popUp, setPopUp] = useState(false);
+  const [address, setAddress] = useState("");
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
@@ -178,6 +185,30 @@ function ProductEnroll() {
                     return;
                   } else {
                     setPrice(event.target.value);
+                    // 대여비
+                    const percen = rental.per;
+                    let prRental;
+                    if (percen) {
+                      prRental = event.target.value * percen;
+                    } else {
+                      prRental = rental.pr;
+                    }
+                    setRental({
+                      per: percen,
+                      pr: prRental,
+                    });
+                    // 렌탈
+                    const percenD = deposit.per;
+                    let prDeposit;
+                    if (percenD) {
+                      prDeposit = event.target.value * percenD;
+                    } else {
+                      prDeposit = deposit.pr;
+                    }
+                    setDeposit({
+                      per: percen,
+                      pr: prDeposit,
+                    });
                   }
                 }}
               />
@@ -190,13 +221,16 @@ function ProductEnroll() {
               <PerList ref={(list) => (rentalRef.current[0] = list)}>
                 <InfoInputBor
                   type="text"
-                  value={rental}
+                  value={rental.pr}
                   placeholder="직접 입력"
                   onChange={(event) => {
                     if (event.target.value < 0 || isNaN(event.target.value)) {
                       return;
                     } else {
-                      onClick(rentalRef, 0, setRental, event.target.value);
+                      onClick(rentalRef, 0, setRental, {
+                        pr: event.target.value,
+                        per: 0,
+                      });
                     }
                   }}
                 />
@@ -205,7 +239,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (rentalRef.current[1] = list)}
                 onClick={() => {
-                  onClick(rentalRef, 1, setRental, Math.floor(0.1 * price));
+                  onClick(rentalRef, 1, setRental, {
+                    pr: Math.floor(price * 0.1),
+                    per: 0.1,
+                  });
                 }}
               >
                 10%
@@ -213,7 +250,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (rentalRef.current[2] = list)}
                 onClick={() => {
-                  onClick(rentalRef, 2, setRental, Math.floor(0.15 * price));
+                  onClick(rentalRef, 2, setRental, {
+                    pr: Math.floor(price * 0.15),
+                    per: 0.15,
+                  });
                 }}
               >
                 15%
@@ -221,7 +261,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (rentalRef.current[3] = list)}
                 onClick={() => {
-                  onClick(rentalRef, 3, setRental, Math.floor(0.2 * price));
+                  onClick(rentalRef, 3, setRental, {
+                    pr: Math.floor(price * 0.2),
+                    per: 0.2,
+                  });
                 }}
               >
                 20%
@@ -229,7 +272,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (rentalRef.current[4] = list)}
                 onClick={() => {
-                  onClick(rentalRef, 4, setRental, Math.floor(0.25 * price));
+                  onClick(rentalRef, 4, setRental, {
+                    pr: Math.floor(price * 0.25),
+                    per: 0.25,
+                  });
                 }}
               >
                 25%
@@ -242,13 +288,16 @@ function ProductEnroll() {
               <PerList ref={(list) => (depositRef.current[0] = list)}>
                 <InfoInputBor
                   type="text"
-                  value={deposit}
+                  value={deposit.pr}
                   placeholder="직접 입력"
                   onChange={(event) => {
                     if (event.target.value < 0 || isNaN(event.target.value)) {
                       return;
                     } else {
-                      onClick(depositRef, 0, setDeposit, event.target.value);
+                      onClick(depositRef, 0, setDeposit, {
+                        pr: event.target.value,
+                        per: 0,
+                      });
                     }
                   }}
                 />
@@ -257,7 +306,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (depositRef.current[1] = list)}
                 onClick={() => {
-                  onClick(depositRef, 1, setDeposit, Math.floor(0.5 * price));
+                  onClick(depositRef, 1, setDeposit, {
+                    pr: Math.floor(0.5 * price),
+                    per: 0.5,
+                  });
                 }}
               >
                 50%
@@ -265,7 +317,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (depositRef.current[2] = list)}
                 onClick={() => {
-                  onClick(depositRef, 2, setDeposit, Math.floor(0.55 * price));
+                  onClick(depositRef, 2, setDeposit, {
+                    pr: Math.floor(0.55 * price),
+                    per: 0.55,
+                  });
                 }}
               >
                 55%
@@ -273,7 +328,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (depositRef.current[3] = list)}
                 onClick={() => {
-                  onClick(depositRef, 3, setDeposit, Math.floor(0.6 * price));
+                  onClick(depositRef, 3, setDeposit, {
+                    pr: Math.floor(0.6 * price),
+                    per: 0.6,
+                  });
                 }}
               >
                 60%
@@ -281,7 +339,10 @@ function ProductEnroll() {
               <PerList
                 ref={(list) => (depositRef.current[4] = list)}
                 onClick={() => {
-                  onClick(depositRef, 4, setDeposit, Math.floor(0.65 * price));
+                  onClick(depositRef, 4, setDeposit, {
+                    pr: Math.floor(0.65 * price),
+                    per: 0.65,
+                  });
                 }}
               >
                 65%
@@ -290,7 +351,18 @@ function ProductEnroll() {
           </InfoBox>
           <InfoBox>
             <InfoTitle>대여장소</InfoTitle>
-            <InfoInputLoc>대여를 진행 할 장소를 검색해주세요</InfoInputLoc>
+            <InfoInputLoc
+              onClick={() => {
+                setPopUp(!popUp);
+              }}
+            >
+              {address ? address : "대여를 진행 할 장소를 검색해주세요"}
+            </InfoInputLoc>
+            {popUp ? (
+              <PopAddress address={address} setAddress={setAddress} />
+            ) : (
+              ""
+            )}
             <InfoInputLoc>
               <InfoInput placeholder="상세주소를 입력해주세요" />
             </InfoInputLoc>

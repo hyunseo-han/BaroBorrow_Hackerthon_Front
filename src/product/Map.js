@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import style from "styled-components";
 const MapContainer = style.div`
   width: 100%;
@@ -10,8 +10,9 @@ const MapContainer = style.div`
 
 const { kakao } = window;
 function Map({ address }) {
+  const mapRef = useRef();
   useEffect(() => {
-    const container = document.getElementById("map");
+    const container = mapRef.current;
     const options = {
       center: new kakao.maps.LatLng(37.606985002299545, 127.04176711490993),
       level: 3,
@@ -37,7 +38,7 @@ function Map({ address }) {
       }
     });
   }, []);
-  return <MapContainer id="map"></MapContainer>;
+  return <MapContainer id="map" ref={mapRef}></MapContainer>;
 }
 
 export default Map;
