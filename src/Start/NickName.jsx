@@ -22,7 +22,7 @@ export const InputText = styled.textarea`
 
   font-style: normal;
   font-weight: 700;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 44px;
   text-indent: 12px;
 

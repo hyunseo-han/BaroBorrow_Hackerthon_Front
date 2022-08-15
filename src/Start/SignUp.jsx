@@ -127,9 +127,14 @@ const SignUp = () => {
 
   const onConfirmPasswordHandler = (event) => {
     setConfirmPassword(event.currentTarget.value);
+    setTimeout(100);
+    checkError(event.currentTarget.value);
   };
 
   const checkError = () => {
+    console.log(password);
+    console.log(confirmPassword);
+
     if (password === confirmPassword) {
       setErrorPassword = true;
     }
@@ -138,10 +143,6 @@ const SignUp = () => {
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
-
-      // if (password !== confirmPassword) {
-      //   return setErrorPassword(true);
-      // }
 
       console.log({
         password,

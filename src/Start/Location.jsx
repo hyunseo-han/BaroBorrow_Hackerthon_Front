@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import DaumPostcode from "react-daum-postcode";
@@ -95,7 +94,9 @@ const Location = (props) => {
       />
       <div>
         <SubmitButton>
-          <StyledLink style={{ color: "white" }}>다음</StyledLink>
+          <StyledLink to="/Main" style={{ color: "white" }}>
+            다음
+          </StyledLink>
         </SubmitButton>
       </div>
     </>
