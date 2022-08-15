@@ -39,6 +39,8 @@ export const InputText = styled.input`
   line-height: 22px;
 
   overflow: hidden;
+
+  background: rgba(246, 246, 246, 1);
   color: rgba(136, 136, 136, 1);
 `;
 
