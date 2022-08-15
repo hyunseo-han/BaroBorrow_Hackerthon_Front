@@ -30,6 +30,7 @@ export const InputText = styled.textarea`
   height: 48px;
   top: 173px;
   background: rgba(246, 246, 246, 1);
+  color: rgba(136, 136, 136, 1);
   border-radius: 5px;
 `;
 

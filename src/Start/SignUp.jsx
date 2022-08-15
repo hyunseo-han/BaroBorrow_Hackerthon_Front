@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, NavLink, Link } from "react-router-dom";
 
@@ -125,21 +125,6 @@ const SignUp = () => {
     setID(event.currentTarget.value);
   };
 
-  const onConfirmPasswordHandler = (event) => {
-    setConfirmPassword(event.currentTarget.value);
-    setTimeout(100);
-    checkError(event.currentTarget.value);
-  };
-
-  const checkError = () => {
-    console.log(password);
-    console.log(confirmPassword);
-
-    if (password === confirmPassword) {
-      setErrorPassword = true;
-    }
-  };
-
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -153,6 +138,20 @@ const SignUp = () => {
     [password, confirmPassword]
   );
 
+  useEffect(() => {
+    console.log(errorPassword);
+    if (confirmPassword.length < 1 || password.length < 1) {
+      setErrorPassword(false);
+    } else if (password === confirmPassword) {
+      console.log(password);
+      console.log(confirmPassword);
+      setErrorPassword(true);
+      console.log(errorPassword);
+    } else {
+      setErrorPassword(false);
+    }
+  }, [confirmPassword, password]);
+
   return (
     <>
       <WelcomeDiv>
@@ -161,11 +160,12 @@ const SignUp = () => {
       </WelcomeDiv>
 
       <SignUpDiv>
-        <SignUpIcon src="img/Name.png" />
-        <label htmlFor="input_name"></label>
+        <label htmlFor="input_name">
+          <SignUpIcon src="img/Name.png" />
+        </label>
         <InputText
           type="text"
-          name="input_name"
+          id="input_name"
           placeholder="이름"
           value={name}
           onChange={onNameHandler}
@@ -173,11 +173,12 @@ const SignUp = () => {
       </SignUpDiv>
 
       <SignUpDiv>
-        <SignUpIcon src="img/LoginIcon.png" />
-        <label htmlFor="input_id"></label>
+        <label htmlFor="input_id">
+          <SignUpIcon src="img/LoginIcon.png" />
+        </label>
         <InputText
           type="text"
-          name="input_id"
+          id="input_id"
           placeholder="아이디"
           value={ID}
           onChange={onIDHandler}
@@ -185,11 +186,12 @@ const SignUp = () => {
       </SignUpDiv>
 
       <SignUpDiv>
-        <SignUpIcon src="img/PassWordIcon.png" />
-        <label htmlFor="input_pw"></label>
+        <label htmlFor="input_pw">
+          <SignUpIcon src="img/PassWordIcon.png" />
+        </label>
         <InputText
           type="password"
-          name="input_pw"
+          id="input_pw"
           placeholder="비밀번호"
           value={password}
           onChange={onPasswordHandler}
@@ -197,14 +199,17 @@ const SignUp = () => {
       </SignUpDiv>
 
       <SignUpDiv>
-        <SignUpIcon src="img/PassWordIcon.png" />
-        <label htmlFor="input_confirmpw"></label>
+        <label htmlFor="input_confirmpw">
+          <SignUpIcon src="img/PassWordIcon.png" />
+        </label>
         <InputText
           type="password"
-          name="input_confirmpw"
+          id="input_confirmpw"
           placeholder="비밀번호 확인"
           value={confirmPassword}
-          onChange={onConfirmPasswordHandler}
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+          }}
         />
         <CheckIconimg src={errorPassword === false ? null : "img/check.png"} />
       </SignUpDiv>
