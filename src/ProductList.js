@@ -16,6 +16,9 @@ function ProductList(props) {
       <Link to={"/enroll"}>
         <div>물품 빌려주기</div>
       </Link>
+      <Link to={"/mypage/profile"}>
+        <div>내 프로필</div>
+      </Link>
     </div>
   );
 }
