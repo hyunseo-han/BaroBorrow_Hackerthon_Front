@@ -3,7 +3,6 @@ import { GlobalStyle } from "./style";
 import Main from "./Start/Main";
 import Login from "./Start/Login";
 import SignUp from "./Start/SignUp";
-import NickName from "./Start/NickName";
 import Location from "./Start/Location";
 import ProfileEdit from "./ProfileEdit";
 function App() {
@@ -14,7 +13,7 @@ function App() {
         <Route exact path={"/"} element={<Main />}></Route>
         <Route exact path={"/SignUp"} element={<SignUp />}></Route>
         <Route exact path={"/Login"} element={<Login />}></Route>
-        <Route exact path={"/NickName"} element={<NickName />}></Route>
+
         <Route exact path={"/Location"} element={<Location />}></Route>
         <Route exact path={"/ProfileEdit"} element={<ProfileEdit />}></Route>
       </Routes>

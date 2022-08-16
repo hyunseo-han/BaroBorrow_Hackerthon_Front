@@ -44,6 +44,29 @@ export const InputText = styled.input`
   color: rgba(136, 136, 136, 1);
 `;
 
+export const InputText2 = styled.input`
+  all: unset;
+  position: relative;
+  width: 327px;
+  height: 48px;
+  top: 175px;
+
+  background: #f7f7f7;
+  border-radius: 5px;
+  margin-left: 3px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-indent: 13px;
+
+  overflow: hidden;
+
+  background: rgba(246, 246, 246, 1);
+  color: rgba(136, 136, 136, 1);
+`;
+
 const SignUpIcon = styled.img`
   position: absolute;
   width: 24px;
@@ -70,7 +93,7 @@ const SignUpButton = styled.button`
   width: 327px;
   height: 48px;
 
-  margin-top: 160px;
+  margin-top: 200px;
   background: #56aedf;
   border-radius: 5px;
   border: none;
@@ -106,15 +129,32 @@ const CheckIconimg = styled.img`
   bottom: 4.17%;
 `;
 
+const TextDiv = styled.div`
+  position: relative;
+  width: 219px;
+  height: 22px;
+  top: 160px;
+
+  /* font-family: "Open Sans"; */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: rgba(102, 102, 102, 1);
+`;
+
 const SignUp = () => {
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
-
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [errorPassword, setErrorPassword] = useState(false);
+  const [nickname, setnickname] = useState("");
 
+  const onNickNameHandler = (event) => {
+    setnickname(event.currentTarget.value);
+  };
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };
@@ -216,9 +256,18 @@ const SignUp = () => {
         <CheckIconimg src={errorPassword === false ? null : "img/check.png"} />
       </SignUpDiv>
 
+      <TextDiv>사용하실 닉네임을 입력해주세요.</TextDiv>
+      <InputText2
+        type="text"
+        id="input_nickname"
+        placeholder="ex) 홍길동"
+        value={nickname}
+        onChange={onNickNameHandler}
+      />
+
       <div>
         <SignUpButton type="submit" onSubmit={onSubmit}>
-          <StyledLink to="/NickName" style={{ color: "white" }}>
+          <StyledLink to="/Location" style={{ color: "white" }}>
             회원가입
           </StyledLink>
         </SignUpButton>
