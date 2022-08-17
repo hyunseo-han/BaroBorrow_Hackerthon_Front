@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, NavLink, Link } from "react-router-dom";
+import axios from "axios";
 
 const WelcomeDiv = styled.div`
   position: relative;
@@ -145,6 +146,13 @@ const TextDiv = styled.div`
 `;
 
 const SignUp = () => {
+  const userData = {
+    username: ID,
+    name: name,
+    password: password,
+  };
+
+  // axios 연결하고 userData, useEffect import 하고 서버 연결하기
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
@@ -267,9 +275,20 @@ const SignUp = () => {
 
       <div>
         <SignUpButton type="submit" onSubmit={onSubmit}>
-          <StyledLink to="/Location" style={{ color: "white" }}>
+          <div
+            style={{ color: "white" }}
+            onClick={() => {
+              navigate("/NickName");
+              console.log(userData);
+              axios
+                .post("http://127.0.0.1:8000/user/signup/", userData)
+                .then(function (response) {
+                  console.log(response);
+                });
+            }}
+          >
             회원가입
-          </StyledLink>
+          </div>
         </SignUpButton>
       </div>
     </>

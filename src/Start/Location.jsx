@@ -92,6 +92,7 @@ const Location = (props) => {
         autoClose
         onComplete={onCompletePost}
       />
+
       <div>
         <SubmitButton>
           <StyledLink to="/Main" style={{ color: "white" }}>
