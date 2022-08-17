@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import WebLOGO from "../img/WebLOGO.png";
 //헤더, 바디(375X812) 전체 들어있는 파일
 
 const Entirety = styled.div`
-  position: relative;
+  position: absolute;
   width: 375px;
-  height: 812px;
   background: #ffffff;
 `;
+//overflow: 헤더 안보임
 
 const Head = styled.div`
   position: absolute;
@@ -20,25 +21,23 @@ const Head = styled.div`
 
 const Logo = styled.div`
   position: absolute;
-  width: 60px;
-  height: 32px;
-  left: 157.5px;
-  top: 47.75px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 16px;
-  letter-spacing: -0.333333px;
-  color: #ffffff;
+  width: 75px;
+  height: 45px;
+  left: 150px;
+  top: 42px;
 `;
 
 function Header() {
   return (
-    <Entirety>
-      <Head>
-        <Logo>바로바로</Logo>
-      </Head>
-    </Entirety>
+    <>
+      <Entirety>
+        <Head>
+          <Logo>
+            <img src={WebLOGO}></img>
+          </Logo>
+        </Head>
+      </Entirety>
+    </>
   );
 }
 
