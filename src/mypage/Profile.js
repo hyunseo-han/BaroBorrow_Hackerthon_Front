@@ -60,7 +60,7 @@ function Profile() {
               <OwnerNameText>닉네임</OwnerNameText>
               <span>님</span>
             </OwnerName>
-            <img src={require("../img/Vector.png")} />
+            <img src={require("../img/side.png")} />
           </>
         </NickNameLink>
         <OwnerHeadDes>(실제 대여자들의 후기 평균입니다.)</OwnerHeadDes>

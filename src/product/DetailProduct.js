@@ -174,7 +174,7 @@ function DetailProduct() {
             >
               이름/닉네임
               <InfoNim>님</InfoNim>
-              <img src={require("../img/Vector.png")} />
+              <img src={require("../img/side.png")} />
             </InfoOwner>
           </InfoBox>
         </PdInfo>
