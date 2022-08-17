@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
-    ${reset}
+${reset}
     @font-face{
         font-family: 'Roboto';
         src: local('Roboto');
