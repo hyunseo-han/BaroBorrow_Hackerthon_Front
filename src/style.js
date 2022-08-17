@@ -15,9 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     }
     body{
         font-family: 'Noto Sans KR', 'Roboto';
+        padding: 0 24px;
     }
     a{
         text-decoration: none;
     }
 `;
-//padding 없앰
