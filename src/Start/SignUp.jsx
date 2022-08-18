@@ -266,7 +266,7 @@ const SignUp = () => {
           <div
             style={{ color: "white" }}
             onClick={() => {
-              navigate("/NickName");
+              navigate("/Login");
               console.log(userData);
               axios
                 .post("http://127.0.0.1:8000/user/signup/", userData)

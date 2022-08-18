@@ -2,9 +2,9 @@ import style from "styled-components";
 
 export const PdContainer = style.div`
   margin: 52px auto 0;
+  padding: 0 24px;
   font-weight: 700;
   color: #666666;
-  padding-top: 32px;
   box-sizing: border-box;
   max-width: 900px;
   @media only screen and (max-width: 500px) {

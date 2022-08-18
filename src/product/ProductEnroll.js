@@ -94,7 +94,8 @@ const InfoInputLoc = style.div`
   }
 `;
 
-function ProductEnroll() {
+function ProductEnroll({ setNavText }) {
+  setNavText("물품 등록");
   const [showSelect, setShowSelect] = useState(false);
   const [condition, setCondition] = useState(0);
   const [fileImg, setFileImg] = useState();

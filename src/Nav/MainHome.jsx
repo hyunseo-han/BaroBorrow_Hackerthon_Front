@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Footer from "../Footer";
+import ProductList from "./ProductList";
+
+const ListContariner = styled.div`
+  color: #888888;
+  margin-top: 72px;
+  margin-bottom: 78px;
+  font-weight: bold;
+`;
 
 const Input = styled.input`
-  margin-top: 72px;
   background: #f7f7f7;
   border-radius: 5px;
   border: none;
@@ -14,6 +19,7 @@ const Input = styled.input`
   width: 100%;
   font-size: 16px;
   height: 50px;
+  outline: none;
   @media only screen and (max-width: 400px) {
     height: 40px;
     font-size: 12px;
@@ -21,113 +27,23 @@ const Input = styled.input`
 `;
 
 const ListEntireText = styled.p`
-  padding: 10px 0;
+  padding: 10px 24px;
 `;
 
-const Pic = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 5px;
-`;
+function MainHome({ setNavText }) {
+  setNavText("logo");
 
-const Title = styled.div`
-  width: 215px;
-  height: 22px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  color: #888888;
-  cursor: pointer;
-  text-decoration: underline;
-`;
-
-const LocalName = styled.div`
-  height: 16px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  color: #888888;
-  margin-bottom: 20px;
-`;
-
-const Deposit = styled.div`
-  width: 71px;
-  height: 19px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19px;
-  color: #000000;
-`;
-
-const RentalFee = styled.div`
-  width: 71px;
-  height: 19px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19px;
-  color: #000000;
-`;
-
-const Box = styled.div`
-  height: 120px;
-  background: #ffffff;
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #d9d9d9;
-  display: flex;
-  align-items: center;
-`;
-
-const BoxInfo = styled.div`
-  padding-left: 12px;
-`;
-
-function MainHome() {
-  const [pdData, setPdData] = useState([]);
-  useEffect(() => {
-    axios.get("http://127.0.0.1:8000/product/").then((response) => {
-      setPdData(response.data);
-    });
-  }, []);
-  const navigate = useNavigate();
   return (
-    <>
-      <Input placeholder="물품 카테고리 , 물품 명을 검색해주세요."></Input>
+    <ListContariner>
+      <div style={{ padding: "0 24px" }}>
+        <Input placeholder="물품 카테고리 , 물품 명을 검색해주세요." />
+      </div>
       <div>
         <ListEntireText>전체화면</ListEntireText>
-        {pdData.map((list) => (
-          <Box key={list.id}>
-            <Pic>
-              <img
-                src={list.productPhoto}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </Pic>
-            <BoxInfo>
-              <Title
-                onClick={() => {
-                  navigate(`/user/detail${list.id}`);
-                }}
-              >
-                {list.productName}
-              </Title>
-              <LocalName>{list.address}</LocalName>
-              <Deposit>{list.deposit}</Deposit>
-              <RentalFee>{list.rentalFee}</RentalFee>
-            </BoxInfo>
-          </Box>
-        ))}
+        <ProductList />
       </div>
       <Footer />
-    </>
+    </ListContariner>
   );
 }
 

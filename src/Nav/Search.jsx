@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "../Footer";
 import SearchIconSmall from "../img/SearchIconSmall.png";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +42,6 @@ function Search() {
   };
   return (
     <>
-      <Header />
       <InputDiv>
         <Input placeholder="물품 카테고리, 물품 명을 입력해주세요."></Input>
         <IconDiv onClick={goToOption}>

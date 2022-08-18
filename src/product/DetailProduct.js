@@ -29,6 +29,7 @@ export const PdImgDiv = style.div`
   margin-bottom: 15px;
   width: 100%;
   height: 320px;
+  padding-top: 32px;
 `;
 
 export const PdImg = style.img`

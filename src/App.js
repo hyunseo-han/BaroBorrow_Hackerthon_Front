@@ -7,12 +7,17 @@ import ProductEnroll from "./product/ProductEnroll";
 import Profile from "./mypage/Profile";
 import ProfileEdit from "./mypage/ProfileEdit";
 import MainHome from "./Nav/MainHome";
+import Search from "./Nav/Search";
 import SignUp from "./Start/SignUp";
 import Main from "./Start/Main";
 import Login from "./Start/Login";
 import Location from "./Start/Location";
 import RouteLogin from "./RouteLogin";
+import ProductSearch from "./Nav/ProductSearch";
+import Option from "./Nav/Option";
+import { useState } from "react";
 function App() {
+  const [navtext, setNavText] = useState("");
   return (
     <BrowserRouter>
       <GlobalStyle />
@@ -22,16 +27,31 @@ function App() {
         <Route exact path={"/SignUp"} element={<SignUp />} />
         <Route exact path={"/Login"} element={<Login />} />
         <Route exact path={"/Location"} element={<Location />} />
-        <Route element={<RouteLogin />} path={"/user"}>
+        <Route element={<RouteLogin navtext={navtext} />} path={"/user"}>
           {/* 물품 */}
-          <Route element={<MainHome />} path={"/user/main"} />
+          <Route
+            element={<MainHome setNavText={setNavText} />}
+            path={"/user/main"}
+          />
           <Route element={<DetailProduct />} path={"/user/detail:id"} />
           <Route element={<ProductOwner />} path={"/user/owner"} />
-          <Route element={<ProductEnroll />} path={"/user/enroll"} />
+          <Route
+            element={<ProductEnroll setNavText={setNavText} />}
+            path={"/user/enroll"}
+          />
           <Route element={<ProductResult />} path={"/user/detail:id/result"} />
           {/* 마이페이지 */}
           <Route element={<Profile />} path={"/user/mypage/profile"} />
           <Route element={<ProfileEdit />} path={"/user/mypage/profileEdit"} />
+          {/* 검색 */}
+          <Route
+            element={<ProductSearch setNavText={setNavText} />}
+            path={"/user/search"}
+          />
+          <Route
+            element={<Option setNavText={setNavText} />}
+            path={"/user/filtersearch"}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
