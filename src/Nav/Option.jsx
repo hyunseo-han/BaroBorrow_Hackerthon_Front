@@ -4,7 +4,7 @@ import Header from "./Header";
 import { useState } from "react";
 import Footer from "./Footer";
 import VectorIMG from "../img/Vector.png";
-import Local from "../nav/Local";
+import Local from "../Nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
 import Modal from "./Modal";
 
