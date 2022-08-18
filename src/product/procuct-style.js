@@ -1,7 +1,6 @@
 import style from "styled-components";
 
 export const PdContainer = style.div`
-  height: 100vh;
   margin: 52px auto 0;
   font-weight: 700;
   color: #666666;

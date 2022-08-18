@@ -108,7 +108,7 @@ function CalendarEnroll() {
         />
         {start !== "Invalid date" && end !== "Invalid date" ? (
           <CalendarBtnLink
-            to={"/"}
+            to={"/user/main"}
             state={{
               borrow: "",
               borrower: {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const LoginLogo = styled.img`
   position: absolute;
@@ -80,10 +81,7 @@ const Login = () => {
     setInputPw(e.target.value);
   };
 
-  const onClickLogin = () => {
-    console.log("click login");
-  };
-
+  const navigate = useNavigate();
   return (
     <>
       <LoginLogo src="img/로그인로고 1.png" />
@@ -112,7 +110,13 @@ const Login = () => {
       </SignInDiv>
 
       <div>
-        <LoginButton onClick={onClickLogin}>로그인</LoginButton>
+        <LoginButton
+          onClick={() => {
+            navigate("/user/main");
+          }}
+        >
+          로그인
+        </LoginButton>
       </div>
     </>
   );

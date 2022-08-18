@@ -92,7 +92,7 @@ function ProductResult() {
             </ResultInfoList>
           </ResultInfo>
         </ResultInfoBox>
-        <Link to={"/"} style={{ width: "100%" }}>
+        <Link to={"/user/main"} style={{ width: "100%" }}>
           <HomeBtn>더 둘러보기</HomeBtn>
         </Link>
       </ResultInside>
