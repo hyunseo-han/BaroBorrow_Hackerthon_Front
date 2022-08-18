@@ -169,7 +169,7 @@ function DetailProduct() {
             <InfoTitle>대여자 정보</InfoTitle>
             <InfoOwner
               onClick={() => {
-                navigate("/owner");
+                navigate("/user/owner");
               }}
             >
               이름/닉네임

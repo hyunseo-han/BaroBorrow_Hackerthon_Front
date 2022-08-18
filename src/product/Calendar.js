@@ -113,7 +113,7 @@ function Calendar({ item, ban }) {
         />
         {start !== "Invalid date" && end !== "Invalid date" ? (
           <CalendarBtnLink
-            to={`/detail${item.id}/result`}
+            to={`/user/detail${item.id}/result`}
             state={{
               borrow: item,
               borrower: {
