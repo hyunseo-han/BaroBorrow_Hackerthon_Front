@@ -3,19 +3,18 @@ import styled from "styled-components";
 import Homeicon from "../img/HomeIcon.png";
 import Carticon from "../img/CartIcon.png";
 import Mypageicon from "../img/MypageIcon.png";
-import Searchicon from "../img/SearchIconBlue.png";
+import Searchicon from "../img/SearchIcon.png";
 
 const FooterDiv = styled.div`
   position: absolute;
   width: 375px;
   height: 68px;
+  top: 744px;
   left: 0px;
   right: 0px;
   bottom: 0px;
   background: #f5f5f5;
 `;
-//absolute 위치 이상
-//16px보다 더 많이 떨어짐
 
 const HomeIcon = styled.div`
   position: absolute;

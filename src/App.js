@@ -8,20 +8,16 @@ import ProductOwner from "./product/ProductOwner";
 import ProductEnroll from "./product/ProductEnroll";
 import Profile from "./mypage/Profile";
 import ProfileEdit from "./mypage/ProfileEdit";
+import HoldMain from "../src/basket/HoldMain";
+import Option from "./nav/Option";
+import MyBorrow from "./mypage/MyBorrow";
+import MainHome from "./nav/MainHome";
+
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Nav />
-      <Routes>
-        <Route element={<ProductList />} path={"/"}></Route>
-        <Route element={<ProductOwner />} path={"/owner"}></Route>
-        <Route element={<DetailProduct />} path={"/detail:id"}></Route>
-        <Route element={<ProductEnroll />} path={"/enroll"}></Route>
-        <Route element={<ProductResult />} path={"/detail:id/result"}></Route>
-        <Route element={<Profile />} path={"/mypage/profile"}></Route>
-        <Route element={<ProfileEdit />} path={"/mypage/profileEdit"}></Route>
-      </Routes>
+      <MyBorrow />
     </BrowserRouter>
   );
 }

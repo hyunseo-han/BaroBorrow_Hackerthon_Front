@@ -4,8 +4,105 @@ import Header from "./Header";
 import { useState } from "react";
 import Footer from "./Footer";
 import VectorIMG from "../img/Vector.png";
-import Local from "../Nav/Local";
+import Local from "../nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
+import Modal from "./Modal";
+
+function Option() {
+  const [color1, setColor1] = useState("#E6E6E6");
+  const [color2, setColor2] = useState("#E6E6E6");
+  const [color3, setColor3] = useState("#E6E6E6");
+  const [color4, setColor4] = useState("#E6E6E6");
+  const [color5, setColor5] = useState("#E6E6E6");
+  const [color6, setColor6] = useState("#E6E6E6");
+
+  const onClick1 = () => {
+    color1 === "#E6E6E6" ? setColor1("#E9F6FD") : setColor1("#E6E6E6");
+  };
+  const onClick2 = () => {
+    color2 === "#E6E6E6" ? setColor2("#E9F6FD") : setColor2("#E6E6E6");
+  };
+  const onClick3 = () => {
+    color3 === "#E6E6E6" ? setColor3("#E9F6FD") : setColor3("#E6E6E6");
+  };
+  const onClick4 = () => {
+    color4 === "#E6E6E6" ? setColor4("#E9F6FD") : setColor4("#E6E6E6");
+  };
+  const onClick5 = () => {
+    color5 === "#E6E6E6" ? setColor5("#E9F6FD") : setColor5("#E6E6E6");
+  };
+  const onClick6 = () => {
+    color6 === "#E6E6E6" ? setColor6("#E9F6FD") : setColor6("#E6E6E6");
+  };
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (
+    <>
+      <Header />
+      <Top>
+        <InfoName>props</InfoName>
+        <InfoText1>님이 검색하신</InfoText1>
+        <InfoSearch>props</InfoSearch>
+        <InfoText2>관련 검색 결과</InfoText2>
+        <Add>
+          <AddText placeholder="검색 조건을 추가해보세요" />
+          <AddVector>
+            <img src={VectorIMG}></img>
+          </AddVector>
+        </Add>
+      </Top>
+      <Box1>
+        <BoxText>BORROW 지역</BoxText>
+        <LocalBox onClick={openModal}>
+          <Modal open={modalOpen} close={closeModal}></Modal>
+          <LocalBoxText>대여를 원하는 지역을 선택해주세요</LocalBoxText>
+          <LocalBoxIconDiv>
+            <img src={LocalBoxIcon}></img>
+          </LocalBoxIconDiv>
+        </LocalBox>
+      </Box1>
+      <Box2>
+        <BoxText>BORROW 상태</BoxText>
+        <Button2_1 color={color1} onClick={onClick1}>
+          전체
+        </Button2_1>
+        <Button2_2 color={color2} onClick={onClick2}>
+          대여 중 제외
+        </Button2_2>
+        <Button2_3 color={color6} onClick={onClick6}>
+          오늘 바로
+        </Button2_3>
+      </Box2>
+      <Box3>
+        <BoxText>BORROW 방식</BoxText>
+        <Button3_1 color={color3} onClick={onClick3}>
+          전체
+        </Button3_1>
+        <Button3_2 color={color4} onClick={onClick4}>
+          대면
+        </Button3_2>
+        <Button3_3 color={color5} onClick={onClick5}>
+          비대면
+        </Button3_3>
+      </Box3>
+      <button>모달팝업</button>
+      <NextButton>
+        <NextButtonText>검색 결과 보기</NextButtonText>
+      </NextButton>
+      <Footer />
+    </>
+  );
+}
+
+export default Option;
 
 const Top = styled.div`
   position: absolute;
@@ -119,6 +216,7 @@ const LocalBox = styled.div`
   top: 60px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
+  cursor: pointer;
 `;
 
 const LocalBoxText = styled.div`
@@ -133,6 +231,7 @@ const LocalBoxText = styled.div`
   line-height: 128.91%;
   text-align: center;
   color: #c5c5c5;
+  cursor: pointer;
 `;
 
 const LocalBoxIconDiv = styled.div`
@@ -298,98 +397,3 @@ const NextButtonText = styled.div`
   color: #ffffff;
 `;
 //글자 간격은 폰트 적용 후 확인할것
-
-function Option() {
-  const [color1, setColor1] = useState("#E6E6E6");
-  const [color2, setColor2] = useState("#E6E6E6");
-  const [color3, setColor3] = useState("#E6E6E6");
-  const [color4, setColor4] = useState("#E6E6E6");
-  const [color5, setColor5] = useState("#E6E6E6");
-  const [color6, setColor6] = useState("#E6E6E6");
-
-  const onClick1 = () => {
-    color1 === "#E6E6E6" ? setColor1("#E9F6FD") : setColor1("#E6E6E6");
-  };
-  const onClick2 = () => {
-    color2 === "#E6E6E6" ? setColor2("#E9F6FD") : setColor2("#E6E6E6");
-  };
-  const onClick3 = () => {
-    color3 === "#E6E6E6" ? setColor3("#E9F6FD") : setColor3("#E6E6E6");
-  };
-  const onClick4 = () => {
-    color4 === "#E6E6E6" ? setColor4("#E9F6FD") : setColor4("#E6E6E6");
-  };
-  const onClick5 = () => {
-    color5 === "#E6E6E6" ? setColor5("#E9F6FD") : setColor5("#E6E6E6");
-  };
-  const onClick6 = () => {
-    color6 === "#E6E6E6" ? setColor6("#E9F6FD") : setColor6("#E6E6E6");
-  };
-
-  const [local, setLocal] = useState(false);
-
-  return (
-    <>
-      <Header />
-
-      <Top>
-        <InfoName>props</InfoName>
-        <InfoText1>님이 검색하신</InfoText1>
-        <InfoSearch>props</InfoSearch>
-        <InfoText2>관련 검색 결과</InfoText2>
-        <Add>
-          <AddText placeholder="검색 조건을 추가해보세요" />
-          <AddVector>
-            <img src={VectorIMG}></img>
-          </AddVector>
-        </Add>
-      </Top>
-      <Box1>
-        <BoxText>BORROW 지역</BoxText>
-        <LocalBox>
-          <LocalBoxText>대여를 원하는 지역을 선택해주세요</LocalBoxText>
-          <LocalBoxIconDiv>
-            <img src={LocalBoxIcon}></img>
-          </LocalBoxIconDiv>
-        </LocalBox>
-      </Box1>
-      <Box2>
-        <BoxText>BORROW 상태</BoxText>
-        <Button2_1 color={color1} onClick={onClick1}>
-          전체
-        </Button2_1>
-        <Button2_2 color={color2} onClick={onClick2}>
-          대여 중 제외
-        </Button2_2>
-        <Button2_3 color={color6} onClick={onClick6}>
-          오늘 바로
-        </Button2_3>
-      </Box2>
-      <Box3>
-        <BoxText>BORROW 방식</BoxText>
-        <Button3_1 color={color3} onClick={onClick3}>
-          전체
-        </Button3_1>
-        <Button3_2 color={color4} onClick={onClick4}>
-          대면
-        </Button3_2>
-        <Button3_3 color={color5} onClick={onClick5}>
-          비대면
-        </Button3_3>
-      </Box3>
-      <NextButton>
-        <NextButtonText>검색 결과 보기</NextButtonText>
-      </NextButton>
-      <Footer />
-      <br />
-      <br />
-      <br />
-      <Local />
-      <br />
-      <br />
-      <br />
-    </>
-  );
-}
-
-export default Option;
