@@ -5,7 +5,7 @@ import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import cartShape from "../img/cartShape.png";
-//map 함수로 불러오기 성곤 ^_^
+//map 함수로 불러오기 성공 ^_^
 
 function HoldMain() {
   const [posts, setPosts] = useState([]);
