@@ -34,6 +34,7 @@ const LocalBox = styled.div`
   top: 60px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
+  cursor: pointer;
 `;
 
 const LocalBoxText = styled.div`
@@ -47,6 +48,7 @@ const LocalBoxText = styled.div`
   font-size: 14px;
   line-height: 128.91%;
   color: #c5c5c5;
+  cursor: pointer;
 `;
 
 const LocalBoxIconDiv = styled.div`

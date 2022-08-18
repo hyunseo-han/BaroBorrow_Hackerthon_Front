@@ -34,6 +34,7 @@ const SearchBox = style.div`
   cursor: pointer;
   box-sizing: border-box;
 `;
+
 const SearchList = style.div`
   width: 100%;
   cursor: pointer;
