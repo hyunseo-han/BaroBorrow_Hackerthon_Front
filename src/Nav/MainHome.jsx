@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "../Footer";
+import Footer from "./Footer";
 
 const Input = styled.input`
   margin-top: 72px;

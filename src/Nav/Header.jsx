@@ -6,13 +6,19 @@ import WebLOGO from "../img/WebLOGO.png";
 const Entirety = styled.div`
   position: absolute;
   width: 375px;
+  height: 654px;
+  top: 90px;
+  bottom: 68px;
+  left: 0px;
+  right: 0px;
   background: #ffffff;
 `;
-//overflow: 헤더 안보임
+//없애는게 나을수도
 
 const Head = styled.div`
   position: absolute;
   height: 90px;
+  width: 375px;
   left: 0px;
   right: 0px;
   top: 0px;
@@ -30,13 +36,11 @@ const Logo = styled.div`
 function Header() {
   return (
     <>
-      <Entirety>
-        <Head>
-          <Logo>
-            <img src={WebLOGO}></img>
-          </Logo>
-        </Head>
-      </Entirety>
+      <Head>
+        <Logo>
+          <img src={WebLOGO}></img>
+        </Logo>
+      </Head>
     </>
   );
 }

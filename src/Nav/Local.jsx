@@ -3,10 +3,11 @@ import style from "styled-components";
 
 const SearchBox = style.div`
   display: flex;
-  max-width: 600px;
+  max-width: 371px;
   margin-top: 52px;
   cursor: pointer;
 `;
+
 const SearchList = style.div`
   width: 20%;
   cursor: pointer;
@@ -23,7 +24,7 @@ const SearchCategory = style.div`
 //서울 경기
 
 const SearchListDetail = style.div`
-  width: 20%;
+  width: 30%;
   overflow: auto;
   text-align: center;
   cursor: pointer;
