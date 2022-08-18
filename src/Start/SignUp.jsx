@@ -117,11 +117,14 @@ const TextDiv = styled.div`
   color: rgba(102, 102, 102, 1);
 `;
 
-const SignUp = () => {
-  const userData = {
 const InputText2 = styled.input`
   all: unset;
   position: relative;
+  width: 327px;
+  height: 48px;
+  top: 175px;
+  background: #f7f7f7;
+  border-radius: 5px;
   margin-left: 3px;
   font-style: normal;
   font-weight: 700;
