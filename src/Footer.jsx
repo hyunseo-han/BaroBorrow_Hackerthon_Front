@@ -132,7 +132,7 @@ function Footer() {
       </IconList>
       <IconList>
         <NavLink
-          to={"user/mypage/profile"}
+          to={"/user/basket/HoldMain"}
           children={({ isActive }) => {
             return (
               <svg
@@ -155,7 +155,7 @@ function Footer() {
       </IconList>
       <IconList>
         <NavLink
-          to={"/mypage/profileEdit"}
+          to={"/user/mypage/MyBorrow"}
           children={({ isActive }) => {
             return (
               <svg

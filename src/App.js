@@ -16,6 +16,8 @@ import RouteLogin from "./RouteLogin";
 import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
+import HoldMain from "./basket/HoldMain";
+
 function App() {
   const [navtext, setNavText] = useState("");
   return (
@@ -40,9 +42,11 @@ function App() {
             path={"/user/enroll"}
           />
           <Route element={<ProductResult />} path={"/user/detail:id/result"} />
+
           {/* 마이페이지 */}
           <Route element={<Profile />} path={"/user/mypage/profile"} />
-          <Route element={<ProfileEdit />} path={"/user/mypage/profileEdit"} />
+          <Route element={<Profile />} path={"/user/mypage/profile"} />
+
           {/* 검색 */}
           <Route
             element={<ProductSearch setNavText={setNavText} />}
@@ -51,6 +55,11 @@ function App() {
           <Route
             element={<Option setNavText={setNavText} />}
             path={"/user/filtersearch"}
+          />
+          {/*장바구니*/}
+          <Route
+            element={<HoldMain setNavText={setNavText} />}
+            path={"/user/basket/HoldMain"}
           />
         </Route>
       </Routes>
