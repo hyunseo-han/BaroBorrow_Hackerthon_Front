@@ -125,60 +125,6 @@ const MenuDiv = styled.div`
   top: 90px;
 `;
 
-function HoldMain() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    getPosts();
-  }, []);
-
-  const getPosts = () => {
-    setPosts(data);
-  };
-
-  return (
-    <>
-      <Header />
-      <Entirety>
-        <MenuDiv>
-          <MenuBar1>
-            <MenuText2>빌린 내역</MenuText2>
-          </MenuBar1>
-          <MenuBar2>
-            <MenuText>빌려준 내역</MenuText>
-          </MenuBar2>
-        </MenuDiv>
-
-        <div>
-          {posts.map((post) => (
-            <Box key={post.id}>
-              <Pic>
-                <img
-                  src={post.picture}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </Pic>
-              <BoxInfo>
-                <Title>{post.title}</Title>
-                <LocalName>{post.local}</LocalName>
-                <DdayDiv>D + 1</DdayDiv>
-                <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton>반납하기</ReturnButton>
-              </BoxInfo>
-            </Box>
-          ))}
-        </div>
-      </Entirety>
-      <Footer />
-    </>
-  );
-}
-
-export default HoldMain;
-
 const Pic = styled.div`
   width: 100px;
   height: 100px;
@@ -237,3 +183,57 @@ const Box = styled.div`
 const BoxInfo = styled.div`
   padding-left: 12px;
 `;
+
+function MyBorrow() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  const getPosts = () => {
+    setPosts(data);
+  };
+
+  return (
+    <>
+      <Header />
+      <Entirety>
+        <MenuDiv>
+          <MenuBar1>
+            <MenuText2>빌린 내역</MenuText2>
+          </MenuBar1>
+          <MenuBar2>
+            <MenuText>빌려준 내역</MenuText>
+          </MenuBar2>
+        </MenuDiv>
+
+        <div>
+          {posts.map((post) => (
+            <Box key={post.id}>
+              <Pic>
+                <img
+                  src={post.picture}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </Pic>
+              <BoxInfo>
+                <Title>{post.title}</Title>
+                <LocalName>{post.local}</LocalName>
+                <DdayDiv>D + 1</DdayDiv>
+                <TextBox>약속된 장소에 반납하셨나요?</TextBox>
+                <ReturnButton>반납하기</ReturnButton>
+              </BoxInfo>
+            </Box>
+          ))}
+        </div>
+      </Entirety>
+      <Footer />
+    </>
+  );
+}
+
+export default MyBorrow;
