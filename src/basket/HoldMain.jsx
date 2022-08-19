@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../Nav/Header";
-import Footer from "../Nav/Footer";
+import Footer from "../Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import cartShape from "../img/cartShape.png";
+import { useNavigate } from "react-router-dom";
 //map 함수로 불러오기 성공 ^_^
 
 function HoldMain() {
@@ -17,11 +18,12 @@ function HoldMain() {
     setPosts(data);
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
       <Entirety>
-        <p>장바구니 메인</p>
         <div>
           {posts.map((post) => (
             <Box key={post.id}>
