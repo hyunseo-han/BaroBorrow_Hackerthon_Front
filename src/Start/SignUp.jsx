@@ -136,10 +136,7 @@ const InputText2 = styled.input`
   color: rgba(136, 136, 136, 1);
 `;
 
-<<<<<<< HEAD
-=======
 const SignUp = () => {
->>>>>>> main
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
