@@ -173,7 +173,7 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
-function MyBorrow(props) {
+function MyBorrow({ closeModal }) {
   const [open, setOpen] = useState(false);
 
   const [posts, setPosts] = useState([]);

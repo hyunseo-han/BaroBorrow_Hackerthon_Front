@@ -66,12 +66,7 @@ const BarDiv = styled.div`
   margin-top: 20px;
 `;
 
-const Question = (props) => {
-  const [open, setOpen] = useState(false);
-  function closeModal() {
-    props.closeModal();
-  }
-
+const Question = ({ modalClose }) => {
   return (
     <>
       <QuestionDiv>
@@ -113,8 +108,7 @@ const Question = (props) => {
             />
           </QuestionBar>
         </BarDiv>
-
-        <SubmitButton onClick={closeModal}>설문 제출</SubmitButton>
+        <SubmitButton>설문 제출</SubmitButton>
       </QuestionDiv>
     </>
   );

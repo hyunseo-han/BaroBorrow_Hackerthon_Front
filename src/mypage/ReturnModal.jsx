@@ -2,6 +2,8 @@ import React from "react";
 import "./ReturnModal.css";
 
 const ReturnModal = (props) => {
+  const { onClose } = props;
+
   function closeModal() {
     props.closeModal();
   }
