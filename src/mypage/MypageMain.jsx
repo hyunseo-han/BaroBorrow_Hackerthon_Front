@@ -78,13 +78,13 @@ const MypageMain = () => {
       <NicknameDiv>닉네임</NicknameDiv>
       <TextDiv>님</TextDiv>
       <MenuContainer>
-        <Link to={"/mypage/profile"}>
+        <Link to={"/user/mypage/profile"}>
           <MenuDiv>
             <MenuIcon src="../img/profileMain1.png" />
             <MenuTextDiv>내 프로필</MenuTextDiv>
           </MenuDiv>
         </Link>
-        <Link to={"/mypage/myborrow"}>
+        <Link to={"/user/mypage/myborrow"}>
           <MenuDiv>
             <MenuIcon src="../img/profileMain2.png" />
             <MenuTextDiv>내 바로 내역</MenuTextDiv>
