@@ -53,9 +53,11 @@ function Footer() {
       <CartIcon>
         <img src={Carticon}></img>
       </CartIcon>
-      <MypageIcon>
-        <img src={Mypageicon}></img>
-      </MypageIcon>
+      <Link to={"/mypage/mypagemain"}>
+        <MypageIcon>
+          <img src={Mypageicon}></img>
+        </MypageIcon>
+      </Link>
     </FooterDiv>
   );
 }

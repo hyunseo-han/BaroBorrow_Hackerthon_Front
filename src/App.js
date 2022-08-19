@@ -16,6 +16,7 @@ import RouteLogin from "./RouteLogin";
 import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
+
 function App() {
   const [navtext, setNavText] = useState("");
   return (
