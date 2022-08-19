@@ -5,7 +5,8 @@ import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import List from "./List";
-//map 함수로 불러오기 성공 ^_^
+import ReturnModal from "./ReturnModal";
+import Return from "./Return";
 
 const TextBox = styled.div`
   width: 145px;
@@ -172,7 +173,9 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
-function MyBorrow() {
+function MyBorrow(props) {
+  const [open, setOpen] = useState(false);
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
@@ -204,7 +207,14 @@ function MyBorrow() {
                 <LocalName>{post.local}</LocalName>
                 <DdayDiv>D + 1</DdayDiv>
                 <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton>반납하기</ReturnButton>
+                <ReturnButton onClick={() => setOpen(!open)}>
+                  {open && (
+                    <ReturnModal closeModal={() => setOpen(!open)}>
+                      <Return />
+                    </ReturnModal>
+                  )}
+                  반납하기
+                </ReturnButton>
               </BoxInfo>
             </Box>
           ))}
