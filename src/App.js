@@ -50,6 +50,7 @@ function App() {
             element={<MypageMain setNavText={setNavText} />}
             path={"/user/mypage/MypageMain"}
           />
+
           <Route
             element={<MyBorrow setNavText={setNavText} />}
             path={"/user/mypage/MyBorrow"}
