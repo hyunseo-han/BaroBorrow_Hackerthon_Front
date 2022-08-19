@@ -74,6 +74,12 @@ const SearchBtn = style.div`
   margin-top: 14px;
 `;
 
+const SearchDes = style.div`
+  border-bottom: 2px solid #56aedf;
+  padding: 10px 0;
+  text-align: center;
+`;
+
 //성동구 광진구
 
 const category = [
@@ -428,7 +434,7 @@ const category = [
 ];
 
 function Local({ setLocal, setLocalName }) {
-  const [selectState, setSelectState] = useState(["지역을 선택해주세요를레이"]);
+  const [selectState, setSelectState] = useState(["지역을 선택해주세요"]);
   //아무말도 안하는게 더 나을지?
   const [infoState, setInfoState] = useState("");
   const [infoGu, setInfoGu] = useState("");
@@ -439,11 +445,16 @@ function Local({ setLocal, setLocalName }) {
       <SearchContainer>
         <SearchHeader>
           <span>BORROW 지역 선택</span>
-          <img src={require("../img/close.png")} />
+          <img
+            src={require("../img/close.png")}
+            onClick={() => {
+              setLocal(false);
+            }}
+          />
         </SearchHeader>
         <SearchBox>
           <SearchList>
-            <div>시/도</div>
+            <SearchDes>시/도</SearchDes>
             {category.map((list) => (
               <SearchCategory
                 key={`cate${list.cityId}`}
@@ -474,7 +485,7 @@ function Local({ setLocal, setLocalName }) {
             ))}
           </SearchList>
           <SearchListDetail>
-            <div>구/군</div>
+            <SearchDes>구/군</SearchDes>
             {selectState.map((li) => (
               <DetailContent
                 ref={(gu) => (guRef.current[li] = gu)}

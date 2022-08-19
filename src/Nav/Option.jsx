@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import Footer from "../Footer";
-// import VectorIMG from "../img/Vector.png";
 import Local from "../Nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
 import SearchDetail from "./SearchDetail";
@@ -10,39 +9,31 @@ import SearchDetail from "./SearchDetail";
 //클릭시 테두리 생김..
 
 const OptionContainer = styled.div`
-  margin-top: 52px;
-  margin-bottom: 80px;
+  margin: 52px auto 80px;
 `;
 
 const Box1 = styled.div`
   box-sizing: border-box;
-  position: absolute;
-  width: 375px;
-  height: 120px;
-  left: 0px;
-  top: 187px;
   background: #ffffff;
   border-bottom: 2px solid #e6e6e6;
+  padding: 20px 24px;
 `;
 
 const LocalBox = styled.div`
   box-sizing: border-box;
-  position: absolute;
-  width: 327px;
+  display: flex;
   height: 40px;
-  left: 24px;
-  top: 60px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
   cursor: pointer;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: space-between;
 `;
 
 const LocalBoxText = styled.div`
-  position: absolute;
   width: 209px;
   height: 18px;
-  left: 12px;
-  top: 11px;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -51,172 +42,49 @@ const LocalBoxText = styled.div`
   cursor: pointer;
 `;
 
-const LocalBoxIconDiv = styled.div`
-  position: absolute;
-  top: 9px;
-  left: 295.17px;
-`;
+const LocalBoxIconDiv = styled.div``;
 //피그마랑 px다름
 
-const Box2 = styled.div`
-  box-sizing: border-box;
-  position: absolute;
-  width: 375px;
-  height: 120px;
-  left: 0px;
-  top: 307px;
-  background: #ffffff;
-  border-bottom: 2px solid #e6e6e6;
-`;
-
-const Box3 = styled.div`
-  box-sizing: border-box;
-  position: absolute;
-  width: 375px;
-  height: 120px;
-  left: 0px;
-  top: 427px;
-  background: #ffffff;
-  border-bottom: 2px solid #e6e6e6;
-`;
-
 const BoxText = styled.div`
-  position: absolute;
-  width: 107px;
-  height: 21px;
-  left: 24px;
-  top: 20px;
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 128.91%;
-  text-align: center;
   color: #888888;
-`;
-
-const Button2_1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  width: 63px;
-  height: 31px;
-  left: 20px;
-  top: 60px;
-  border-radius: 5px;
-  background: ${(props) => props.color};
-  cursor: pointer;
-`;
-
-const Button2_2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: absolute;
-  width: 102px;
-  height: 31px;
-  left: 95px;
-  top: 60px;
-  border-radius: 5px;
-  background: ${(props) => props.color};
-  cursor: pointer;
-`;
-//픽셀 계산해서 설정
-
-const Button2_3 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: absolute;
-  width: 88px;
-  height: 31px;
-  left: 209px;
-  top: 60px;
-  background: ${(props) => props.color};
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
-const Button3_1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: absolute;
-  width: 63px;
-  height: 31px;
-  left: 24px;
-  top: 60px;
-  background: ${(props) => props.color};
-  border-radius: 5px;
-  cursor: pointer;
-`;
-const Button3_2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: absolute;
-  width: 63px;
-  height: 31px;
-  left: 99px;
-  top: 60px;
-  background: ${(props) => props.color};
-  border-radius: 5px;
-  cursor: pointer;
-`;
-
-const Button3_3 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: absolute;
-  width: 63px;
-  height: 31px;
-  left: 174px;
-  top: 60px;
-  background: ${(props) => props.color};
-  border-radius: 5px;
-  cursor: pointer;
+  padding-bottom: 15px;
 `;
 
 const NextButton = styled.div`
-  position: absolute;
-  width: 327px;
-  height: 48px;
-  left: 24px;
-  top: 680px;
-  bottom: 84px;
   background: #56aedf;
   border-radius: 5px;
+  padding: 13px 0;
+  margin: 0 24px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin-top: 40px;
+  @media only screen and (max-width: 500px) {
+    margin-top: 120px;
+  }
 `;
 
-const NextButtonText = styled.div`
-  position: absolute;
-  width: 97px;
-  height: 22px;
-  left: 115px;
-  top: 13px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  color: #ffffff;
+const BoxBtn = styled.div`
+  display: flex;
+  gap: 12px;
 `;
+const BtnList = styled.div`
+  border-radius: 5px;
+  border-radius: 5px;
+  background: #e6e6e6;
+  padding: 8px 20px;
+  font-weight: 700;
+  color: #888888;
+  cursor: pointer;
+  background: ${(props) => props.color};
+`;
+
 //글자 간격은 폰트 적용 후 확인할것
 
-function Option({ setNavText }) {
-  setNavText("검색조건 추가");
+function Option() {
   const [color1, setColor1] = useState("#E6E6E6");
   const [color2, setColor2] = useState("#E6E6E6");
   const [color3, setColor3] = useState("#E6E6E6");
@@ -264,33 +132,35 @@ function Option({ setNavText }) {
             </LocalBoxIconDiv>
           </LocalBox>
         </Box1>
-        <Box2>
+        <Box1>
           <BoxText>BORROW 상태</BoxText>
-          <Button2_1 color={color1} onClick={onClick1}>
-            전체
-          </Button2_1>
-          <Button2_2 color={color2} onClick={onClick2}>
-            대여 중 제외
-          </Button2_2>
-          <Button2_3 color={color6} onClick={onClick6}>
-            오늘 바로
-          </Button2_3>
-        </Box2>
-        <Box3>
+          <BoxBtn>
+            <BtnList color={color1} onClick={onClick1}>
+              전체
+            </BtnList>
+            <BtnList color={color2} onClick={onClick2}>
+              대여 중 제외
+            </BtnList>
+            <BtnList color={color6} onClick={onClick6}>
+              오늘 바로
+            </BtnList>
+          </BoxBtn>
+        </Box1>
+        <Box1>
           <BoxText>BORROW 방식</BoxText>
-          <Button3_1 color={color3} onClick={onClick3}>
-            전체
-          </Button3_1>
-          <Button3_2 color={color4} onClick={onClick4}>
-            대면
-          </Button3_2>
-          <Button3_3 color={color5} onClick={onClick5}>
-            비대면
-          </Button3_3>
-        </Box3>
-        <NextButton>
-          <NextButtonText>검색 결과 보기</NextButtonText>
-        </NextButton>
+          <BoxBtn>
+            <BtnList color={color3} onClick={onClick3}>
+              전체
+            </BtnList>
+            <BtnList color={color4} onClick={onClick4}>
+              대면
+            </BtnList>
+            <BtnList color={color5} onClick={onClick5}>
+              비대면
+            </BtnList>
+          </BoxBtn>
+        </Box1>
+        <NextButton>검색 결과 보기</NextButton>
         <Footer />
         {local ? <Local setLocal={setLocal} setLocalName={setLocalName} /> : ""}
       </OptionContainer>

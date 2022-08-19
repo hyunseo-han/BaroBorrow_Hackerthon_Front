@@ -17,8 +17,6 @@ import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
 import HoldMain from "./basket/HoldMain";
-import MypageMain from "./mypage/MypageMain";
-import MyBorrow from "./mypage/MyBorrow";
 
 function App() {
   const [navtext, setNavText] = useState("");
@@ -48,7 +46,9 @@ function App() {
           {/* 마이페이지 */}
           <Route element={<Profile />} path={"/user/mypage/profile"} />
           <Route element={<Profile />} path={"/user/mypage/profile"} />
-
+          <Route element={<MypageMain />} path={"/user/mypage/mypagemain"} />
+          <Route element={<ProfileEdit />} path={"/user/mypage/profileEdit"} />
+          <Route element={<MyBorrow />} path={"/user/mypage/myborrow"} />
           {/* 검색 */}
           <Route
             element={<ProductSearch setNavText={setNavText} />}

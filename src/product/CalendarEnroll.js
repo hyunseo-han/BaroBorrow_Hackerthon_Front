@@ -60,7 +60,7 @@ const CalendarBtn = style.div`
   background-color: #DADADA;
 `;
 
-const CalendarBtnLink = style.div`
+const CalendarBtnLink = style.input`
   background: #56AEDF;
   border-radius: 5px;
   padding: 13px 45px;
@@ -69,7 +69,7 @@ const CalendarBtnLink = style.div`
   margin-top: 20px;
 `;
 
-function CalendarEnroll() {
+function CalendarEnroll({ borrowInfo }) {
   const naviagte = useNavigate();
   const today = new Date();
   const [state, setState] = useState([
@@ -82,19 +82,7 @@ function CalendarEnroll() {
   ]);
   const start = moment(state[0].startDate).format("YYYY-MM-DD");
   const end = moment(state[0].endDate).format("YYYY-MM-DD");
-  const data = {
-    productName: "fff",
-    listPrice: 100,
-    deposit: 100,
-    rentalFee: 100,
-    explanation: "이것은 설명 그래?",
-    condition: 30,
-    address: "도로명주소",
-    detailAddress: "상세주소",
-    barrowAvailableStart: "2022-08-14",
-    barrowAvailableEnd: "2022-08-16",
-  };
-
+  console.log(borrowInfo.productPhoto);
   return (
     <CalendarSection>
       <CalendarInside>
@@ -110,31 +98,38 @@ function CalendarEnroll() {
             "대여 가능 시작일과 반납일을 선택해주세요"
           )}
         </CalendarInfo>
-        <DateRange
-          editableDateInputs={false}
-          onChange={(item) => setState([item.selection])}
-          minDate={today} // 과거 날짜 disable
-          locale={ko}
-          showDateDisplay={false}
-          color={"#aeb9bf"}
-          showMonthAndYearPickers={false}
-          ranges={state}
-          monthDisplayFormat={"yyyy-mmm"}
-        />
-        {start !== "Invalid date" && end !== "Invalid date" ? (
-          <CalendarBtnLink
-            onClick={() => {
-              axios
-                .post("http://127.0.0.1:8000/product/", data)
-                .then((response) => {});
-              naviagte("/user/main");
-            }}
-          >
-            바로
-          </CalendarBtnLink>
-        ) : (
-          <CalendarBtn>바로</CalendarBtn>
-        )}
+        <form
+          onSubmit={() => {
+            const formData = new FormData();
+            formData.append("photo", borrowInfo.productPhoto);
+            axios
+              .post("http://127.0.0.1:8000/product/", {
+                ...borrowInfo,
+                barrowAvailableStart: start,
+                barrowAvailableEnd: end,
+                // 오류나는 이유는 owner
+              })
+              .then(() => {});
+            naviagte("/user/main");
+          }}
+        >
+          <DateRange
+            editableDateInputs={false}
+            onChange={(item) => setState([item.selection])}
+            minDate={today} // 과거 날짜 disable
+            locale={ko}
+            showDateDisplay={false}
+            color={"#aeb9bf"}
+            showMonthAndYearPickers={false}
+            ranges={state}
+            monthDisplayFormat={"yyyy-mmm"}
+          />
+          {start !== "Invalid date" && end !== "Invalid date" ? (
+            <CalendarBtnLink type="submit" value="바로" />
+          ) : (
+            <CalendarBtn>바로</CalendarBtn>
+          )}
+        </form>
       </CalendarInside>
     </CalendarSection>
   );

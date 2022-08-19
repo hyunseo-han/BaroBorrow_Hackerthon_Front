@@ -30,9 +30,7 @@ const ListEntireText = styled.p`
   padding: 10px 24px;
 `;
 
-function MainHome({ setNavText }) {
-  setNavText("logo");
-
+function MainHome() {
   return (
     <ListContariner>
       <div style={{ padding: "0 24px" }}>

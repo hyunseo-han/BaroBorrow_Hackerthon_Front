@@ -94,11 +94,11 @@ const InfoInputLoc = style.div`
   }
 `;
 
-function ProductEnroll({ setNavText }) {
-  setNavText("물품 등록");
+function ProductEnroll() {
   const [showSelect, setShowSelect] = useState(false);
   const [condition, setCondition] = useState(0);
   const [fileImg, setFileImg] = useState();
+  console.log(fileImg);
   const [price, setPrice] = useState("");
   const [rental, setRental] = useState({
     pr: "",
@@ -119,10 +119,24 @@ function ProductEnroll({ setNavText }) {
     list.current[idx].style.backgroundColor = "#E9F6FD";
     setState(state);
   };
-  console.log(price, way, rental, deposit);
   // 지도 주소
   const [popUp, setPopUp] = useState(false);
   const [address, setAddress] = useState("");
+  const [prName, setPrName] = useState("");
+  const [prDes, setPrDes] = useState("");
+  const [dtAddress, setDtAddress] = useState("");
+  const [borrowInfo, setBorrowInfo] = useState({
+    productName: "",
+    listPrice: "",
+    deposit: "",
+    rentalFee: "",
+    explanation: "",
+    condition: "",
+    address: "",
+    detailAddress: "",
+    productPhoto: "",
+  });
+  const [files, setFiles] = useState();
   return (
     <>
       <PdContainer style={{ display: showSelect ? "none" : "" }}>
@@ -151,6 +165,8 @@ function ProductEnroll({ setNavText }) {
                   accept="image/*"
                   onChange={(event) => {
                     setFileImg(URL.createObjectURL(event.target.files[0]));
+                    const file = event.target.files[0];
+                    setFiles({ file, uploadedFile: file });
                   }}
                   style={{ width: "0", height: "0" }}
                 />
@@ -158,7 +174,13 @@ function ProductEnroll({ setNavText }) {
             )}
           </InfoBox>
           <InfoBox>
-            <InfoInput placeholder="물품명" />
+            <InfoInput
+              placeholder="물품명"
+              value={prName}
+              onChange={(event) => {
+                setPrName(event.target.value);
+              }}
+            />
           </InfoBox>
           <InfoBox>
             <InfoBar
@@ -171,7 +193,13 @@ function ProductEnroll({ setNavText }) {
           <InfoBox>
             <InfoTitle>물품 설명</InfoTitle>
             <InfoDes>
-              <DesInput placeholder="( 물품의 특징, 구매 날짜, 사용 정도, 주의 사항 등을 최대한 자세하게 기술해주세요 )" />
+              <DesInput
+                placeholder="( 물품의 특징, 구매 날짜, 사용 정도, 주의 사항 등을 최대한 자세하게 기술해주세요 )"
+                value={prDes}
+                onChange={(event) => {
+                  setPrDes(event.target.value);
+                }}
+              />
             </InfoDes>
           </InfoBox>
           <InfoBox>
@@ -365,7 +393,13 @@ function ProductEnroll({ setNavText }) {
               ""
             )}
             <InfoInputLoc>
-              <InfoInput placeholder="상세주소를 입력해주세요" />
+              <InfoInput
+                placeholder="상세주소를 입력해주세요"
+                value={dtAddress}
+                onChange={(event) => {
+                  setDtAddress(event.target.value);
+                }}
+              />
             </InfoInputLoc>
           </InfoBox>
           <InfoBox>
@@ -397,12 +431,32 @@ function ProductEnroll({ setNavText }) {
         <PdBtn
           onClick={() => {
             setShowSelect(true);
+            setBorrowInfo({
+              productName: prName,
+              listPrice: price,
+              deposit: deposit.pr,
+              rentalFee: rental.pr,
+              explanation: prDes,
+              condition: condition,
+              address: address,
+              detailAddress: dtAddress,
+              productPhoto: files,
+            });
           }}
         >
           대여 가능일 등록
         </PdBtn>
       </PdContainer>
-      {showSelect ? <CalendarEnroll item={"2022-04"} ban={"2022-03-04"} /> : ""}
+      {showSelect ? (
+        <CalendarEnroll
+          item={"2022-04"}
+          ban={"2022-03-04"}
+          borrowInfo={borrowInfo}
+          setBorrowInfo={setBorrowInfo}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }

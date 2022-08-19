@@ -50,6 +50,69 @@ const ReturnButton = styled.button`
   margin-left: 180px;
 `;
 
+const MenuBar1 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 46px;
+  left: 0px;
+  top: 90px;
+  border-bottom: 3px solid #56aedf;
+`;
+
+const MenuBar2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 188px;
+  height: 46px;
+  left: 187px;
+  top: 90px;
+`;
+
+const MenuText = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #666666;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+const MenuText2 = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #56aedf;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+const MenuDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 46px;
+  top: 90px;
+`;
+
 const Pic = styled.div`
   width: 100px;
   height: 100px;
@@ -121,7 +184,6 @@ function MyBorrow() {
 
   return (
     <>
-      <Header />
       <List />
       <Entirety>
         <div>
