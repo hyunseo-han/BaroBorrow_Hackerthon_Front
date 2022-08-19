@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import InfoBar from "../product/InfoBar";
-import { Link } from "react-router-dom";
 import "./QuestionModal.css";
 
 const OwnerContainer = styled.div`
@@ -11,29 +10,27 @@ const OwnerContainer = styled.div`
   margin: 52px auto 0;
 `;
 
-const OwnerHead = styled.div`
-  padding: 24px 12px 0;
+const OwnerInfoBox = styled.div`
+  padding: 5px 0;
+  border-bottom: 1px solid #d9d9d9;
 `;
 
 const OwnerHeadDes = styled.div`
   position: absolute;
-  width: 90%;
-  top: 40px;
+  width: 200px;
+  height: 22px;
+  left: 85px;
 
   font-style: normal;
   font-weight: 700;
-  font-size: 15px;
-  line-height: 21px;
-  /* identical to box height, or 21px */
-
-  text-align: center;
+  font-size: 16px;
+  line-height: 22px;
 
   color: #888888;
 `;
 
-const OwnerInfoBox = styled.div`
-  padding: 5px 0;
-  border-bottom: 1px solid #d9d9d9;
+const OwnerHead = styled.div`
+  padding: 24px 12px 0;
 `;
 
 const ownerex = [
@@ -46,11 +43,6 @@ const ownerex = [
 
 function QuestionModal(props) {
   const { open } = props;
-  const [showModal, setShowModal] = useState(false);
-
-  // const closeModal = () => {
-  //   setShowModal(false);
-  // };
 
   function closeModal2() {
     props.closeModal2();
@@ -59,7 +51,7 @@ function QuestionModal(props) {
 
   return (
     <div
-      className={open ? "openModal modal2" : "modal2"}
+      className={open ? "openModal2 modal2" : "modal2"}
       onClick={closeModal2}
       style={{ position: "fixed", overflow: "auto", width: "100%" }}
     >

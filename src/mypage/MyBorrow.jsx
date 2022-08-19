@@ -131,7 +131,7 @@ const Pic = styled.div`
   left: 24px;
   top: 10px;
   border-radius: 5px;
-  justify-item: center;
+  justify-content: center;
 `;
 
 const Title = styled.div`

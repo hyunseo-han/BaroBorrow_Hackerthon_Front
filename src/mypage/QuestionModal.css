@@ -8,7 +8,6 @@
   bottom: 0;
   left: 0;
   z-index: 99;
-  /* background: rgba(0, 0, 0, 0.1); */
 }
 
 .ProductName {
@@ -47,6 +46,7 @@
   border-radius: 5px;
 }
 
+/* 여기를 modal2로 고치면 다음 모달이 안 뜸 */
 .modal > section {
   position: absolute;
   width: 351px;
@@ -62,7 +62,7 @@
   overflow: hidden;
 }
 
-.modal2.openModal {
+.modal2.openModal2 {
   display: flex;
   align-items: center;
   /* 팝업이 열릴때 스르륵 열리는 효과 */

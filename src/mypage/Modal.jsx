@@ -1,23 +1,20 @@
 import React, { useRef, useState } from "react";
-import "./Modal.css";
+
 import data from "../maindata.json";
 import { Link } from "react-router-dom";
 import QuestionModal from "./QuestionModal";
-
+import "./Modal.css";
 const Modal = (props) => {
   const { open } = props;
-  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
   const openModal = () => {
-    setShowModal(true);
+    setShowModal2(true);
   };
 
   function closeModal() {
     props.closeModal();
     document.style.overflow = "unset";
   }
-  const closeModal2 = () => {
-    setShowModal(false);
-  };
 
   return (
     <div
@@ -41,8 +38,8 @@ const Modal = (props) => {
               <div className="ReturnButton" onClick={openModal}>
                 네, 반납했습니다.
                 <QuestionModal
-                  open={showModal}
-                  closeModal2={() => setShowModal(!showModal)}
+                  open={showModal2}
+                  closeModal2={() => setShowModal2(!showModal2)}
                 />
               </div>
             </footer>
