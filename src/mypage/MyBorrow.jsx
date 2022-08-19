@@ -5,19 +5,8 @@ import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import cartShape from "../img/cartShape.png";
+import List from "./List";
 //map 함수로 불러오기 성공 ^_^
-
-const ProductBox = styled.div`
-  position: relative;
-  width: 375px;
-  height: 120px;
-  left: -24px;
-  top: 150px;
-  background: #ffffff;
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #d9d9d9;
-`;
 
 const TextBox = styled.div`
   width: 145px;
@@ -62,69 +51,6 @@ const ReturnButton = styled.button`
   margin-left: 180px;
 `;
 
-const MenuBar1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 187px;
-  height: 46px;
-  left: 0px;
-  top: 90px;
-  border-bottom: 3px solid #56aedf;
-`;
-
-const MenuBar2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 188px;
-  height: 46px;
-  left: 187px;
-  top: 90px;
-`;
-
-const MenuText = styled.div`
-  width: 77px;
-  height: 22px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-  color: #666666;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-const MenuText2 = styled.div`
-  width: 77px;
-  height: 22px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-  color: #56aedf;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-const MenuDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 375px;
-  height: 46px;
-  top: 90px;
-`;
-
 const Pic = styled.div`
   width: 100px;
   height: 100px;
@@ -160,7 +86,7 @@ const Entirety = styled.div`
   position: absolute;
   width: 375px;
   height: 654px;
-  top: 90px;
+  top: 136px;
   bottom: 68px;
   left: 0px;
   right: 0px;
@@ -197,16 +123,8 @@ function MyBorrow() {
   return (
     <>
       <Header />
+      <List />
       <Entirety>
-        <MenuDiv>
-          <MenuBar1>
-            <MenuText2>빌린 내역</MenuText2>
-          </MenuBar1>
-          <MenuBar2>
-            <MenuText>빌려준 내역</MenuText>
-          </MenuBar2>
-        </MenuDiv>
-
         <div>
           {posts.map((post) => (
             <Box key={post.id}>

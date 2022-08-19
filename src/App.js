@@ -17,13 +17,14 @@ import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
 import MyBorrow from "./mypage/MyBorrow";
+import Local from "./Nav/Local";
 
 function App() {
   const [navtext, setNavText] = useState("");
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <MyBorrow></MyBorrow>
+      <MyBorrow />
     </BrowserRouter>
   );
 }
