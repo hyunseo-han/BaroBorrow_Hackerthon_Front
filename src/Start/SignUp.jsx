@@ -152,7 +152,6 @@ const SignUp = () => {
     password: password,
   };
 
-  // axios 연결하고 userData, useEffect import 하고 서버 연결하기
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");

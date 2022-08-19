@@ -93,13 +93,6 @@ const ProfileEdit = () => {
     [nickname, location]
   );
 
-  //     useEffect(() => {
-  //         if(nickname.length<1 || location.length < 1){
-
-  //         }
-  // }
-  //     }, [nickname, location]);
-
   return (
     <>
       <EditDiv>

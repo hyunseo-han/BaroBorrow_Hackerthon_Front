@@ -1,0 +1,89 @@
+.modal2 {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  left: 0px;
+  right: 0;
+
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  /* background: rgba(0, 0, 0, 0.1); */
+}
+
+.ProductName {
+  position: absolute;
+  width: 200px;
+  height: 22px;
+  left: 60px;
+  top: 164px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #888888;
+}
+
+.SubmitButton {
+  position: absolute;
+  width: 327px;
+  height: 48px;
+  left: 12px;
+  top: 658px;
+
+  background: #56aedf;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 48px;
+
+  text-align: center;
+
+  color: #ffffff;
+  background: #56aedf;
+  border-radius: 5px;
+}
+
+.modal > section {
+  position: absolute;
+  width: 351px;
+  height: 722px;
+  left: 12px;
+  top: 45px;
+
+  background: #ffffff;
+
+  border-radius: 10px;
+  /* 팝업이 열릴때 스르륵 열리는 효과 */
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.modal2.openModal {
+  display: flex;
+  align-items: center;
+  /* 팝업이 열릴때 스르륵 열리는 효과 */
+  animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
