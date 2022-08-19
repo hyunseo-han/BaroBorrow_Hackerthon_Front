@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "styled-components";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
@@ -8,6 +8,7 @@ import axios from "axios";
 import moment from "moment";
 import "./calendar.css";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context.js";
 
 const CalendarSection = style.section`
   width: 100%;
@@ -83,6 +84,14 @@ function CalendarEnroll({ borrowInfo }) {
   const start = moment(state[0].startDate).format("YYYY-MM-DD");
   const end = moment(state[0].endDate).format("YYYY-MM-DD");
   console.log(borrowInfo.productPhoto);
+
+  const { user, setUser } = useUserContext();
+  const data = {
+    username: user.username,
+    password: user.password,
+  };
+  console.log(borrowInfo);
+  useEffect(() => {});
   return (
     <CalendarSection>
       <CalendarInside>
@@ -104,12 +113,15 @@ function CalendarEnroll({ borrowInfo }) {
             formData.append("photo", borrowInfo.productPhoto);
             axios
               .post("http://127.0.0.1:8000/product/", {
+                owner: user,
                 ...borrowInfo,
                 barrowAvailableStart: start,
                 barrowAvailableEnd: end,
-                // 오류나는 이유는 owner
               })
-              .then(() => {});
+              .then(() => {
+                console.log(user);
+              });
+
             naviagte("/user/main");
           }}
         >

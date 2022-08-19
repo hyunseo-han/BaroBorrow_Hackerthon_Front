@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useUserContext } from "../Context.js";
 
 const LoginLogo = styled.img`
   position: absolute;
@@ -80,8 +82,14 @@ const Login = () => {
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
-
+  const data = {
+    username: inputId,
+    password: inputPw,
+  };
+  console.log(data);
   const navigate = useNavigate();
+  const { user, setUser } = useUserContext();
+
   return (
     <>
       <LoginLogo src="img/로그인로고 1.png" />
@@ -112,6 +120,11 @@ const Login = () => {
       <div>
         <LoginButton
           onClick={() => {
+            axios
+              .post("http://127.0.0.1:8000/user/login/", { data })
+              .then((res) => {
+                setUser(res.data);
+              });
             navigate("/user/main");
           }}
         >

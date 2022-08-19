@@ -269,7 +269,7 @@ const SignUp = () => {
               navigate("/Login");
               console.log(userData);
               axios
-                .post("http://127.0.0.1:8000/user/signup/", userData)
+                .post("http://127.0.0.1:8000/user/accounts/", userData)
                 .then(function (response) {
                   console.log(response);
                 });

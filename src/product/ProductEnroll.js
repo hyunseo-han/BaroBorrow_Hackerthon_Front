@@ -440,7 +440,8 @@ function ProductEnroll() {
               condition: condition,
               address: address,
               detailAddress: dtAddress,
-              productPhoto: files,
+              productPhoto: null,
+              barrowMethod: way,
             });
           }}
         >
