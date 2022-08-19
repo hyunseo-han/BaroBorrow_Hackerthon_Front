@@ -4,7 +4,9 @@ import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
-import List from "./List";
+import cartShape from "../img/cartShape.png";
+import List2 from "./List2";
+import MyBorrow from "./MyBorrow";
 //map 함수로 불러오기 성공 ^_^
 
 const TextBox = styled.div`
@@ -109,7 +111,7 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
-function MyBorrow() {
+function MyBorrowed() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
@@ -119,38 +121,50 @@ function MyBorrow() {
     setPosts(data);
   };
 
+  const [show, setShow] = useState(false);
+
   return (
     <>
-      <Header />
-      <List />
-      <Entirety>
-        <div>
-          {posts.map((post) => (
-            <Box key={post.id}>
-              <Pic>
-                <img
-                  src={post.picture}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </Pic>
-              <BoxInfo>
-                <Title>{post.title}</Title>
-                <LocalName>{post.local}</LocalName>
-                <DdayDiv>D + 1</DdayDiv>
-                <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton>반납하기</ReturnButton>
-              </BoxInfo>
-            </Box>
-          ))}
-        </div>
-      </Entirety>
-      <Footer />
+      {show ? (
+        <MyBorrow />
+      ) : (
+        <>
+          <Header />
+          <List2
+            onClick={() => {
+              setShow(true);
+            }}
+          />
+          <Entirety>
+            <div>
+              {posts.map((post) => (
+                <Box key={post.id}>
+                  <Pic>
+                    <img
+                      src={post.picture}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Pic>
+                  <BoxInfo>
+                    <Title>{post.title}</Title>
+                    <LocalName>{post.local}</LocalName>
+                    <DdayDiv>D + 1</DdayDiv>
+                    <TextBox>약속된 장소에 반납하셨나요?</TextBox>
+                    <ReturnButton>반납하기</ReturnButton>
+                  </BoxInfo>
+                </Box>
+              ))}
+            </div>
+          </Entirety>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
 
-export default MyBorrow;
+export default MyBorrowed;
