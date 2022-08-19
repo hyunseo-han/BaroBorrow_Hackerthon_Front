@@ -11,7 +11,7 @@ import ProfileEdit from "./mypage/ProfileEdit";
 import MypageMain from "./mypage/MypageMain";
 import MyBorrow from "./mypage/MyBorrow";
 import MyLent from "./mypage/MyLent";
-import QuestionModal from "./mypage/QuestionModal";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,10 +28,6 @@ function App() {
         <Route element={<MypageMain />} path={"/mypage/mypagemain"}></Route>
         <Route element={<MyBorrow />} path={"/mypage/myborrow"}></Route>
         <Route element={<MyLent />} path={"/mypage/mylent"}></Route>
-        <Route
-          element={<QuestionModal />}
-          path={"/mypage/returnquestion"}
-        ></Route>
       </Routes>
     </BrowserRouter>
   );

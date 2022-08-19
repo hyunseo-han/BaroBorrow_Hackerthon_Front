@@ -4,8 +4,6 @@ import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
-import cartShape from "../img/cartShape.png";
-import Modal from "./Modal";
 
 const ProductBox = styled.div`
   position: relative;
@@ -185,13 +183,6 @@ const BoxInfo = styled.div`
 `;
 
 const MyBorrow = () => {
-  const [showModal, setShowModal] = useState(false);
-  const openModal = () => {
-    setShowModal(true);
-  };
-  const closeModal = () => {
-    setShowModal(false);
-  };
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
@@ -231,13 +222,7 @@ const MyBorrow = () => {
                 <LocalName>{post.local}</LocalName>
                 <DdayDiv>D + 1</DdayDiv>
                 <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton onClick={openModal}>
-                  반납하기
-                  <Modal
-                    open={showModal}
-                    closeModal={() => setShowModal(!showModal)}
-                  />
-                </ReturnButton>
+                <ReturnButton>반납하기</ReturnButton>
               </BoxInfo>
             </Box>
           ))}
