@@ -15,7 +15,7 @@ const StartBtn = styled.button`
   width: 327px;
   height: 52px;
   top: 681px;
-
+  left: 24px;
   border: none;
   background: #56aedf;
   border-radius: 5px;
@@ -33,7 +33,7 @@ const LoginDiv = styled.div`
   position: absolute;
   width: 171px;
   height: 20px;
-  left: 102px;
+  left: 90px;
   top: 757px;
 
   font-style: normal;
