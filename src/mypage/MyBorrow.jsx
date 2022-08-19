@@ -85,6 +85,36 @@ const MenuBar2 = styled.div`
   top: 90px;
 `;
 
+const MenuText = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #666666;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+const MenuText2 = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #56aedf;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
 const MenuDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -110,8 +140,12 @@ function HoldMain() {
       <Header />
       <Entirety>
         <MenuDiv>
-          <MenuBar1>빌린 내역</MenuBar1>
-          <MenuBar2>빌려준 내역</MenuBar2>
+          <MenuBar1>
+            <MenuText2>빌린 내역</MenuText2>
+          </MenuBar1>
+          <MenuBar2>
+            <MenuText>빌려준 내역</MenuText>
+          </MenuBar2>
         </MenuDiv>
 
         <div>
@@ -151,6 +185,7 @@ const Pic = styled.div`
   left: 24px;
   top: 10px;
   border-radius: 5px;
+  justify-item: center;
 `;
 
 const Title = styled.div`
@@ -173,33 +208,6 @@ const LocalName = styled.div`
   line-height: 16px;
   color: #888888;
   margin-bottom: 20px;
-`;
-
-const Deposit = styled.div`
-  height: 19px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19px;
-  color: #000000;
-`;
-
-const RentalFee = styled.div`
-  height: 19px;
-  left: 136px;
-  top: 91px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19px;
-  color: #000000;
-  margin-top: 3px;
-`;
-
-const CartDiv = styled.div`
-  left: 328px;
-  bottom: 11px;
-  padding-left: 200px;
 `;
 
 const Entirety = styled.div`
