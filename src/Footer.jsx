@@ -155,7 +155,7 @@ function Footer() {
       </IconList>
       <IconList>
         <NavLink
-          to={"/mypage/profileEdit"}
+          to={"/user/mypage/mypagemain"}
           children={({ isActive }) => {
             return (
               <svg
