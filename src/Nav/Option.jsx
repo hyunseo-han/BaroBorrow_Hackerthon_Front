@@ -5,7 +5,7 @@ import Footer from "../Footer";
 import Local from "../Nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
 import SearchDetail from "./SearchDetail";
-
+import { Link } from "react-router-dom";
 //클릭시 테두리 생김..
 
 const OptionContainer = styled.div`
@@ -113,10 +113,11 @@ function Option() {
 
   const [local, setLocal] = useState(false);
   const [localName, setLocalName] = useState("");
+  const [pdData, setPdData] = useState([]);
   return (
     <>
       <OptionContainer>
-        <SearchDetail />
+        <SearchDetail setPdData={setPdData} />
         <Box1>
           <BoxText>BORROW 지역</BoxText>
           <LocalBox
@@ -160,7 +161,9 @@ function Option() {
             </BtnList>
           </BoxBtn>
         </Box1>
-        <NextButton>검색 결과 보기</NextButton>
+        <Link to="/user/main">
+          <NextButton>검색 결과 보기</NextButton>
+        </Link>
         <Footer />
         {local ? <Local setLocal={setLocal} setLocalName={setLocalName} /> : ""}
       </OptionContainer>
