@@ -4,7 +4,6 @@ import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
-import cartShape from "../img/cartShape.png";
 import List from "./List";
 //map 함수로 불러오기 성공 ^_^
 
