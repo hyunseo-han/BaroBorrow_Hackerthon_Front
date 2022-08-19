@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginLogo = styled.img`
   position: absolute;
@@ -80,7 +81,10 @@ const Login = () => {
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
-
+  const loginData = {
+    username: inputId,
+    password: inputPw,
+  };
   const navigate = useNavigate();
   return (
     <>
@@ -113,6 +117,11 @@ const Login = () => {
         <LoginButton
           onClick={() => {
             navigate("/user/main");
+            axios
+              .post("http://127.0.0.1:8000/admin/", loginData)
+              .then(function (response) {
+                console.log(response);
+              });
           }}
         >
           로그인
