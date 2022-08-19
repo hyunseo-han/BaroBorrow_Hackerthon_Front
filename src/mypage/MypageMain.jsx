@@ -10,6 +10,7 @@ const NicknameDiv = styled.div`
   height: 27px;
   top: 80px;
   float: left;
+  left: 24px;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -18,6 +19,7 @@ const NicknameDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
+  left: 24px;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -32,6 +34,7 @@ const TextDiv = styled.div`
 `;
 
 const MenuContainer = styled.div`
+  left: 24px;
   display: flex;
   left: -24px;
 
@@ -43,7 +46,7 @@ const MenuDiv = styled.div`
   position: relative;
   width: 375px;
   height: 60px;
-  left: -180px;
+  left: -160px;
   top: 135px;
   background: #ffffff;
   border-top: 1px solid #dadada;
