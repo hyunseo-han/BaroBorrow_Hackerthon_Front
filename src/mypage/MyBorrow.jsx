@@ -8,7 +8,8 @@ import List from "./List";
 import sdata from "../borrdata.json";
 import MyBorrowed from "./MyBorrowed";
 import { useNavigate } from "react-router-dom";
-//map 함수로 불러오기 성공 ^_^
+import ReturnModal from "./ReturnModal";
+import Return from "./Return";
 
 const TextBox = styled.div`
   width: 145px;
@@ -51,6 +52,69 @@ const ReturnButton = styled.button`
   line-height: 24px;
   color: #ffffff;
   margin-left: 180px;
+`;
+
+const MenuBar1 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 46px;
+  left: 0px;
+  top: 90px;
+  border-bottom: 3px solid #56aedf;
+`;
+
+const MenuBar2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 188px;
+  height: 46px;
+  left: 187px;
+  top: 90px;
+`;
+
+const MenuText = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #666666;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+const MenuText2 = styled.div`
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #56aedf;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+`;
+
+const MenuDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 46px;
+  top: 90px;
 `;
 
 const Pic = styled.div`
@@ -183,6 +247,10 @@ const MenuDiv = styled.div`
 `;
 
 function MyBorrow() {
+
+function MyBorrow({ closeModal }) {
+  const [open, setOpen] = useState(false);
+
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
@@ -213,6 +281,7 @@ function MyBorrow() {
           <MenuText>빌려준 내역</MenuText>
         </MenuBar2>
       </MenuDiv>
+      <List />
       <Entirety>
         <div>
           {posts.map((post) => (
@@ -232,7 +301,14 @@ function MyBorrow() {
                 <LocalName>{post.local}</LocalName>
                 <DdayDiv>D + 1</DdayDiv>
                 <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton>반납하기</ReturnButton>
+                <ReturnButton onClick={() => setOpen(!open)}>
+                  {open && (
+                    <ReturnModal closeModal={() => setOpen(!open)}>
+                      <Return />
+                    </ReturnModal>
+                  )}
+                  반납하기
+                </ReturnButton>
               </BoxInfo>
             </Box>
           ))}

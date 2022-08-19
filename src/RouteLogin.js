@@ -24,11 +24,12 @@ function Nav({ navtext }) {
   );
 }
 
-function RouteLogin({ navtext }) {
+function RouteLogin() {
   return (
     <>
-      <Nav navtext={navtext} />
-      <Outlet />
+      <Nav />
+      {true ? <Outlet /> : "잘못된 요펑"}
+      {/* <Outlet /> */}
     </>
   );
 }

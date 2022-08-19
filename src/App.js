@@ -46,7 +46,6 @@ function App() {
           {/* 마이페이지 */}
           <Route element={<Profile />} path={"/user/mypage/profile"} />
           <Route element={<Profile />} path={"/user/mypage/profile"} />
-          <Route element={<ProfileEdit />} path={"/user/mypage/profileEdit"} />
           {/* 검색 */}
           <Route
             element={<ProductSearch setNavText={setNavText} />}

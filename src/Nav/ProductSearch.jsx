@@ -11,8 +11,7 @@ const PdSearchContainer = styled.div`
   margin-bottom: 80px;
 `;
 
-function ProductSearch({ setNavText }) {
-  setNavText("");
+function ProductSearch() {
   return (
     <PdSearchContainer>
       <SearchDetail />
