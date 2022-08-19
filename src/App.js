@@ -17,6 +17,8 @@ import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
 import HoldMain from "./basket/HoldMain";
+import MypageMain from "./mypage/MypageMain";
+import MyBorrow from "./mypage/MyBorrow";
 
 function App() {
   const [navtext, setNavText] = useState("");
