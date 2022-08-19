@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Footer from "../Footer";
 import ProductList from "./ProductList";
+import axios from "axios";
 
 const ListContariner = styled.div`
   color: #888888;
@@ -31,14 +32,50 @@ const ListEntireText = styled.p`
 `;
 
 function MainHome() {
+  const [pdData, setpdData] = useState([]);
+  const [inputSearch, setInputSearch] = useState("");
+
+  const handleInputSearch = (e) => {
+    setInputSearch(e.target.value);
+  };
+
   return (
     <ListContariner>
-      <div style={{ padding: "0 24px" }}>
-        <Input placeholder="물품 카테고리 , 물품 명을 검색해주세요." />
+      <div
+        style={{ display: "flex", alignItems: "center", padding: "14px 12px" }}
+      >
+        <div
+          style={{
+            padding: "0 24px",
+            width: "100%",
+
+            outline: "none",
+          }}
+        >
+          <Input
+            placeholder="물품 카테고리 , 물품 명을 검색해주세요."
+            value={inputSearch}
+            onChange={handleInputSearch}
+          />
+        </div>
+        <div
+          onClick={() => {
+            axios
+              .get(
+                `http://127.0.0.1:8000/search/products?search=${inputSearch}`
+              )
+              .then((response) => {
+                console.log(response);
+                setpdData(response.data);
+              });
+          }}
+        >
+          검색
+        </div>
       </div>
       <div>
-        <ListEntireText>전체화면</ListEntireText>
-        <ProductList />
+        <ListEntireText pdData={pdData}>전체물품</ListEntireText>
+        <ProductList pdData={pdData} />
       </div>
       <Footer />
     </ListContariner>

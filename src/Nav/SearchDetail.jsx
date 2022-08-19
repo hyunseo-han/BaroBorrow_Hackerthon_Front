@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PdSearchHeader = styled.div`
   background: #f7f7f7;
@@ -32,6 +33,7 @@ const PdSearchKeyWord = styled.span`
   width: 70px;
   text-align: center;
 `;
+
 const PdSearchInput = styled.div`
   display: flex;
   align-items: center;
@@ -53,14 +55,20 @@ const SearchInput = styled.input`
 
 const SearchImg = styled.img`
   cursor: pointer;
-  width 20px;
+  width: 20px;
   @media only screen and (max-width: 500px) {
     width: inherit;
   }
 `;
 
-function SearchDetail() {
+function SearchDetail({ setPdData }) {
   const navigate = useNavigate();
+  const [inputSearch, setInputSearch] = useState("");
+
+  const handleInputSearch = (e) => {
+    setInputSearch(e.target.value);
+  };
+
   return (
     <PdSearchHeader>
       <PdSearchInfo>
@@ -76,7 +84,25 @@ function SearchDetail() {
             navigate("/user/filtersearch");
           }}
         />
-        <SearchInput placeholder="검색 조건을 추가해보세요" />
+        <SearchInput
+          placeholder="검색 조건을 추가해보세요"
+          value={inputSearch}
+          onChange={handleInputSearch}
+        />
+        <div
+          onClick={() => {
+            axios
+              .get(
+                `http://127.0.0.1:8000/search/products?search=${inputSearch}`
+              )
+              .then((response) => {
+                console.log(response);
+                setPdData(response.data);
+              });
+          }}
+        >
+          검색
+        </div>
       </PdSearchInput>
     </PdSearchHeader>
   );
