@@ -78,18 +78,18 @@ const MypageMain = () => {
       <MenuContainer>
         <Link to={"/user/mypage/profile"}>
           <MenuDiv>
-            <MenuIcon src="../img/profileMain1.png" />
+            <MenuIcon src="../../img/profileMain1.png" />
             <MenuTextDiv>내 프로필</MenuTextDiv>
           </MenuDiv>
         </Link>
         <Link to={"/user/mypage/MyBorrow"}>
           <MenuDiv>
-            <MenuIcon src="../img/profileMain2.png" />
+            <MenuIcon src="../../img/profileMain2.png" />
             <MenuTextDiv>내 바로 내역</MenuTextDiv>
           </MenuDiv>
         </Link>
         <MenuDiv style={{ borderBottom: "1px solid #DADADA" }}>
-          <MenuIcon src="../img/profileMain3.png" />
+          <MenuIcon src="../../img/profileMain3.png" />
           <MenuTextDiv>고객센터</MenuTextDiv>
         </MenuDiv>
       </MenuContainer>
