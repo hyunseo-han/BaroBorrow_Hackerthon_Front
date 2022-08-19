@@ -40,13 +40,11 @@ const MenuContainer = styled.div`
 
 const MenuDiv = styled.div`
   box-sizing: border-box;
-
   position: relative;
   width: 375px;
   height: 60px;
   left: -180px;
   top: 135px;
-
   background: #ffffff;
   border-top: 1px solid #dadada;
 `;

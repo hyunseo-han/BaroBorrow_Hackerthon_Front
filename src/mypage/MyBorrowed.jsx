@@ -3,10 +3,12 @@ import styled from "styled-components";
 import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import data from "../maindata.json";
+import sdata from "../borrdata.json";
 import { useState, useEffect } from "react";
 import cartShape from "../img/cartShape.png";
 import List2 from "./List2";
 import MyBorrow from "./MyBorrow";
+import { useNavigate } from "react-router-dom";
 //map 함수로 불러오기 성공 ^_^
 
 const TextBox = styled.div`
@@ -111,6 +113,76 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
+const MenuBar1 = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 46px;
+  left: 0px;
+`;
+
+const MenuBar2 = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 188px;
+  height: 46px;
+  left: 187px;
+  border-bottom: 3px solid #56aedf;
+`;
+
+const MenuText = styled.div`
+  position: absolute;
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  color: #56aedf;
+  cursor: pointer;
+`;
+
+const MenuText2 = styled.div`
+  position: absolute;
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #666666;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+`;
+
+const MenuDiv = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 46px;
+  background: #ffffff;
+  top: 89px;
+  cursor: pointer;
+`;
+
 function MyBorrowed() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -118,51 +190,56 @@ function MyBorrowed() {
   }, []);
 
   const getPosts = () => {
-    setPosts(data);
+    setPosts(sdata);
   };
 
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      {show ? (
-        <MyBorrow />
-      ) : (
-        <>
-          <Header />
-          <List2
-            onClick={() => {
-              setShow(true);
-            }}
-          />
-          <Entirety>
-            <div>
-              {posts.map((post) => (
-                <Box key={post.id}>
-                  <Pic>
-                    <img
-                      src={post.picture}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Pic>
-                  <BoxInfo>
-                    <Title>{post.title}</Title>
-                    <LocalName>{post.local}</LocalName>
-                    <DdayDiv>D + 1</DdayDiv>
-                    <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                    <ReturnButton>반납하기</ReturnButton>
-                  </BoxInfo>
-                </Box>
-              ))}
-            </div>
-          </Entirety>
-          <Footer />
-        </>
-      )}
+      <Header />
+      <MenuDiv>
+        <MenuBar1
+          onClick={() => {
+            navigate("/user/mypage/MyBorrow");
+          }}
+        >
+          <MenuText2>빌린 내역</MenuText2>
+        </MenuBar1>
+        <MenuBar2
+          onClick={() => {
+            navigate("/user/mypage/MyBorrowed");
+          }}
+        >
+          <MenuText>빌려준 내역</MenuText>
+        </MenuBar2>
+      </MenuDiv>
+      <Entirety>
+        <div>
+          {posts.map((post) => (
+            <Box key={post.id}>
+              <Pic>
+                <img
+                  src={post.picture}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+              </Pic>
+              <BoxInfo>
+                <Title>{post.title}</Title>
+                <LocalName>{post.local}</LocalName>
+                <DdayDiv>D + 1</DdayDiv>
+                <TextBox>약속된 장소에 반납하셨나요?</TextBox>
+                <ReturnButton>반납하기</ReturnButton>
+              </BoxInfo>
+            </Box>
+          ))}
+        </div>
+      </Entirety>
+      <Footer />
     </>
   );
 }
