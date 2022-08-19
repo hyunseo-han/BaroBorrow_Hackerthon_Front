@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Footer from "../Nav/Footer";
+import Footer from "../Footer";
 
 const NicknameDiv = styled.div`
   color: rgba(86, 174, 223, 1);
@@ -82,7 +82,7 @@ const MypageMain = () => {
             <MenuTextDiv>내 프로필</MenuTextDiv>
           </MenuDiv>
         </Link>
-        <Link to={"/user/mypage/myborrow"}>
+        <Link to={"/user/mypage/MyBorrow"}>
           <MenuDiv>
             <MenuIcon src="../img/profileMain2.png" />
             <MenuTextDiv>내 바로 내역</MenuTextDiv>
@@ -93,7 +93,6 @@ const MypageMain = () => {
           <MenuTextDiv>고객센터</MenuTextDiv>
         </MenuDiv>
       </MenuContainer>
-
       <Footer />
     </>
   );

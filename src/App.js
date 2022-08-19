@@ -17,6 +17,8 @@ import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
 import HoldMain from "./basket/HoldMain";
+import MypageMain from "./mypage/MypageMain";
+import MyBorrow from "./mypage/MyBorrow";
 
 function App() {
   const [navtext, setNavText] = useState("");
@@ -44,8 +46,14 @@ function App() {
           <Route element={<ProductResult />} path={"/user/detail:id/result"} />
 
           {/* 마이페이지 */}
-          <Route element={<Profile />} path={"/user/mypage/profile"} />
-          <Route element={<Profile />} path={"/user/mypage/profile"} />
+          <Route
+            element={<MypageMain setNavText={setNavText} />}
+            path={"/user/mypage/MypageMain"}
+          />
+          <Route
+            element={<MyBorrow setNavText={setNavText} />}
+            path={"/user/mypage/MyBorrow"}
+          />
           {/* 검색 */}
           <Route
             element={<ProductSearch setNavText={setNavText} />}

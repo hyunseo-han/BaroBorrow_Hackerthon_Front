@@ -9,7 +9,6 @@ import cartShape from "../img/cartShape.png";
 import List2 from "./List2";
 import MyBorrow from "./MyBorrow";
 import { useNavigate } from "react-router-dom";
-//map 함수로 불러오기 성공 ^_^
 
 const TextBox = styled.div`
   width: 145px;
