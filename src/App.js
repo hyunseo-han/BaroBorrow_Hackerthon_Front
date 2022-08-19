@@ -17,6 +17,7 @@ import ProductSearch from "./Nav/ProductSearch";
 import Option from "./Nav/Option";
 import { useState } from "react";
 import MyBorrow from "./mypage/MyBorrow";
+import MyBorrowed from "./mypage/MyBorrowed";
 import Local from "./Nav/Local";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <MyBorrow />
+      <MyBorrowed />
     </BrowserRouter>
   );
 }
