@@ -5,7 +5,7 @@ const OwnerContainer = styled.div`
   color: #666666;
   font-weight: 700;
   max-width: 900px;
-  margin: 52px auto 0;
+  margin: 52px auto 70px;
 `;
 const OwnerHead = styled.div`
   padding: 24px 12px 0;

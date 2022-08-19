@@ -4,7 +4,9 @@ import Header from "../Nav/Header";
 import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
-import List from "./List";
+import cartShape from "../img/cartShape.png";
+import List2 from "./List2";
+import MyBorrow from "./MyBorrow";
 //map 함수로 불러오기 성공 ^_^
 
 const TextBox = styled.div`
@@ -48,69 +50,6 @@ const ReturnButton = styled.button`
   line-height: 24px;
   color: #ffffff;
   margin-left: 180px;
-`;
-
-const MenuBar1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 187px;
-  height: 46px;
-  left: 0px;
-  top: 90px;
-  border-bottom: 3px solid #56aedf;
-`;
-
-const MenuBar2 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 188px;
-  height: 46px;
-  left: 187px;
-  top: 90px;
-`;
-
-const MenuText = styled.div`
-  width: 77px;
-  height: 22px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-  color: #666666;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-const MenuText2 = styled.div`
-  width: 77px;
-  height: 22px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: center;
-  letter-spacing: -0.333333px;
-  color: #56aedf;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-const MenuDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 375px;
-  height: 46px;
-  top: 90px;
 `;
 
 const Pic = styled.div`
@@ -172,7 +111,7 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
-function MyBorrow() {
+function MyBorrowed() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     getPosts();
@@ -182,37 +121,50 @@ function MyBorrow() {
     setPosts(data);
   };
 
+  const [show, setShow] = useState(false);
+
   return (
     <>
-      <List />
-      <Entirety>
-        <div>
-          {posts.map((post) => (
-            <Box key={post.id}>
-              <Pic>
-                <img
-                  src={post.picture}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </Pic>
-              <BoxInfo>
-                <Title>{post.title}</Title>
-                <LocalName>{post.local}</LocalName>
-                <DdayDiv>D + 1</DdayDiv>
-                <TextBox>약속된 장소에 반납하셨나요?</TextBox>
-                <ReturnButton>반납하기</ReturnButton>
-              </BoxInfo>
-            </Box>
-          ))}
-        </div>
-      </Entirety>
-      <Footer />
+      {show ? (
+        <MyBorrow />
+      ) : (
+        <>
+          <Header />
+          <List2
+            onClick={() => {
+              setShow(true);
+            }}
+          />
+          <Entirety>
+            <div>
+              {posts.map((post) => (
+                <Box key={post.id}>
+                  <Pic>
+                    <img
+                      src={post.picture}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Pic>
+                  <BoxInfo>
+                    <Title>{post.title}</Title>
+                    <LocalName>{post.local}</LocalName>
+                    <DdayDiv>D + 1</DdayDiv>
+                    <TextBox>약속된 장소에 반납하셨나요?</TextBox>
+                    <ReturnButton>반납하기</ReturnButton>
+                  </BoxInfo>
+                </Box>
+              ))}
+            </div>
+          </Entirety>
+          <Footer />
+        </>
+      )}
     </>
   );
 }
 
-export default MyBorrow;
+export default MyBorrowed;

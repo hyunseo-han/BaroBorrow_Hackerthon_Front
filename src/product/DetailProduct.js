@@ -29,6 +29,7 @@ export const PdImgDiv = style.div`
   margin-bottom: 15px;
   width: 100%;
   height: 320px;
+  padding-top: 32px;
 `;
 
 export const PdImg = style.img`
@@ -169,7 +170,7 @@ function DetailProduct() {
             <InfoTitle>대여자 정보</InfoTitle>
             <InfoOwner
               onClick={() => {
-                navigate("/owner");
+                navigate("/user/owner");
               }}
             >
               이름/닉네임

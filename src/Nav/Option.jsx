@@ -1,103 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Header";
 import { useState } from "react";
-import Footer from "./Footer";
-import VectorIMG from "../img/Vector.png";
+import Footer from "../Footer";
+// import VectorIMG from "../img/Vector.png";
 import Local from "../Nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
+import SearchDetail from "./SearchDetail";
 
-const Top = styled.div`
-  position: absolute;
-  width: 375px;
-  height: 97px;
-  left: 0px;
-  top: 90px;
-  background: #f7f7f7;
-`;
-
-const InfoName = styled.div`
-  position: absolute;
-  width: 50px;
-  height: 18px;
-  left: 24.44px;
-  top: 20px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 128.91%;
-  color: #56aedf;
-`;
-
-const InfoText1 = styled.div`
-  position: absolute;
-  width: 81px;
-  height: 18px;
-  left: 80.44px;
-  top: 20px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 128.91%;
-  text-align: center;
-  color: #888888;
-`;
-
-const InfoSearch = styled.div`
-  position: absolute;
-  width: 93px;
-  height: 18px;
-  top: 20px;
-  left: 167.44px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 128.91%;
-  text-align: center;
-  color: #56aedf;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-`;
-
-const InfoText2 = styled.div`
-  position: absolute;
-  width: 85px;
-  height: 18px;
-  left: 266.44px;
-  top: 20px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 128.91%;
-  text-align: center;
-  color: #888888;
-`;
-
-const Add = styled.div`
-  position: absolute;
-  width: 327px;
-  height: 32px;
-  left: 24.44px;
-  top: 50px;
-  bottom: 15px;
-  background: #ffffff;
-`;
-
-const AddVector = styled.div`
-  position: absolute;
-  top: 7.66px;
-  left: 6.52px;
-`;
-
-const AddText = styled.input`
-  position: absolute;
-  top: 7px;
-  left: 36px;
-  border: 0 solid black;
-  outline: none;
-`;
 //클릭시 테두리 생김..
+
+const OptionContainer = styled.div`
+  margin-top: 52px;
+  margin-bottom: 80px;
+`;
 
 const Box1 = styled.div`
   box-sizing: border-box;
@@ -119,6 +34,7 @@ const LocalBox = styled.div`
   top: 60px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
+  cursor: pointer;
 `;
 
 const LocalBoxText = styled.div`
@@ -131,8 +47,8 @@ const LocalBoxText = styled.div`
   font-weight: 700;
   font-size: 14px;
   line-height: 128.91%;
-  text-align: center;
   color: #c5c5c5;
+  cursor: pointer;
 `;
 
 const LocalBoxIconDiv = styled.div`
@@ -299,7 +215,8 @@ const NextButtonText = styled.div`
 `;
 //글자 간격은 폰트 적용 후 확인할것
 
-function Option() {
+function Option({ setNavText }) {
+  setNavText("검색조건 추가");
   const [color1, setColor1] = useState("#E6E6E6");
   const [color2, setColor2] = useState("#E6E6E6");
   const [color3, setColor3] = useState("#E6E6E6");
@@ -327,67 +244,56 @@ function Option() {
   };
 
   const [local, setLocal] = useState(false);
-
+  const [localName, setLocalName] = useState("");
   return (
     <>
-      <Header />
-
-      <Top>
-        <InfoName>props</InfoName>
-        <InfoText1>님이 검색하신</InfoText1>
-        <InfoSearch>props</InfoSearch>
-        <InfoText2>관련 검색 결과</InfoText2>
-        <Add>
-          <AddText placeholder="검색 조건을 추가해보세요" />
-          <AddVector>
-            <img src={VectorIMG}></img>
-          </AddVector>
-        </Add>
-      </Top>
-      <Box1>
-        <BoxText>BORROW 지역</BoxText>
-        <LocalBox>
-          <LocalBoxText>대여를 원하는 지역을 선택해주세요</LocalBoxText>
-          <LocalBoxIconDiv>
-            <img src={LocalBoxIcon}></img>
-          </LocalBoxIconDiv>
-        </LocalBox>
-      </Box1>
-      <Box2>
-        <BoxText>BORROW 상태</BoxText>
-        <Button2_1 color={color1} onClick={onClick1}>
-          전체
-        </Button2_1>
-        <Button2_2 color={color2} onClick={onClick2}>
-          대여 중 제외
-        </Button2_2>
-        <Button2_3 color={color6} onClick={onClick6}>
-          오늘 바로
-        </Button2_3>
-      </Box2>
-      <Box3>
-        <BoxText>BORROW 방식</BoxText>
-        <Button3_1 color={color3} onClick={onClick3}>
-          전체
-        </Button3_1>
-        <Button3_2 color={color4} onClick={onClick4}>
-          대면
-        </Button3_2>
-        <Button3_3 color={color5} onClick={onClick5}>
-          비대면
-        </Button3_3>
-      </Box3>
-      <NextButton>
-        <NextButtonText>검색 결과 보기</NextButtonText>
-      </NextButton>
-      <Footer />
-      <br />
-      <br />
-      <br />
-      <Local />
-      <br />
-      <br />
-      <br />
+      <OptionContainer>
+        <SearchDetail />
+        <Box1>
+          <BoxText>BORROW 지역</BoxText>
+          <LocalBox
+            onClick={() => {
+              setLocal(true);
+            }}
+          >
+            <LocalBoxText>
+              {localName ? localName : "대여를 원하는 지역을 선택해주세요"}
+            </LocalBoxText>
+            <LocalBoxIconDiv>
+              <img src={LocalBoxIcon} />
+            </LocalBoxIconDiv>
+          </LocalBox>
+        </Box1>
+        <Box2>
+          <BoxText>BORROW 상태</BoxText>
+          <Button2_1 color={color1} onClick={onClick1}>
+            전체
+          </Button2_1>
+          <Button2_2 color={color2} onClick={onClick2}>
+            대여 중 제외
+          </Button2_2>
+          <Button2_3 color={color6} onClick={onClick6}>
+            오늘 바로
+          </Button2_3>
+        </Box2>
+        <Box3>
+          <BoxText>BORROW 방식</BoxText>
+          <Button3_1 color={color3} onClick={onClick3}>
+            전체
+          </Button3_1>
+          <Button3_2 color={color4} onClick={onClick4}>
+            대면
+          </Button3_2>
+          <Button3_3 color={color5} onClick={onClick5}>
+            비대면
+          </Button3_3>
+        </Box3>
+        <NextButton>
+          <NextButtonText>검색 결과 보기</NextButtonText>
+        </NextButton>
+        <Footer />
+        {local ? <Local setLocal={setLocal} setLocalName={setLocalName} /> : ""}
+      </OptionContainer>
     </>
   );
 }

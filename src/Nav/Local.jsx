@@ -1,40 +1,79 @@
 import React, { useState, useRef } from "react";
 import style from "styled-components";
 
+const SearchSection = style.section`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666666;
+  font-weight: bold;
+  z-index: 99;
+  `;
+
+const SearchContainer = style.div`
+  background-color: white;
+  width: 86%;
+  padding: 20px 15px 14px;
+`;
+
+const SearchHeader = style.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const SearchBox = style.div`
   display: flex;
-  max-width: 600px;
-  margin-top: 52px;
   cursor: pointer;
+  box-sizing: border-box;
 `;
+
 const SearchList = style.div`
-  width: 20%;
+  width: 100%;
   cursor: pointer;
+  padding-right: 21px;
+  max-height: 540px;
+  overflow: auto;
 `;
 //프리티어 안먹힘
 
 const SearchCategory = style.div`
-  background-color: #E9F6FD; 
-  border: 1px solid black;
   text-align: center;
   cursor: pointer;
-  padding: 5px;
-`;
+  padding: 10px 0;
+  `;
 //서울 경기
 
 const SearchListDetail = style.div`
-  width: 20%;
+  width: 100%;
   overflow: auto;
   text-align: center;
   cursor: pointer;
+  max-height: 540px;
+  overflow: auto;
 `;
 
 const DetailContent = style.div`
-  background: #E9F6FD;
-  border: 1px solid black;
   cursor: pointer;
-  padding: 5px;
+  padding: 10px 0;
 `;
+
+const SearchBtn = style.div`
+  padding: 14px 0;
+  background: #56AEDF;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  margin-top: 14px;
+`;
+
 //성동구 광진구
 
 const category = [
@@ -388,7 +427,7 @@ const category = [
   },
 ];
 
-function Local() {
+function Local({ setLocal, setLocalName }) {
   const [selectState, setSelectState] = useState(["지역을 선택해주세요를레이"]);
   //아무말도 안하는게 더 나을지?
   const [infoState, setInfoState] = useState("");
@@ -396,50 +435,74 @@ function Local() {
   console.log(infoState, infoGu);
   const guRef = useRef([]);
   return (
-    <SearchBox>
-      <SearchList>
-        {category.map((list) => (
-          <SearchCategory
-            key={`cate${list.cityId}`}
-            onClick={(event) => {
-              setSelectState(list.cityDt);
-              setInfoState(list.cityFullName);
-              if (guRef.current[infoGu]) {
-                guRef.current[infoGu].style.background = "";
-              }
-              setInfoGu("");
-              for (
-                let index = 0;
-                index < event.target.parentElement.children.length;
-                index++
-              ) {
-                event.target.parentElement.children[index].style.background =
-                  "";
-              }
-              event.target.style.background = "#99D0EF";
-            }}
-          >
-            {list.cityName}
-          </SearchCategory>
-        ))}
-      </SearchList>
-      <SearchListDetail>
-        {selectState.map((li) => (
-          <DetailContent
-            ref={(gu) => (guRef.current[li] = gu)}
-            onClick={() => {
-              if (guRef.current[infoGu]) {
-                guRef.current[infoGu].style.background = "";
-              }
-              setInfoGu(li);
-              guRef.current[li].style.background = "#99D0EF";
-            }}
-          >
-            {li}
-          </DetailContent>
-        ))}
-      </SearchListDetail>
-    </SearchBox>
+    <SearchSection>
+      <SearchContainer>
+        <SearchHeader>
+          <span>BORROW 지역 선택</span>
+          <img src={require("../img/close.png")} />
+        </SearchHeader>
+        <SearchBox>
+          <SearchList>
+            <div>시/도</div>
+            {category.map((list) => (
+              <SearchCategory
+                key={`cate${list.cityId}`}
+                onClick={(event) => {
+                  setSelectState(list.cityDt);
+                  setInfoState(list.cityFullName);
+                  if (guRef.current[infoGu]) {
+                    guRef.current[infoGu].style.background = "";
+                    guRef.current[infoGu].style.color = "";
+                  }
+                  setInfoGu("");
+                  for (
+                    let index = 0;
+                    index < event.target.parentElement.children.length;
+                    index++
+                  ) {
+                    event.target.parentElement.children[
+                      index
+                    ].style.background = "";
+                    event.target.parentElement.children[index].style.color = "";
+                  }
+                  event.target.style.background = "#99D0EF";
+                  event.target.style.color = "white";
+                }}
+              >
+                {list.cityName}
+              </SearchCategory>
+            ))}
+          </SearchList>
+          <SearchListDetail>
+            <div>구/군</div>
+            {selectState.map((li) => (
+              <DetailContent
+                ref={(gu) => (guRef.current[li] = gu)}
+                onClick={() => {
+                  if (guRef.current[infoGu]) {
+                    guRef.current[infoGu].style.background = "";
+                    guRef.current[infoGu].style.color = "";
+                  }
+                  setInfoGu(li);
+                  guRef.current[li].style.background = "#99D0EF";
+                  guRef.current[li].style.color = "white";
+                }}
+              >
+                {li}
+              </DetailContent>
+            ))}
+          </SearchListDetail>
+        </SearchBox>
+        <SearchBtn
+          onClick={() => {
+            setLocal(false);
+            setLocalName(`${infoState}${infoGu}`);
+          }}
+        >
+          선택
+        </SearchBtn>
+      </SearchContainer>
+    </SearchSection>
   );
 }
 

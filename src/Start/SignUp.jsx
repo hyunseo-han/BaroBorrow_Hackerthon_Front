@@ -1,7 +1,7 @@
-import React from "react";
-import { useState, useCallback, useEffect } from "react";
+import React, { useDebugValue, useEffect } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
-import { useNavigate, NavLink, Link } from "react-router-dom";
+import { useNavigate, NavLink, Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
 const WelcomeDiv = styled.div`
@@ -40,31 +40,6 @@ export const InputText = styled.input`
   line-height: 22px;
 
   overflow: hidden;
-
-  background: rgba(246, 246, 246, 1);
-  color: rgba(136, 136, 136, 1);
-`;
-
-export const InputText2 = styled.input`
-  all: unset;
-  position: relative;
-  width: 327px;
-  height: 48px;
-  top: 175px;
-
-  background: #f7f7f7;
-  border-radius: 5px;
-  margin-left: 3px;
-
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  text-indent: 13px;
-
-  overflow: hidden;
-
-  background: rgba(246, 246, 246, 1);
   color: rgba(136, 136, 136, 1);
 `;
 
@@ -135,9 +110,6 @@ const TextDiv = styled.div`
   width: 219px;
   height: 22px;
   top: 160px;
-
-  /* font-family: "Open Sans"; */
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
@@ -145,23 +117,37 @@ const TextDiv = styled.div`
   color: rgba(102, 102, 102, 1);
 `;
 
-const SignUp = () => {
-  const userData = {
-    username: ID,
-    name: name,
-    password: password,
-  };
+const InputText2 = styled.input`
+  all: unset;
+  position: relative;
+  width: 327px;
+  height: 48px;
+  top: 175px;
+  background: #f7f7f7;
+  border-radius: 5px;
+  margin-left: 3px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-indent: 13px;
+  overflow: hidden;
+  background: rgba(246, 246, 246, 1);
+  color: rgba(136, 136, 136, 1);
+`;
 
+<<<<<<< HEAD
+=======
+const SignUp = () => {
+>>>>>>> main
   const [name, setName] = useState("");
   const [ID, setID] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorPassword, setErrorPassword] = useState(false);
-  const [nickname, setnickname] = useState("");
 
-  const onNickNameHandler = (event) => {
-    setnickname(event.currentTarget.value);
-  };
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [errorPassword, setErrorPassword] = useState(false);
+
   const onNameHandler = (event) => {
     setName(event.currentTarget.value);
   };
@@ -187,20 +173,26 @@ const SignUp = () => {
     [password, confirmPassword]
   );
 
+  const userData = {
+    username: ID,
+    name: name,
+    password: password,
+  };
+
   useEffect(() => {
-    console.log(errorPassword);
-    if (confirmPassword.length < 1 || password.length < 1) {
-      setErrorPassword(false);
-    } else if (password === confirmPassword) {
+    if (
+      password === confirmPassword &&
+      password !== "" &&
+      confirmPassword !== ""
+    ) {
       console.log(password);
       console.log(confirmPassword);
       setErrorPassword(true);
-      console.log(errorPassword);
     } else {
       setErrorPassword(false);
     }
   }, [confirmPassword, password]);
-
+  const navigate = useNavigate();
   return (
     <>
       <WelcomeDiv>
@@ -259,17 +251,17 @@ const SignUp = () => {
           onChange={(event) => {
             setConfirmPassword(event.target.value);
           }}
+          required={true}
         />
         <CheckIconimg src={errorPassword === false ? null : "img/check.png"} />
       </SignUpDiv>
-
       <TextDiv>사용하실 닉네임을 입력해주세요.</TextDiv>
       <InputText2
         type="text"
         id="input_nickname"
         placeholder="ex) 홍길동"
-        value={nickname}
-        onChange={onNickNameHandler}
+        // value={nickname}
+        // onChange={onNickNameHandler}
       />
 
       <div>
@@ -277,7 +269,7 @@ const SignUp = () => {
           <div
             style={{ color: "white" }}
             onClick={() => {
-              navigate("/NickName");
+              navigate("/Login");
               console.log(userData);
               axios
                 .post("http://127.0.0.1:8000/user/signup/", userData)

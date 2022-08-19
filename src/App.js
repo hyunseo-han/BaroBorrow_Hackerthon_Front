@@ -1,33 +1,59 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetailProduct from "./product/DetailProduct";
 import { GlobalStyle } from "./style";
-import ProductList from "./ProductList";
-import Nav from "./Nav";
 import ProductResult from "./product/ProductResult";
 import ProductOwner from "./product/ProductOwner";
 import ProductEnroll from "./product/ProductEnroll";
 import Profile from "./mypage/Profile";
 import ProfileEdit from "./mypage/ProfileEdit";
-import MypageMain from "./mypage/MypageMain";
-import MyBorrow from "./mypage/MyBorrow";
-import MyLent from "./mypage/MyLent";
+import MainHome from "./Nav/MainHome";
+import Search from "./Nav/Search";
+import SignUp from "./Start/SignUp";
+import Main from "./Start/Main";
+import Login from "./Start/Login";
+import Location from "./Start/Location";
+import RouteLogin from "./RouteLogin";
+import ProductSearch from "./Nav/ProductSearch";
+import Option from "./Nav/Option";
+import { useState } from "react";
 
 function App() {
+  const [navtext, setNavText] = useState("");
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Nav />
       <Routes>
-        <Route element={<ProductList />} path={"/"}></Route>
-        <Route element={<ProductOwner />} path={"/owner"}></Route>
-        <Route element={<DetailProduct />} path={"/detail:id"}></Route>
-        <Route element={<ProductEnroll />} path={"/enroll"}></Route>
-        <Route element={<ProductResult />} path={"/detail:id/result"}></Route>
-        <Route element={<Profile />} path={"/mypage/profile"}></Route>
-        <Route element={<ProfileEdit />} path={"/mypage/profileEdit"}></Route>
-        <Route element={<MypageMain />} path={"/mypage/mypagemain"}></Route>
-        <Route element={<MyBorrow />} path={"/mypage/myborrow"}></Route>
-        <Route element={<MyLent />} path={"/mypage/mylent"}></Route>
+        {/* 로그인 */}
+        <Route exact path={"/"} element={<Main />} />
+        <Route exact path={"/SignUp"} element={<SignUp />} />
+        <Route exact path={"/Login"} element={<Login />} />
+        <Route exact path={"/Location"} element={<Location />} />
+        <Route element={<RouteLogin navtext={navtext} />} path={"/user"}>
+          {/* 물품 */}
+          <Route
+            element={<MainHome setNavText={setNavText} />}
+            path={"/user/main"}
+          />
+          <Route element={<DetailProduct />} path={"/user/detail:id"} />
+          <Route element={<ProductOwner />} path={"/user/owner"} />
+          <Route
+            element={<ProductEnroll setNavText={setNavText} />}
+            path={"/user/enroll"}
+          />
+          <Route element={<ProductResult />} path={"/user/detail:id/result"} />
+          {/* 마이페이지 */}
+          <Route element={<Profile />} path={"/user/mypage/profile"} />
+          <Route element={<ProfileEdit />} path={"/user/mypage/profileEdit"} />
+          {/* 검색 */}
+          <Route
+            element={<ProductSearch setNavText={setNavText} />}
+            path={"/user/search"}
+          />
+          <Route
+            element={<Option setNavText={setNavText} />}
+            path={"/user/filtersearch"}
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
