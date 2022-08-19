@@ -9,7 +9,7 @@ const WelcomeDiv = styled.div`
   width: 287px;
   height: 53px;
   top: 120px;
-
+  left: 24px;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -57,7 +57,7 @@ const SignUpDiv = styled.div`
   width: 327px;
   height: 48px;
   top: 145px;
-
+  left: 24px;
   background: #f7f7f7;
   border-radius: 5px;
 
@@ -65,6 +65,7 @@ const SignUpDiv = styled.div`
 `;
 
 const SignUpButton = styled.button`
+  left: 24px;
   position: relative;
   width: 327px;
   height: 48px;
@@ -106,6 +107,7 @@ const CheckIconimg = styled.img`
 `;
 
 const TextDiv = styled.div`
+  left: 24px;
   position: relative;
   width: 219px;
   height: 22px;
@@ -123,6 +125,7 @@ const InputText2 = styled.input`
   width: 327px;
   height: 48px;
   top: 175px;
+  left: 24px;
   background: #f7f7f7;
   border-radius: 5px;
   margin-left: 3px;

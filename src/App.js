@@ -59,7 +59,7 @@ function App() {
               element={<MyBorrow setNavText={setNavText} />}
               path={"/user/mypage/MyBorrow"}
             />
-            {/* <Route element={<Profile />} to={"/user/profile"}/> */}
+            <Route element={<Profile />} path={"/user/mypage/profile"} />
             {/* 검색 */}
             <Route
               element={<ProductSearch setNavText={setNavText} />}

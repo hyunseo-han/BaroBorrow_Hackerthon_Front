@@ -63,14 +63,9 @@ const Box = styled.div`
 const BoxInfo = styled.div`
   padding-left: 12px;
 `;
-function ProductList() {
+function ProductList({ pdData }) {
   const navigate = useNavigate();
-  const [pdData, setPdData] = useState([]);
-  useEffect(() => {
-    axios.get("http://127.0.0.1:8000/product/").then((response) => {
-      setPdData(response.data);
-    });
-  }, []);
+
   return (
     <>
       {pdData.map((list) => (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductList from "./ProductList";
 import styled from "styled-components";
 import Footer from "../Footer";
@@ -12,10 +12,11 @@ const PdSearchContainer = styled.div`
 `;
 
 function ProductSearch() {
+  const [pdData, setPdData] = useState([]);
   return (
     <PdSearchContainer>
-      <SearchDetail />
-      <ProductList />
+      <SearchDetail setPdData={setPdData} />
+      <ProductList pdData={pdData} />
       <Footer />
     </PdSearchContainer>
   );

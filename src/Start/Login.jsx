@@ -9,7 +9,7 @@ const LoginLogo = styled.img`
   position: absolute;
   width: 165px;
   height: 132px;
-  left: 105px;
+  left: 100px;
   top: 126px;
 `;
 
@@ -18,7 +18,7 @@ const SignInDiv = styled.div`
   width: 327px;
   height: 48px;
   top: 278px;
-
+  left: 24px;
   background: #f7f7f7;
   border-radius: 5px;
 
@@ -38,7 +38,8 @@ const LoginButton = styled.button`
   position: relative;
   width: 327px;
   height: 48px;
-  top: 280px;
+  top: 300px;
+  left: 24px;
   background: #56aedf;
   border-radius: 5px;
   border: none;
@@ -82,6 +83,7 @@ const Login = () => {
   const handleInputPw = (e) => {
     setInputPw(e.target.value);
   };
+
   const data = {
     username: inputId,
     password: inputPw,
