@@ -22,7 +22,6 @@ function HoldMain() {
 
   return (
     <>
-      <Header />
       <Entirety>
         <div>
           {posts.map((post) => (
@@ -115,16 +114,12 @@ const CartDiv = styled.div`
 `;
 
 const Entirety = styled.div`
-  position: absolute;
   width: 375px;
-  height: 654px;
-  top: 90px;
-  bottom: 68px;
   left: 0px;
   right: 0px;
   background: #ffffff;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  margin-top: 52px;
+  margin-bottom: 80px;
 `;
 //픽셀 제대로 했는데 overflow라서 일단 hidden
 
