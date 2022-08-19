@@ -4,6 +4,7 @@ import Homeicon from "../img/HomeIcon.png";
 import Carticon from "../img/CartIcon.png";
 import Mypageicon from "../img/MypageIcon.png";
 import Searchicon from "../img/SearchIcon.png";
+import { Link } from "react-router-dom";
 
 const FooterDiv = styled.div`
   position: absolute;
