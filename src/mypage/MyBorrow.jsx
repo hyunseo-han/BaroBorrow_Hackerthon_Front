@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../Nav/Header";
-import Footer from "../Nav/Footer";
+import Footer from "../Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import List from "./List";
+import sdata from "../borrdata.json";
+import MyBorrowed from "./MyBorrowed";
+import { useNavigate } from "react-router-dom";
 //map 함수로 불러오기 성공 ^_^
 
 const TextBox = styled.div`
@@ -109,6 +112,76 @@ const BoxInfo = styled.div`
   padding-left: 12px;
 `;
 
+const MenuBar1 = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 187px;
+  height: 46px;
+  left: 0px;
+  border-bottom: 3px solid #56aedf;
+`;
+
+const MenuBar2 = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 188px;
+  height: 46px;
+  left: 187px;
+`;
+
+const MenuText = styled.div`
+  position: absolute;
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #666666;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+`;
+
+const MenuText2 = styled.div`
+  position: absolute;
+  width: 77px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: -0.333333px;
+  color: #56aedf;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+`;
+
+const MenuDiv = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 46px;
+  background: #ffffff;
+  top: 89px;
+  cursor: pointer;
+`;
+
 function MyBorrow() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -119,10 +192,27 @@ function MyBorrow() {
     setPosts(data);
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
-      <List />
+      <MenuDiv>
+        <MenuBar1
+          onClick={() => {
+            navigate("/user/mypage/MyBorrow");
+          }}
+        >
+          <MenuText2>빌린 내역</MenuText2>
+        </MenuBar1>
+        <MenuBar2
+          onClick={() => {
+            navigate("/user/mypage/MyBorrowed");
+          }}
+        >
+          <MenuText>빌려준 내역</MenuText>
+        </MenuBar2>
+      </MenuDiv>
       <Entirety>
         <div>
           {posts.map((post) => (

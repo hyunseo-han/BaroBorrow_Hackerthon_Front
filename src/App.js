@@ -19,52 +19,15 @@ import { useState } from "react";
 import HoldMain from "./basket/HoldMain";
 import MypageMain from "./mypage/MypageMain";
 import MyBorrow from "./mypage/MyBorrow";
+import MyBorrowed from "./mypage/MyBorrowed";
 
 function App() {
   const [navtext, setNavText] = useState("");
+
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Routes>
-        {/* 로그인 */}
-        <Route exact path={"/"} element={<Main />} />
-        <Route exact path={"/SignUp"} element={<SignUp />} />
-        <Route exact path={"/Login"} element={<Login />} />
-        <Route exact path={"/Location"} element={<Location />} />
-        <Route element={<RouteLogin navtext={navtext} />} path={"/user"}>
-          {/* 물품 */}
-          <Route
-            element={<MainHome setNavText={setNavText} />}
-            path={"/user/main"}
-          />
-          <Route element={<DetailProduct />} path={"/user/detail:id"} />
-          <Route element={<ProductOwner />} path={"/user/owner"} />
-          <Route
-            element={<ProductEnroll setNavText={setNavText} />}
-            path={"/user/enroll"}
-          />
-          <Route element={<ProductResult />} path={"/user/detail:id/result"} />
-
-          {/* 마이페이지 */}
-          <Route element={<Profile />} path={"/user/mypage/profile"} />
-          <Route element={<Profile />} path={"/user/mypage/profile"} />
-
-          {/* 검색 */}
-          <Route
-            element={<ProductSearch setNavText={setNavText} />}
-            path={"/user/search"}
-          />
-          <Route
-            element={<Option setNavText={setNavText} />}
-            path={"/user/filtersearch"}
-          />
-          {/*장바구니*/}
-          <Route
-            element={<HoldMain setNavText={setNavText} />}
-            path={"/user/basket/HoldMain"}
-          />
-        </Route>
-      </Routes>
+      <MyBorrow />
     </BrowserRouter>
   );
 }
