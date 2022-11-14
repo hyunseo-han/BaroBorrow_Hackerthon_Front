@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 import ProductList from "./ProductList";
 import axios from "axios";
 

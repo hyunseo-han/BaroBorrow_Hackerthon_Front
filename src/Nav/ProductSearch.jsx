@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProductList from "./ProductList";
 import styled from "styled-components";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 
 import SearchDetail from "./SearchDetail";
 

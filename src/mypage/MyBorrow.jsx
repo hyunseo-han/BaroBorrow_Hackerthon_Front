@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
 import List from "./List";

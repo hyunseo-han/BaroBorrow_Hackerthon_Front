@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 import Local from "../Nav/Local";
 import LocalBoxIcon from "../img/LocalBoxIcon.png";
 import SearchDetail from "./SearchDetail";

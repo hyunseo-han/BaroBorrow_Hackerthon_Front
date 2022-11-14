@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 import SearchIconSmall from "../img/SearchIconSmall.png";
 import { useNavigate } from "react-router-dom";
 

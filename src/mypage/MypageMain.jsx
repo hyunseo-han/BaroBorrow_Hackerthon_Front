@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Footer from "../Footer";
+import Footer from "../Nav/Footer";
 import { axios } from "axios";
 
 const NicknameDiv = styled.div`
