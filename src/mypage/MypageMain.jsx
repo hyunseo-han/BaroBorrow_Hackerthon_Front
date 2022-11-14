@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Footer from "../Footer";
+import { axios } from "axios";
 
 const NicknameDiv = styled.div`
   color: rgba(86, 174, 223, 1);
@@ -76,7 +77,7 @@ const MenuTextDiv = styled.div`
 const MypageMain = () => {
   return (
     <>
-      <NicknameDiv>닉네임</NicknameDiv>
+      <NicknameDiv>user0</NicknameDiv>
       <TextDiv>님</TextDiv>
       <MenuContainer>
         <Link to={"/user/mypage/profile"}>

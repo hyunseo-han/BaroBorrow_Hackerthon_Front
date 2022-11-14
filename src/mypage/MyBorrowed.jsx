@@ -118,8 +118,8 @@ const MenuBar1 = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 187px;
-  height: 46px;
+  width: 100%;
+  cursor: pointer;
   left: 0px;
 `;
 
@@ -129,8 +129,8 @@ const MenuBar2 = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 188px;
-  height: 46px;
+  width: 100%;
+  cursor: pointer;
   left: 187px;
   border-bottom: 3px solid #56aedf;
 `;
@@ -170,15 +170,12 @@ const MenuText2 = styled.div`
 `;
 
 const MenuDiv = styled.div`
-  position: absolute;
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 375px;
+  width: 100%;
   height: 46px;
   background: #ffffff;
-  top: 89px;
   cursor: pointer;
 `;
 
@@ -196,7 +193,6 @@ function MyBorrowed() {
 
   return (
     <>
-      <Header />
       <MenuDiv>
         <MenuBar1
           onClick={() => {

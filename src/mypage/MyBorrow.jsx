@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../Nav/Header";
 import Footer from "../Footer";
 import data from "../maindata.json";
 import { useState, useEffect } from "react";
@@ -190,7 +189,6 @@ function MyBorrow({ closeModal }) {
 
   return (
     <>
-      <Header />
       <MenuDiv>
         <MenuBar1
           onClick={() => {

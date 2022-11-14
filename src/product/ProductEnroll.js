@@ -50,6 +50,7 @@ const SelectImg = style.img`
 const SelectRemove = style.span`
   position: relative;
 `;
+
 const InfoPer = style.div`
   padding: 0 12px;
   display: flex;
@@ -81,8 +82,7 @@ const InfoInputBor = style.input`
   }
   &::placeholder {
     color: #666666;
-    
-  }
+      }
 `;
 
 const InfoInputLoc = style.div`
@@ -98,7 +98,6 @@ function ProductEnroll() {
   const [showSelect, setShowSelect] = useState(false);
   const [condition, setCondition] = useState(0);
   const [fileImg, setFileImg] = useState();
-  console.log(fileImg);
   const [price, setPrice] = useState("");
   const [rental, setRental] = useState({
     pr: "",
@@ -440,7 +439,7 @@ function ProductEnroll() {
               condition: condition,
               address: address,
               detailAddress: dtAddress,
-              productPhoto: null,
+              productPhoto: files,
               barrowMethod: way,
             });
           }}
@@ -451,7 +450,6 @@ function ProductEnroll() {
       {showSelect ? (
         <CalendarEnroll
           item={"2022-04"}
-          ban={"2022-03-04"}
           borrowInfo={borrowInfo}
           setBorrowInfo={setBorrowInfo}
         />
